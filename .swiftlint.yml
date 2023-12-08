@@ -125,7 +125,7 @@ opt_in_rules: # some rules are only opt-in
     - convenience_type
     - discouraged_object_literal
     - discouraged_optional_boolean
-    - discouraged_optional_collection
+#    - discouraged_optional_collection
     - empty_collection_literal
     - empty_count
     - empty_string

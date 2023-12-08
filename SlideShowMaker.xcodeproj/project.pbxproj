@@ -13,11 +13,11 @@
 		275D301E2B162AED00BED542 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275D301C2B162AED00BED542 /* LaunchScreen.storyboard */; };
 		275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D304A2B177B2F00BED542 /* Coordinator.swift */; };
 		275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D304C2B177BC300BED542 /* ApplicationCoordinator.swift */; };
-		275D30512B17800E00BED542 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30502B17800E00BED542 /* OnboardingCoordinator.swift */; };
 		275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30522B17822900BED542 /* OnboardingViewController.swift */; };
-		275D30552B17861600BED542 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30542B17861600BED542 /* HomeCoordinator.swift */; };
 		275D30572B17866600BED542 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30562B17866600BED542 /* HomeViewController.swift */; };
-		275D30592B179E2700BED542 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30582B179E2700BED542 /* OnboardingView.swift */; };
+		275D305B2B18C49000BED542 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305A2B18C49000BED542 /* Settings.swift */; };
+		275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */; };
+		275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30642B1F55EA00BED542 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,11 +29,11 @@
 		275D301F2B162AED00BED542 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		275D304A2B177B2F00BED542 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		275D304C2B177BC300BED542 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
-		275D30502B17800E00BED542 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		275D30522B17822900BED542 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		275D30542B17861600BED542 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		275D30562B17866600BED542 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		275D30582B179E2700BED542 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		275D305A2B18C49000BED542 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideEditorViewController.swift; sourceTree = "<group>"; };
+		275D30642B1F55EA00BED542 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,10 +67,10 @@
 			isa = PBXGroup;
 			children = (
 				275D30252B162C3A00BED542 /* Application */,
-				275D304F2B177F6B00BED542 /* Home */,
-				275D304E2B177F5E00BED542 /* Onboarding */,
-				275D30492B177B1700BED542 /* Protocols */,
+				275D305E2B1F42A000BED542 /* Coordinator */,
+				275D304E2B177F5E00BED542 /* OnboardingFlow */,
 				275D30262B162C5500BED542 /* Resources */,
+				275D30622B1F53AD00BED542 /* SlideShowFlow */,
 			);
 			path = SlideShowMaker;
 			sourceTree = "<group>";
@@ -79,8 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				275D30112B162AEC00BED542 /* AppDelegate.swift */,
-				275D304C2B177BC300BED542 /* ApplicationCoordinator.swift */,
 				275D30132B162AEC00BED542 /* SceneDelegate.swift */,
+				275D305A2B18C49000BED542 /* Settings.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -88,8 +88,8 @@
 		275D30262B162C5500BED542 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				275D301A2B162AED00BED542 /* Assets.xcassets */,
 				275D301C2B162AED00BED542 /* LaunchScreen.storyboard */,
+				275D301A2B162AED00BED542 /* Assets.xcassets */,
 				275D301F2B162AED00BED542 /* Info.plist */,
 			);
 			path = Resources;
@@ -103,23 +103,55 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		275D304E2B177F5E00BED542 /* Onboarding */ = {
+		275D304E2B177F5E00BED542 /* OnboardingFlow */ = {
 			isa = PBXGroup;
 			children = (
-				275D30502B17800E00BED542 /* OnboardingCoordinator.swift */,
-				275D30582B179E2700BED542 /* OnboardingView.swift */,
 				275D30522B17822900BED542 /* OnboardingViewController.swift */,
 			);
-			path = Onboarding;
+			path = OnboardingFlow;
 			sourceTree = "<group>";
 		};
 		275D304F2B177F6B00BED542 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				275D30542B17861600BED542 /* HomeCoordinator.swift */,
 				275D30562B17866600BED542 /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		275D305E2B1F42A000BED542 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				275D304C2B177BC300BED542 /* ApplicationCoordinator.swift */,
+				275D30492B177B1700BED542 /* Protocols */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		275D30612B1F537100BED542 /* SlideEditor */ = {
+			isa = PBXGroup;
+			children = (
+				275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */,
+			);
+			path = SlideEditor;
+			sourceTree = "<group>";
+		};
+		275D30622B1F53AD00BED542 /* SlideShowFlow */ = {
+			isa = PBXGroup;
+			children = (
+				275D30632B1F53E000BED542 /* Info */,
+				275D304F2B177F6B00BED542 /* Home */,
+				275D30612B1F537100BED542 /* SlideEditor */,
+			);
+			path = SlideShowFlow;
+			sourceTree = "<group>";
+		};
+		275D30632B1F53E000BED542 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				275D30642B1F55EA00BED542 /* InfoViewController.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,14 +248,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
-				275D30512B17800E00BED542 /* OnboardingCoordinator.swift in Sources */,
 				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
-				275D30592B179E2700BED542 /* OnboardingView.swift in Sources */,
+				275D305B2B18C49000BED542 /* Settings.swift in Sources */,
 				275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */,
 				275D30572B17866600BED542 /* HomeViewController.swift in Sources */,
-				275D30552B17861600BED542 /* HomeCoordinator.swift in Sources */,
+				275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */,
 				275D30122B162AEC00BED542 /* AppDelegate.swift in Sources */,
 				275D30142B162AEC00BED542 /* SceneDelegate.swift in Sources */,
+				275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
