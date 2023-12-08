@@ -9,19 +9,31 @@
 /* Begin PBXBuildFile section */
 		275D30122B162AEC00BED542 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30112B162AEC00BED542 /* AppDelegate.swift */; };
 		275D30142B162AEC00BED542 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30132B162AEC00BED542 /* SceneDelegate.swift */; };
-		275D30162B162AEC00BED542 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30152B162AEC00BED542 /* ViewController.swift */; };
 		275D301B2B162AED00BED542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 275D301A2B162AED00BED542 /* Assets.xcassets */; };
 		275D301E2B162AED00BED542 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 275D301C2B162AED00BED542 /* LaunchScreen.storyboard */; };
+		275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D304A2B177B2F00BED542 /* Coordinator.swift */; };
+		275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D304C2B177BC300BED542 /* ApplicationCoordinator.swift */; };
+		275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30522B17822900BED542 /* OnboardingViewController.swift */; };
+		275D30572B17866600BED542 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30562B17866600BED542 /* HomeViewController.swift */; };
+		275D305B2B18C49000BED542 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305A2B18C49000BED542 /* Settings.swift */; };
+		275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */; };
+		275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30642B1F55EA00BED542 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		275D300E2B162AEC00BED542 /* SlideShowMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideShowMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		275D30112B162AEC00BED542 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		275D30132B162AEC00BED542 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		275D30152B162AEC00BED542 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		275D301A2B162AED00BED542 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		275D301D2B162AED00BED542 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		275D301F2B162AED00BED542 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		275D304A2B177B2F00BED542 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		275D304C2B177BC300BED542 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		275D30522B17822900BED542 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		275D30562B17866600BED542 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		275D305A2B18C49000BED542 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideEditorViewController.swift; sourceTree = "<group>"; };
+		275D30642B1F55EA00BED542 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +67,10 @@
 			isa = PBXGroup;
 			children = (
 				275D30252B162C3A00BED542 /* Application */,
+				275D305E2B1F42A000BED542 /* Coordinator */,
+				275D304E2B177F5E00BED542 /* OnboardingFlow */,
 				275D30262B162C5500BED542 /* Resources */,
-				275D30152B162AEC00BED542 /* ViewController.swift */,
+				275D30622B1F53AD00BED542 /* SlideShowFlow */,
 			);
 			path = SlideShowMaker;
 			sourceTree = "<group>";
@@ -66,6 +80,7 @@
 			children = (
 				275D30112B162AEC00BED542 /* AppDelegate.swift */,
 				275D30132B162AEC00BED542 /* SceneDelegate.swift */,
+				275D305A2B18C49000BED542 /* Settings.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -73,11 +88,70 @@
 		275D30262B162C5500BED542 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				275D301A2B162AED00BED542 /* Assets.xcassets */,
 				275D301C2B162AED00BED542 /* LaunchScreen.storyboard */,
+				275D301A2B162AED00BED542 /* Assets.xcassets */,
 				275D301F2B162AED00BED542 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		275D30492B177B1700BED542 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				275D304A2B177B2F00BED542 /* Coordinator.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		275D304E2B177F5E00BED542 /* OnboardingFlow */ = {
+			isa = PBXGroup;
+			children = (
+				275D30522B17822900BED542 /* OnboardingViewController.swift */,
+			);
+			path = OnboardingFlow;
+			sourceTree = "<group>";
+		};
+		275D304F2B177F6B00BED542 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				275D30562B17866600BED542 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		275D305E2B1F42A000BED542 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				275D304C2B177BC300BED542 /* ApplicationCoordinator.swift */,
+				275D30492B177B1700BED542 /* Protocols */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		275D30612B1F537100BED542 /* SlideEditor */ = {
+			isa = PBXGroup;
+			children = (
+				275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */,
+			);
+			path = SlideEditor;
+			sourceTree = "<group>";
+		};
+		275D30622B1F53AD00BED542 /* SlideShowFlow */ = {
+			isa = PBXGroup;
+			children = (
+				275D30632B1F53E000BED542 /* Info */,
+				275D304F2B177F6B00BED542 /* Home */,
+				275D30612B1F537100BED542 /* SlideEditor */,
+			);
+			path = SlideShowFlow;
+			sourceTree = "<group>";
+		};
+		275D30632B1F53E000BED542 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				275D30642B1F55EA00BED542 /* InfoViewController.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,6 +164,7 @@
 				275D300A2B162AEC00BED542 /* Sources */,
 				275D300B2B162AEC00BED542 /* Frameworks */,
 				275D300C2B162AEC00BED542 /* Resources */,
+				275D30482B173A2700BED542 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -145,14 +220,42 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		275D30482B173A2700BED542 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		275D300A2B162AEC00BED542 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				275D30162B162AEC00BED542 /* ViewController.swift in Sources */,
+				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
+				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
+				275D305B2B18C49000BED542 /* Settings.swift in Sources */,
+				275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */,
+				275D30572B17866600BED542 /* HomeViewController.swift in Sources */,
+				275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */,
 				275D30122B162AEC00BED542 /* AppDelegate.swift in Sources */,
 				275D30142B162AEC00BED542 /* SceneDelegate.swift in Sources */,
+				275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +400,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9YW4L3WZ5R;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlideShowMaker/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -328,6 +432,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9YW4L3WZ5R;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlideShowMaker/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
