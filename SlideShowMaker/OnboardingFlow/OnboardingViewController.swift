@@ -5,6 +5,7 @@
 //  Created by Никитин Артем on 29.11.23.
 //
 
+import SnapKit
 import UIKit
 
 final class OnboardingViewController: UIViewController {
@@ -72,14 +73,15 @@ final class OnboardingViewController: UIViewController {
     // MARK: - Constraints
  extension OnboardingViewController {
     private func setConstraint() {
-        NSLayoutConstraint.activate([
-            greetingLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            greetingLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+        greetingLabel.snp.makeConstraints { make in
+            make.centerY.centerX.equalToSuperview()
+        }
 
-            doneButton.widthAnchor.constraint(equalToConstant: 200),
-            doneButton.heightAnchor.constraint(equalToConstant: 44),
-            doneButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100),
-            doneButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-        ])
+        doneButton.snp.makeConstraints { make in
+            make.width.equalTo(200)
+            make.height.equalTo(44)
+            make.bottom.equalToSuperview().offset(-100)
+            make.centerX.equalToSuperview()
+        }
     }
  }

@@ -5,9 +5,10 @@
 //  Created by Никитин Артем on 14.12.23.
 //
 
+import SnapKit
 import UIKit
 
-class MyCell: UICollectionViewCell {
+class ImageCell: UICollectionViewCell {
     static let identifier = "CustomCell"
 
     private let myImageView: UIImageView = {
@@ -18,20 +19,29 @@ class MyCell: UICollectionViewCell {
         return imageView
     }()
 
-    public func configure(with image: UIImage) {
-        self.myImageView.image = image
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         setupUI()
     }
 
     private func setupUI() {
         self.addSubview(myImageView)
 
-        NSLayoutConstraint.activate([
-            myImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            myImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            myImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            myImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-        ])
+        myImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+    }
+
+    public func configure(with image: UIImage) {
+        self.myImageView.image = image
     }
 
     override func prepareForReuse() {

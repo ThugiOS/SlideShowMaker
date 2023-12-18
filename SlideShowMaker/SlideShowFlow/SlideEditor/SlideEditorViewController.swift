@@ -5,6 +5,7 @@
 //  Created by Никитин Артем on 5.12.23.
 //
 
+import SnapKit
 import UIKit
 
 final class SlideEditorViewController: UIViewController {
@@ -14,13 +15,13 @@ final class SlideEditorViewController: UIViewController {
 
     private var isDeleteButtonEnabled = false {
         didSet {
-            deleteImage.isEnabled = isDeleteButtonEnabled
-            deleteImage.backgroundColor = isDeleteButtonEnabled ? .grayForDemo : .clear
+            deleteImageButton.isEnabled = isDeleteButtonEnabled
+            deleteImageButton.backgroundColor = isDeleteButtonEnabled ? .grayForDemo : .clear
         }
     }
 
     // MARK: - UI Components
-    private let backToHome: UIButton = {
+    private let goHomeButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 12
         button.backgroundColor = .grayForDemo
@@ -41,11 +42,11 @@ final class SlideEditorViewController: UIViewController {
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(MyCell.self, forCellWithReuseIdentifier: MyCell.identifier)
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
         return collectionView
     }()
 
-    private let addImage: UIButton = {
+    private let addImageButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
         button.backgroundColor = .grayForDemo
@@ -65,10 +66,10 @@ final class SlideEditorViewController: UIViewController {
         return imageView
     }()
 
-    private let deleteImage: UIButton = {
+    private let deleteImageButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
-        button.setTitle("Delete", for: .normal)
+        button.setTitle("Х", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
@@ -100,25 +101,21 @@ final class SlideEditorViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
 
-        view.addSubview(backToHome)
+        view.addSubview(goHomeButton)
         view.addSubview(collectionView)
-        view.addSubview(addImage)
+        view.addSubview(addImageButton)
         view.addSubview(selectedImageView)
-        view.addSubview(deleteImage)
+        view.addSubview(deleteImageButton)
 
-        backToHome.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        addImage.addTarget(self, action: #selector(openPhotoPicker), for: .touchUpInside)
-        deleteImage.addTarget(self, action: #selector(deleteSelectedPhoto), for: .touchUpInside)
-
-        if let firstImage = images.first {
-            selectedImageView.image = firstImage
-        }
+        goHomeButton.addTarget(self, action: #selector(goHomeButtonTapped), for: .touchUpInside)
+        addImageButton.addTarget(self, action: #selector(openPhotoPicker), for: .touchUpInside)
+        deleteImageButton.addTarget(self, action: #selector(deleteSelectedPhoto), for: .touchUpInside)
     }
 
     // MARK: - Selectors
     @objc
-    private func backButtonTapped() {
-        coordinator?.navigateBack()
+    private func goHomeButtonTapped() {
+        coordinator?.showHome()
     }
 
     @objc
@@ -143,12 +140,7 @@ final class SlideEditorViewController: UIViewController {
         collectionView.reloadData()
 
         // Display the first image in selectedImageView (if available)
-        if let firstImage = images.first {
-            selectedImageView.image = firstImage
-        }
-        else {
-            selectedImageView.image = nil
-        }
+        selectedImageView.image = images.first
 
         // Disable deleteButton if the collection is empty
         isDeleteButtonEnabled = !images.isEmpty
@@ -158,28 +150,34 @@ final class SlideEditorViewController: UIViewController {
 // MARK: - Constraints
 extension SlideEditorViewController {
     private func setConstraint() {
-        NSLayoutConstraint.activate([
-            backToHome.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
-            backToHome.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22),
+        goHomeButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(80)
+            make.leading.equalToSuperview().offset(22)
+        }
 
-            selectedImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 142),
-            selectedImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            selectedImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            selectedImageView.heightAnchor.constraint(equalToConstant: 348),
+        selectedImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(142)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(348)
+        }
 
-            deleteImage.topAnchor.constraint(equalTo: selectedImageView.bottomAnchor, constant: 20),
-            deleteImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 175),
+        deleteImageButton.snp.makeConstraints { make in
+            make.top.equalTo(selectedImageView.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(175)
+        }
 
-            addImage.topAnchor.constraint(equalTo: deleteImage.bottomAnchor, constant: 20),
-            addImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 19),
-            addImage.trailingAnchor.constraint(equalTo: collectionView.leadingAnchor, constant: -5),
-            addImage.widthAnchor.constraint(equalToConstant: 74),
-            addImage.heightAnchor.constraint(equalToConstant: 74),
+        addImageButton.snp.makeConstraints { make in
+            make.top.equalTo(deleteImageButton.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(19)
+            make.trailing.equalTo(collectionView.snp.leading).offset(-5)
+            make.width.height.equalTo(74)
+        }
 
-            collectionView.topAnchor.constraint(equalTo: deleteImage.bottomAnchor, constant: 20),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 74),
-        ])
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(deleteImageButton.snp.bottom).offset(20)
+            make.trailing.equalToSuperview()
+            make.height.equalTo(74)
+        }
     }
 }
 
@@ -190,7 +188,7 @@ extension SlideEditorViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyCell.identifier, for: indexPath) as? MyCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath) as? ImageCell else {
             fatalError("Error create cell")
         }
 
@@ -208,10 +206,6 @@ extension SlideEditorViewController: UICollectionViewDelegate {
         selectedImageView.image = selectedImage
         isDeleteButtonEnabled = true
         collectionView.reloadData()
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        isDeleteButtonEnabled = false
     }
 }
 
