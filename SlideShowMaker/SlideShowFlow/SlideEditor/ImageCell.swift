@@ -8,14 +8,13 @@
 import SnapKit
 import UIKit
 
-class ImageCell: UICollectionViewCell {
+final class ImageCell: UICollectionViewCell {
     static let identifier = "CustomCell"
 
     private let myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 

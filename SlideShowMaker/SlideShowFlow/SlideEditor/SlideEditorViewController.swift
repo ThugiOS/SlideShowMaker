@@ -28,7 +28,6 @@ final class SlideEditorViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("<", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -41,7 +40,6 @@ final class SlideEditorViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
         return collectionView
     }()
@@ -53,7 +51,6 @@ final class SlideEditorViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("+", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 36)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -62,7 +59,6 @@ final class SlideEditorViewController: UIViewController {
         imageView.backgroundColor = .grayForDemo
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -71,7 +67,6 @@ final class SlideEditorViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.setTitle("Х", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
         return button
     }()

@@ -19,7 +19,6 @@ final class OnboardingViewController: UIViewController {
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 32, weight: .semibold)
         label.text = "Onboarding"
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -30,7 +29,6 @@ final class OnboardingViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("Done", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -78,7 +76,8 @@ final class OnboardingViewController: UIViewController {
         }
 
         doneButton.snp.makeConstraints { make in
-            make.width.equalTo(200)
+            make.leading.equalToSuperview().offset(80)
+            make.trailing.equalToSuperview().offset(-80)
             make.height.equalTo(44)
             make.bottom.equalToSuperview().offset(-100)
             make.centerX.equalToSuperview()

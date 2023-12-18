@@ -12,12 +12,11 @@ final class HomeViewController: UIViewController {
     weak var coordinator: Coordinator?
 
     // MARK: - UI Components
-    private let greetingLabel: UILabel = {
+    private let myProjectsLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "grayForDemo")
         label.font = .systemFont(ofSize: 34, weight: .semibold)
         label.text = "My Projects"
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -28,7 +27,6 @@ final class HomeViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("+ New Project", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -39,7 +37,6 @@ final class HomeViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("i", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -50,7 +47,6 @@ final class HomeViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("PRO", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -76,7 +72,7 @@ final class HomeViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
 
-        view.addSubview(greetingLabel)
+        view.addSubview(myProjectsLabel)
         view.addSubview(createProjectButton)
         view.addSubview(infoButton)
         view.addSubview(proButton)
@@ -100,18 +96,18 @@ final class HomeViewController: UIViewController {
 // MARK: - Constraints
 extension HomeViewController {
     private func setConstraint() {
-        greetingLabel.snp.makeConstraints { make in
+        myProjectsLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(80)
             make.leading.equalToSuperview().offset(22)
         }
 
         infoButton.snp.makeConstraints { make in
-            make.centerY.equalTo(greetingLabel)
+            make.centerY.equalTo(myProjectsLabel)
             make.trailing.equalToSuperview().offset(-22)
         }
 
         proButton.snp.makeConstraints { make in
-            make.centerY.equalTo(greetingLabel)
+            make.centerY.equalTo(myProjectsLabel)
             make.trailing.equalTo(infoButton.snp.leading).offset(-5)
             make.width.equalTo(50)
         }

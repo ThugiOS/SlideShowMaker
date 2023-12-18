@@ -19,7 +19,6 @@ final class InfoViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("Х", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
