@@ -5,18 +5,18 @@
 //  Created by Никитин Артем on 29.11.23.
 //
 
+import SnapKit
 import UIKit
 
 final class HomeViewController: UIViewController {
     weak var coordinator: Coordinator?
 
     // MARK: - UI Components
-    private let greetingLabel: UILabel = {
+    private let myProjectsLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "grayForDemo")
         label.font = .systemFont(ofSize: 34, weight: .semibold)
         label.text = "My Projects"
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -27,7 +27,6 @@ final class HomeViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("+ New Project", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -38,7 +37,6 @@ final class HomeViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("i", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -49,7 +47,6 @@ final class HomeViewController: UIViewController {
         button.tintColor = .white
         button.setTitle("PRO", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -75,7 +72,7 @@ final class HomeViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
 
-        view.addSubview(greetingLabel)
+        view.addSubview(myProjectsLabel)
         view.addSubview(createProjectButton)
         view.addSubview(infoButton)
         view.addSubview(proButton)
@@ -99,21 +96,27 @@ final class HomeViewController: UIViewController {
 // MARK: - Constraints
 extension HomeViewController {
     private func setConstraint() {
-        NSLayoutConstraint.activate([
-            greetingLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 80),
-            greetingLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 22),
+        myProjectsLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(80)
+            make.leading.equalToSuperview().offset(22)
+        }
 
-            infoButton.centerYAnchor.constraint(equalTo: greetingLabel.centerYAnchor),
-            infoButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -22),
+        infoButton.snp.makeConstraints { make in
+            make.centerY.equalTo(myProjectsLabel)
+            make.trailing.equalToSuperview().offset(-22)
+        }
 
-            proButton.centerYAnchor.constraint(equalTo: greetingLabel.centerYAnchor),
-            proButton.trailingAnchor.constraint(equalTo: infoButton.leadingAnchor, constant: -5),
-            proButton.widthAnchor.constraint(equalToConstant: 50),
+        proButton.snp.makeConstraints { make in
+            make.centerY.equalTo(myProjectsLabel)
+            make.trailing.equalTo(infoButton.snp.leading).offset(-5)
+            make.width.equalTo(50)
+        }
 
-            createProjectButton.widthAnchor.constraint(equalToConstant: 180),
-            createProjectButton.heightAnchor.constraint(equalToConstant: 70),
-            createProjectButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50),
-            createProjectButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-        ])
+        createProjectButton.snp.makeConstraints { make in
+            make.width.equalTo(180)
+            make.height.equalTo(70)
+            make.bottom.equalToSuperview().offset(-50)
+            make.centerX.equalToSuperview()
+        }
     }
 }
