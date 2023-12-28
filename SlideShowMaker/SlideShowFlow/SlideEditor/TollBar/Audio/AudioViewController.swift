@@ -18,6 +18,15 @@ class AudioViewController: UIViewController {
         return button
     }()
 
+    private let nameScreenLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .grayForDemo
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 34, weight: .bold)
+        label.text = "Audio"
+        return label
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -26,6 +35,8 @@ class AudioViewController: UIViewController {
 
     private func setupViews() {
         view.backgroundColor = .systemBackground
+
+        view.addSubview(nameScreenLabel)
         view.addSubview(buttonDone)
 
         buttonDone.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
@@ -39,9 +50,14 @@ class AudioViewController: UIViewController {
 
 extension AudioViewController {
     private func setConstraints() {
+        nameScreenLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
+        }
+
         buttonDone.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(50)
-            make.trailing.equalToSuperview().offset(-25)
+            make.centerY.equalTo(nameScreenLabel.snp.centerY)
+            make.trailing.equalToSuperview().offset(-20)
             make.width.equalTo(100)
             make.height.equalTo(50)
         }

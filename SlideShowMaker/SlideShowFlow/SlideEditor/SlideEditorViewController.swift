@@ -121,11 +121,11 @@ final class SlideEditorViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .systemBackground
 
-        view.addSubview(goHomeButton)
-        view.addSubview(saveButton)
-        view.addSubview(selectedImageView)
         view.addSubview(controlPanelView)
         controlPanelView.addSubview(deleteImageButton)
+        controlPanelView.addSubview(goHomeButton)
+        controlPanelView.addSubview(saveButton)
+        controlPanelView.addSubview(selectedImageView)
         view.addSubview(collectionView)
         view.addSubview(addImageButton)
         view.addSubview(toolbar)
@@ -137,18 +137,19 @@ final class SlideEditorViewController: UIViewController {
     }
 
     // MARK: - Private Methods
+
     private func setBarItems() {
-        let canvasButton = makeToolbarButton(name: "Canvas", imageName: "questionmark", action: #selector(openCanvasViewController))
-        let timingButton = makeToolbarButton(name: "Timing", imageName: "questionmark", action: #selector(openTimingViewController))
-        let audioButton = makeToolbarButton(name: "Audio", imageName: "questionmark", action: #selector(openAudioViewController))
+        let canvasButton = makeToolbarButton(name: "Canvas", action: #selector(openCanvasViewController))
+        let timingButton = makeToolbarButton(name: "Timing", action: #selector(openTimingViewController))
+        let audioButton = makeToolbarButton(name: "Audio", action: #selector(openAudioViewController))
 
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let items = [flexibleSpace, canvasButton, flexibleSpace, timingButton, flexibleSpace, audioButton, flexibleSpace]
         toolbar.setItems(items, animated: true)
     }
 
-    private func makeToolbarButton(name: String, imageName: String, action: Selector) -> UIBarButtonItem {
-        return UIBarButtonItem(title: name, image: UIImage(systemName: imageName), target: self, action: action)
+    private func makeToolbarButton(name: String, action: Selector) -> UIBarButtonItem {
+        return UIBarButtonItem(title: name, style: .plain, target: self, action: action)
     }
 
     private func openViewController(_ viewController: UIViewController) {
@@ -219,45 +220,49 @@ final class SlideEditorViewController: UIViewController {
 // MARK: - Constraints
 extension SlideEditorViewController {
     private func setConstraint() {
+        let screenHeight = UIScreen.main.bounds.height
+        let screenWidth = UIScreen.main.bounds.width
+
+        controlPanelView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(screenHeight * 0.68)
+        }
+
         goHomeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(80)
-            make.leading.equalToSuperview().offset(22)
+            make.top.equalToSuperview().offset(screenHeight * 0.1)
+            make.leading.equalToSuperview().offset(screenHeight * 0.02)
         }
 
         saveButton.snp.makeConstraints { make in
             make.centerY.equalTo(goHomeButton.snp.centerY)
-            make.trailing.equalToSuperview().offset(-22)
+            make.trailing.equalToSuperview().offset(-(screenHeight * 0.02))
             make.width.equalTo(100)
             make.height.equalTo(50)
         }
 
         selectedImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(142)
+            make.top.equalToSuperview().offset(screenHeight * 0.17)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(348)
-        }
-
-        controlPanelView.snp.makeConstraints { make in
-            make.top.equalTo(selectedImageView.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(60)
+            make.height.equalTo(screenHeight * 0.43)
         }
 
         deleteImageButton.snp.makeConstraints { make in
-            make.centerY.equalTo(controlPanelView.snp.centerY)
             make.centerX.equalTo(controlPanelView.snp.centerX)
-            make.height.width.equalTo(44)
+            make.top.equalTo(selectedImageView.snp.bottom).offset(screenHeight * 0.01)
+            make.bottom.equalTo(controlPanelView.snp.bottom).offset(-screenHeight * 0.01)
+            make.width.equalTo(screenWidth * 0.12)
         }
 
         addImageButton.snp.makeConstraints { make in
-            make.top.equalTo(controlPanelView.snp.bottom).offset(20)
+            make.top.equalTo(controlPanelView.snp.bottom).offset(screenWidth * 0.09)
             make.leading.equalToSuperview().offset(19)
-            make.trailing.equalTo(collectionView.snp.leading).offset(-5)
-            make.width.height.equalTo(74)
+            make.width.height.equalTo(80)
         }
 
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(controlPanelView.snp.bottom).offset(20)
+            make.centerY.equalTo(addImageButton.snp.centerY)
+            make.leading.equalTo(addImageButton.snp.trailing).offset(5)
             make.trailing.equalToSuperview()
             make.height.equalTo(74)
         }
@@ -265,6 +270,7 @@ extension SlideEditorViewController {
         toolbar.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             make.leading.trailing.equalToSuperview()
+            make.height.equalTo(screenHeight * 0.11)
         }
     }
 }
