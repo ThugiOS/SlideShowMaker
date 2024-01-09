@@ -36,7 +36,7 @@ final class SlideEditorViewController: UIViewController {
         button.layer.cornerRadius = 18
         button.backgroundColor = .grayForDemo
         button.tintColor = .white
-        button.setTitle("Save", for: .normal)
+        button.setTitle(String(localized: "Save"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         return button
     }()
@@ -139,9 +139,9 @@ final class SlideEditorViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setBarItems() {
-        let canvasButton = makeToolbarButton(name: "Canvas", action: #selector(openCanvasViewController))
-        let timingButton = makeToolbarButton(name: "Timing", action: #selector(openTimingViewController))
-        let audioButton = makeToolbarButton(name: "Audio", action: #selector(openAudioViewController))
+        let canvasButton = makeToolbarButton(name: String(localized: "Canvas"), action: #selector(openCanvasViewController))
+        let timingButton = makeToolbarButton(name: String(localized: "Timing"), action: #selector(openTimingViewController))
+        let audioButton = makeToolbarButton(name: String(localized: "Audio"), action: #selector(openAudioViewController))
 
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let items = [flexibleSpace, canvasButton, flexibleSpace, timingButton, flexibleSpace, audioButton, flexibleSpace]

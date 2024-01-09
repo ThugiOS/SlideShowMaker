@@ -12,6 +12,7 @@
 		272500922B3B030D000531B7 /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272500912B3B030D000531B7 /* TimingViewController.swift */; };
 		272500952B3C285B000531B7 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272500942B3C285B000531B7 /* AudioViewController.swift */; };
 		272500972B3C5518000531B7 /* CustomPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272500962B3C5518000531B7 /* CustomPresentation.swift */; };
+		27527D082B4D53BA00826BE4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 27527D072B4D53BA00826BE4 /* Localizable.xcstrings */; };
 		275D30122B162AEC00BED542 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30112B162AEC00BED542 /* AppDelegate.swift */; };
 		275D30142B162AEC00BED542 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30132B162AEC00BED542 /* SceneDelegate.swift */; };
 		275D301B2B162AED00BED542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 275D301A2B162AED00BED542 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		272500912B3B030D000531B7 /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
 		272500942B3C285B000531B7 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		272500962B3C5518000531B7 /* CustomPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentation.swift; sourceTree = "<group>"; };
+		27527D072B4D53BA00826BE4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		275D300E2B162AEC00BED542 /* SlideShowMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideShowMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		275D30112B162AEC00BED542 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		275D30132B162AEC00BED542 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				275D301C2B162AED00BED542 /* LaunchScreen.storyboard */,
 				275D301A2B162AED00BED542 /* Assets.xcassets */,
 				275D301F2B162AED00BED542 /* Info.plist */,
+				27527D072B4D53BA00826BE4 /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			files = (
 				275D301E2B162AED00BED542 /* LaunchScreen.storyboard in Resources */,
 				275D301B2B162AED00BED542 /* Assets.xcassets in Resources */,
+				27527D082B4D53BA00826BE4 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

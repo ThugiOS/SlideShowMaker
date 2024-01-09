@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomPresentationController: UIPresentationController {
+final class CustomPresentationController: UIPresentationController {
     override var frameOfPresentedViewInContainerView: CGRect {
         guard let containerView = containerView else {
             return CGRect.zero

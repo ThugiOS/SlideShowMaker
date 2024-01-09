@@ -8,13 +8,13 @@
 import SnapKit
 import UIKit
 
-class CanvasViewController: UIViewController {
+final class CanvasViewController: UIViewController {
     private let buttonDone: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 15
         button.backgroundColor = .grayForDemo
         button.tintColor = .white
-        button.setTitle("Done", for: .normal)
+        button.setTitle(String(localized: "Done"), for: .normal)
         return button
     }()
 
@@ -23,7 +23,7 @@ class CanvasViewController: UIViewController {
         label.textColor = .grayForDemo
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 34, weight: .bold)
-        label.text = "Canvas"
+        label.text = String(localized: "Canvas")
         return label
     }()
 
