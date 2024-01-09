@@ -18,7 +18,7 @@ final class OnboardingViewController: UIViewController {
         label.textColor = UIColor(named: "grayForDemo")
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 32, weight: .semibold)
-        label.text = "Onboarding"
+        label.text = String(localized: "Onboarding")
         return label
     }()
 
@@ -27,7 +27,7 @@ final class OnboardingViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.backgroundColor = UIColor(named: "grayForDemo")
         button.tintColor = .white
-        button.setTitle("Done", for: .normal)
+        button.setTitle(String(localized: "Done"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         return button
     }()

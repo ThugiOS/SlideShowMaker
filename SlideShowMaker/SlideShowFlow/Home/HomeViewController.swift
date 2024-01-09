@@ -16,7 +16,7 @@ final class HomeViewController: UIViewController {
         let label = UILabel()
         label.textColor = UIColor(named: "grayForDemo")
         label.font = .systemFont(ofSize: 34, weight: .semibold)
-        label.text = "My Projects"
+        label.text = String(localized: "My Projects")
         return label
     }()
 
@@ -25,7 +25,7 @@ final class HomeViewController: UIViewController {
         button.layer.cornerRadius = 30
         button.backgroundColor = UIColor(named: "grayForDemo")
         button.tintColor = .white
-        button.setTitle("+ New Project", for: .normal)
+        button.setTitle(String(localized: "+ New Project"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         return button
     }()
@@ -35,7 +35,7 @@ final class HomeViewController: UIViewController {
         button.layer.cornerRadius = 8
         button.backgroundColor = UIColor(named: "grayForDemo")
         button.tintColor = .white
-        button.setTitle("i", for: .normal)
+        button.setTitle(String(localized: "i"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return button
     }()
@@ -45,7 +45,7 @@ final class HomeViewController: UIViewController {
         button.layer.cornerRadius = 12
         button.backgroundColor = UIColor(named: "grayForDemo")
         button.tintColor = .white
-        button.setTitle("PRO", for: .normal)
+        button.setTitle(String(localized: "PRO"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return button
     }()
