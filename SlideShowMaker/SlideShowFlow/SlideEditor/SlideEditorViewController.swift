@@ -13,6 +13,8 @@ final class SlideEditorViewController: UIViewController {
 
     private var images: [UIImage] = []
 
+    private var videoInfo: VideoInfo?
+
     private var isDeleteButtonEnabled = false {
         didSet {
             deleteImageButton.isEnabled = isDeleteButtonEnabled
@@ -153,13 +155,9 @@ final class SlideEditorViewController: UIViewController {
     }
 
     private func openViewController(_ viewController: UIViewController) {
-        let modalVC = UIViewController()
-        modalVC.modalPresentationStyle = .custom
-        modalVC.transitioningDelegate = self
-        modalVC.addChild(viewController)
-        viewController.didMove(toParent: modalVC)
-        modalVC.view.addSubview(viewController.view)
-        present(modalVC, animated: true, completion: nil)
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = self
+        present(viewController, animated: true, completion: nil)
     }
 
     // MARK: - Selectors
@@ -170,7 +168,30 @@ final class SlideEditorViewController: UIViewController {
 
     @objc
     private func saveButtonTapped() {
-        print("Project was saved")
+        guard let videoInfo = videoInfo else {
+            // Здесь укажите разрешение, кадры в секунду и длительность видео
+            self.videoInfo = VideoInfo(resolution: .canvas1x1, duration: 5, frameRate: 5)
+            return
+        }
+
+        let videoCreator = VideoCreator(images: images)
+        videoCreator.createVideo(videoInfo: videoInfo) { [weak self] url in
+            guard url != nil else {
+                print("Failed to create and save video.")
+                return
+            }
+
+            DispatchQueue.main.async {
+                self?.showAlert(withTitle: "Video Saved", message: "The video has been saved to the gallery.")
+            }
+        }
+    }
+
+    private func showAlert(withTitle title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 
     @objc

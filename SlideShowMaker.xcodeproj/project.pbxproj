@@ -24,6 +24,8 @@
 		275D305B2B18C49000BED542 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305A2B18C49000BED542 /* Settings.swift */; };
 		275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */; };
 		275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30642B1F55EA00BED542 /* InfoViewController.swift */; };
+		2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABA2B50350F003F72AF /* VideoCreator.swift */; };
+		2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABD2B518390003F72AF /* VideoInfo.swift */; };
 		27FCF9702B2B2F7C0085F97D /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,8 @@
 		275D305A2B18C49000BED542 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideEditorViewController.swift; sourceTree = "<group>"; };
 		275D30642B1F55EA00BED542 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		2790DABA2B50350F003F72AF /* VideoCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCreator.swift; sourceTree = "<group>"; };
+		2790DABD2B518390003F72AF /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +119,7 @@
 		275D30102B162AEC00BED542 /* SlideShowMaker */ = {
 			isa = PBXGroup;
 			children = (
+				2790DAB92B5034D7003F72AF /* Managers */,
 				275D30252B162C3A00BED542 /* Application */,
 				275D305E2B1F42A000BED542 /* Coordinator */,
 				275D304E2B177F5E00BED542 /* OnboardingFlow */,
@@ -184,6 +189,7 @@
 				272500932B3C25CF000531B7 /* TollBar */,
 				275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */,
 				27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */,
+				2790DABD2B518390003F72AF /* VideoInfo.swift */,
 			);
 			path = SlideEditor;
 			sourceTree = "<group>";
@@ -204,6 +210,14 @@
 				275D30642B1F55EA00BED542 /* InfoViewController.swift */,
 			);
 			path = Info;
+			sourceTree = "<group>";
+		};
+		2790DAB92B5034D7003F72AF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2790DABA2B50350F003F72AF /* VideoCreator.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,8 +330,10 @@
 				275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */,
 				275D30122B162AEC00BED542 /* AppDelegate.swift in Sources */,
 				275D30142B162AEC00BED542 /* SceneDelegate.swift in Sources */,
+				2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */,
 				275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */,
 				27FCF9702B2B2F7C0085F97D /* ImageCell.swift in Sources */,
+				2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */,
 				272500902B3B0306000531B7 /* CanvasViewController.swift in Sources */,
 				272500952B3C285B000531B7 /* AudioViewController.swift in Sources */,
 			);
@@ -467,6 +483,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlideShowMaker/Resources/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "we need it";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -499,6 +516,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlideShowMaker/Resources/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "we need it";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
