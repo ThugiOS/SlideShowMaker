@@ -18,7 +18,7 @@ final class SlideEditorViewController: UIViewController {
     private var isDeleteButtonEnabled = false {
         didSet {
             deleteImageButton.isEnabled = isDeleteButtonEnabled
-            deleteImageButton.backgroundColor = isDeleteButtonEnabled ? .grayForDemo : .clear
+            deleteImageButton.backgroundColor = isDeleteButtonEnabled ? .gray : .clear
         }
     }
 
@@ -26,7 +26,7 @@ final class SlideEditorViewController: UIViewController {
     private let goHomeButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 12
-        button.backgroundColor = .grayForDemo
+        button.backgroundColor = .gray
         button.tintColor = .white
         button.setTitle("<", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -36,7 +36,7 @@ final class SlideEditorViewController: UIViewController {
     private let saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 18
-        button.backgroundColor = .grayForDemo
+        button.backgroundColor = .gray
         button.tintColor = .white
         button.setTitle(String(localized: "Save"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -75,7 +75,7 @@ final class SlideEditorViewController: UIViewController {
     private let addImageButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
-        button.backgroundColor = .grayForDemo
+        button.backgroundColor = .gray
         button.tintColor = .white
         button.setTitle("+", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 36)
@@ -84,7 +84,7 @@ final class SlideEditorViewController: UIViewController {
 
     private let selectedImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .grayForDemo
+        imageView.backgroundColor = .gray
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView

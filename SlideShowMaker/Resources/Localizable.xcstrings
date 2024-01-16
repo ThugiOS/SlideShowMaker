@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "+ New Project" : {
-
-    },
     "Audio" : {
 
     },
@@ -13,10 +10,10 @@
     "Done" : {
 
     },
-    "i" : {
+    "My Projects" : {
 
     },
-    "My Projects" : {
+    "New Project" : {
 
     },
     "Onboarding" : {

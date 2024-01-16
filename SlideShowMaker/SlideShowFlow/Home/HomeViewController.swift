@@ -12,42 +12,51 @@ final class HomeViewController: UIViewController {
     weak var coordinator: Coordinator?
 
     // MARK: - UI Components
+    private let createFirstProjectView = FirstSlideShowView()
+
     private let myProjectsLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: "grayForDemo")
-        label.font = .systemFont(ofSize: 34, weight: .semibold)
+        label.textColor = UIColor(named: "myProjectsLabel")
+        label.font = UIFont(name: "Gilroy-Bold", size: 34)
         label.text = String(localized: "My Projects")
         return label
     }()
 
-    private let createProjectButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.layer.cornerRadius = 30
-        button.backgroundColor = UIColor(named: "grayForDemo")
-        button.tintColor = .white
-        button.setTitle(String(localized: "+ New Project"), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        return button
+    private let createProjectButtonView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "buttonCreateProject")
+        view.isUserInteractionEnabled = true
+        return view
     }()
 
-    private let infoButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.layer.cornerRadius = 8
-        button.backgroundColor = UIColor(named: "grayForDemo")
-        button.tintColor = .white
-        button.setTitle(String(localized: "i"), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        return button
+    private let createProjectButtonLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont(name: "Gilroy-Bold", size: 17)
+        label.text = String(localized: "New Project")
+        return label
     }()
 
-    private let proButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.layer.cornerRadius = 12
-        button.backgroundColor = UIColor(named: "grayForDemo")
-        button.tintColor = .white
-        button.setTitle(String(localized: "PRO"), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        return button
+    private let proButtonView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "ticketStar")
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+
+    private let proButtonLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont(name: "Gilroy-Bold", size: 14)
+        label.text = String(localized: "PRO")
+        return label
+    }()
+
+    private let infoButtonView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "info")
+        view.isUserInteractionEnabled = true
+        return view
     }()
 
     // MARK: - Initializers
@@ -66,19 +75,35 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setConstraint()
+        setupGestures()
     }
 
     // MARK: - UI Setup
     private func setupViews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .white
 
         view.addSubview(myProjectsLabel)
-        view.addSubview(createProjectButton)
-        view.addSubview(infoButton)
-        view.addSubview(proButton)
 
-        createProjectButton.addTarget(self, action: #selector(createProjectButtonTapped), for: .touchUpInside)
-        infoButton.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
+        view.addSubview(proButtonView)
+        proButtonView.addSubview(proButtonLabel)
+
+        view.addSubview(infoButtonView)
+
+        view.addSubview(createFirstProjectView)
+
+        view.addSubview(createProjectButtonView)
+        createProjectButtonView.addSubview(createProjectButtonLabel)
+    }
+
+    private func setupGestures() {
+        let createProjectTapGesture = UITapGestureRecognizer(target: self, action: #selector(createProjectButtonTapped))
+        createProjectButtonView.addGestureRecognizer(createProjectTapGesture)
+
+        let proButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(proButtonTapped))
+        proButtonView.addGestureRecognizer(proButtonTapGesture)
+
+        let infoButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(infoButtonTapped))
+        infoButtonView.addGestureRecognizer(infoButtonTapGesture)
     }
 
     // MARK: - Selectors
@@ -91,32 +116,58 @@ final class HomeViewController: UIViewController {
     private func infoButtonTapped() {
         coordinator?.showInfo()
     }
+
+    @objc
+    private func proButtonTapped() {
+        print("Pro button tapped")
+    }
 }
 
 // MARK: - Constraints
 extension HomeViewController {
     private func setConstraint() {
+        let screenWidth = UIScreen.main.bounds.width
+
         myProjectsLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(80)
-            make.leading.equalToSuperview().offset(22)
+            make.leading.equalToSuperview().offset(20)
         }
 
-        infoButton.snp.makeConstraints { make in
+        infoButtonView.snp.makeConstraints { make in
             make.centerY.equalTo(myProjectsLabel)
-            make.trailing.equalToSuperview().offset(-22)
+            make.trailing.equalToSuperview().offset(-20)
+            make.width.height.equalTo(29)
         }
 
-        proButton.snp.makeConstraints { make in
+        proButtonView.snp.makeConstraints { make in
             make.centerY.equalTo(myProjectsLabel)
-            make.trailing.equalTo(infoButton.snp.leading).offset(-5)
-            make.width.equalTo(50)
+            make.trailing.equalTo(infoButtonView.snp.leading).offset(-5)
+            make.width.equalTo(71)
+            make.height.equalTo(29)
         }
 
-        createProjectButton.snp.makeConstraints { make in
+        proButtonLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(proButtonView)
+            make.leading.equalToSuperview().offset(12)
+        }
+
+        createFirstProjectView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(infoButtonView.snp.bottom).offset(10)
+            make.bottom.equalTo(createProjectButtonView.snp.top).offset(-10)
+            make.width.equalTo(screenWidth)
+        }
+
+        createProjectButtonView.snp.makeConstraints { make in
             make.width.equalTo(180)
             make.height.equalTo(70)
             make.bottom.equalToSuperview().offset(-50)
             make.centerX.equalToSuperview()
+        }
+
+        createProjectButtonLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(createProjectButtonView)
+            make.leading.equalTo(createProjectButtonView.snp.leading).offset(55)
         }
     }
 }

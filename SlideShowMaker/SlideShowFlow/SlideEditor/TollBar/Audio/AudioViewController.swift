@@ -12,7 +12,7 @@ final class AudioViewController: UIViewController {
     private let buttonDone: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 15
-        button.backgroundColor = .grayForDemo
+        button.backgroundColor = .gray
         button.tintColor = .white
         button.setTitle(String(localized: "Done"), for: .normal)
         return button
@@ -20,7 +20,7 @@ final class AudioViewController: UIViewController {
 
     private let nameScreenLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .grayForDemo
+        label.textColor = .gray
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 34, weight: .bold)
         label.text = String(localized: "Audio")

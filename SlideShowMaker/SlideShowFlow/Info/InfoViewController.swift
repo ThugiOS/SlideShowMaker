@@ -15,7 +15,7 @@ final class InfoViewController: UIViewController {
     private let goHomeButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 8
-        button.backgroundColor = UIColor(named: "grayForDemo")
+        button.backgroundColor = .gray
         button.tintColor = .white
         button.setTitle("Х", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
