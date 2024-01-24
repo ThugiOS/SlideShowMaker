@@ -170,7 +170,7 @@ final class SlideEditorViewController: UIViewController {
     private func saveButtonTapped() {
         guard let videoInfo = videoInfo else {
             // Здесь укажите разрешение, кадры в секунду и длительность видео
-            self.videoInfo = VideoInfo(resolution: .canvas1x1, duration: 5, frameRate: 5)
+            self.videoInfo = VideoInfo(resolution: .canvas1x1, duration: 5)
             return
         }
 
@@ -229,7 +229,9 @@ final class SlideEditorViewController: UIViewController {
 
     @objc
     func openTimingViewController() {
-        openViewController(TimingViewController())
+        let timingViewController = TimingViewController()
+        timingViewController.numberOfImages = images.count
+        openViewController(timingViewController)
     }
 
     @objc
@@ -239,8 +241,8 @@ final class SlideEditorViewController: UIViewController {
 }
 
 // MARK: - Constraints
-extension SlideEditorViewController {
-    private func setConstraint() {
+private extension SlideEditorViewController {
+    func setConstraint() {
         let screenHeight = UIScreen.main.bounds.height
         let screenWidth = UIScreen.main.bounds.width
 

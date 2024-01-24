@@ -4,9 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Gilroy-SemiBold.ttf</string>
 		<string>gilroy-bold.ttf</string>
-		<string>gloriaHallelujah.ttf</string>
-		<string></string>
+		<string>Gilroy-Medium.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

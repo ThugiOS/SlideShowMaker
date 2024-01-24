@@ -9,6 +9,8 @@ import SnapKit
 import UIKit
 
 final class CanvasViewController: UIViewController {
+    private let newButtonDone = CustomButton(text: "Done", fontSize: 20)
+
     private let buttonDone: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 15
@@ -38,8 +40,12 @@ final class CanvasViewController: UIViewController {
 
         view.addSubview(nameScreenLabel)
         view.addSubview(buttonDone)
+        view.addSubview(newButtonDone)
 
         buttonDone.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doneButtonTapped))
+        newButtonDone.addGestureRecognizer(tap)
     }
 
     @objc
@@ -48,8 +54,14 @@ final class CanvasViewController: UIViewController {
     }
 }
 
-extension CanvasViewController {
-    private func setConstraints() {
+private extension CanvasViewController {
+    func setConstraints() {
+        newButtonDone.snp.makeConstraints { make in
+            make.centerY.centerX.equalToSuperview()
+            make.width.equalTo(100)
+            make.height.equalTo(50)
+        }
+
         nameScreenLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(20)
