@@ -25,15 +25,7 @@ final class TimingViewController: UIViewController {
     private let fastLabel = CustomLabel(title: String(localized: "Fast"), size: 10, alpha: 1, fontType: .medium)
     private let photosDurationTimerLabel = CustomLabel(title: nil, size: 33, alpha: 1, fontType: .semiBold)
     private let slideshowDurationTimerLabel = CustomLabel(title: nil, size: 33, alpha: 1, fontType: .semiBold)
-
-    private let buttonDone: UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 15
-        button.backgroundColor = .gray
-        button.tintColor = .white
-        button.setTitle(String(localized: "Done"), for: .normal)
-        return button
-    }()
+    private let buttonDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
 
     private let durationSlider: CustomSlider = {
         let slider = CustomSlider()
@@ -83,7 +75,9 @@ final class TimingViewController: UIViewController {
         view.addSubview(slideshowDurationTimerLabel)
         view.addSubview(slideShowDurationLabel)
 
-        buttonDone.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        let tapDoneButton = UITapGestureRecognizer(target: self, action: #selector(doneButtonTapped))
+        buttonDone.addGestureRecognizer(tapDoneButton)
+
         durationSlider.addTarget(self, action: #selector(sliderAMoved), for: .valueChanged)
         simpleSlider.addTarget(self, action: #selector(sliderBMoved), for: .valueChanged)
     }

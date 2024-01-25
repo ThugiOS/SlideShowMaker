@@ -29,6 +29,7 @@
 		276F54D72B5FF47100619408 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */; };
 		276F54D92B611E5200619408 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54D82B611E5200619408 /* CustomLabel.swift */; };
 		276F54DF2B61520D00619408 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54DE2B61520D00619408 /* CustomButton.swift */; };
+		276F54E12B62882300619408 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54E02B62882300619408 /* GradientButton.swift */; };
 		2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABA2B50350F003F72AF /* VideoCreator.swift */; };
 		2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABD2B518390003F72AF /* VideoInfo.swift */; };
 		27E6804E2B55666F000B7D8F /* FirstSlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6804D2B55666F000B7D8F /* FirstSlideShowView.swift */; };
@@ -60,6 +61,7 @@
 		276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
 		276F54D82B611E5200619408 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		276F54DE2B61520D00619408 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		276F54E02B62882300619408 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		2790DABA2B50350F003F72AF /* VideoCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCreator.swift; sourceTree = "<group>"; };
 		2790DABD2B518390003F72AF /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		27E6804D2B55666F000B7D8F /* FirstSlideShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSlideShowView.swift; sourceTree = "<group>"; };
@@ -102,8 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				272500912B3B030D000531B7 /* TimingViewController.swift */,
-				276F54D22B5EAE0B00619408 /* CustomSlider.swift */,
-				276F54D82B611E5200619408 /* CustomLabel.swift */,
 			);
 			path = Timing;
 			sourceTree = "<group>";
@@ -235,6 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				276F54DE2B61520D00619408 /* CustomButton.swift */,
+				276F54D22B5EAE0B00619408 /* CustomSlider.swift */,
+				276F54D82B611E5200619408 /* CustomLabel.swift */,
+				276F54E02B62882300619408 /* GradientButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				276F54DF2B61520D00619408 /* CustomButton.swift in Sources */,
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
 				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
+				276F54E12B62882300619408 /* GradientButton.swift in Sources */,
 				275D305B2B18C49000BED542 /* Settings.swift in Sources */,
 				275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */,
 				275D30572B17866600BED542 /* HomeViewController.swift in Sources */,
