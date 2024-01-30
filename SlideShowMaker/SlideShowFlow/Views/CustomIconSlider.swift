@@ -1,5 +1,5 @@
 //
-//  CustomSlider.swift
+//  CustomIconSlider.swift
 //  SlideShowMaker
 //
 //  Created by Никитин Артем on 22.01.24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CustomSlider: UISlider {
+final class CustomIconSlider: UISlider {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSlider()

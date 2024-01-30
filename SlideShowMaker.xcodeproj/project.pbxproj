@@ -24,12 +24,13 @@
 		275D305B2B18C49000BED542 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305A2B18C49000BED542 /* Settings.swift */; };
 		275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */; };
 		275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30642B1F55EA00BED542 /* InfoViewController.swift */; };
-		276F54D32B5EAE0C00619408 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54D22B5EAE0B00619408 /* CustomSlider.swift */; };
+		276F54D32B5EAE0C00619408 /* CustomIconSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */; };
 		276F54D52B5FF44600619408 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D42B5FF44600619408 /* Gilroy-SemiBold.ttf */; };
 		276F54D72B5FF47100619408 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */; };
 		276F54D92B611E5200619408 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54D82B611E5200619408 /* CustomLabel.swift */; };
 		276F54DF2B61520D00619408 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54DE2B61520D00619408 /* CustomButton.swift */; };
-		276F54E12B62882300619408 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54E02B62882300619408 /* GradientButton.swift */; };
+		276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */; };
+		276F550E2B691FC100619408 /* VideoInfoDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */; };
 		2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABA2B50350F003F72AF /* VideoCreator.swift */; };
 		2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABD2B518390003F72AF /* VideoInfo.swift */; };
 		27E6804E2B55666F000B7D8F /* FirstSlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6804D2B55666F000B7D8F /* FirstSlideShowView.swift */; };
@@ -56,12 +57,13 @@
 		275D305A2B18C49000BED542 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideEditorViewController.swift; sourceTree = "<group>"; };
 		275D30642B1F55EA00BED542 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		276F54D22B5EAE0B00619408 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIconSlider.swift; sourceTree = "<group>"; };
 		276F54D42B5FF44600619408 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
 		276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
 		276F54D82B611E5200619408 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		276F54DE2B61520D00619408 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		276F54E02B62882300619408 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCanvasGradientButton.swift; sourceTree = "<group>"; };
+		276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoDelegateProtocol.swift; sourceTree = "<group>"; };
 		2790DABA2B50350F003F72AF /* VideoCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCreator.swift; sourceTree = "<group>"; };
 		2790DABD2B518390003F72AF /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		27E6804D2B55666F000B7D8F /* FirstSlideShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSlideShowView.swift; sourceTree = "<group>"; };
@@ -135,10 +137,11 @@
 		275D30102B162AEC00BED542 /* SlideShowMaker */ = {
 			isa = PBXGroup;
 			children = (
-				2790DAB92B5034D7003F72AF /* Managers */,
 				275D30252B162C3A00BED542 /* Application */,
 				275D305E2B1F42A000BED542 /* Coordinator */,
 				275D304E2B177F5E00BED542 /* OnboardingFlow */,
+				2790DAB92B5034D7003F72AF /* Managers */,
+				276F550F2B69350000619408 /* Protocols */,
 				275D30262B162C5500BED542 /* Resources */,
 				275D30622B1F53AD00BED542 /* SlideShowFlow */,
 			);
@@ -204,11 +207,10 @@
 		275D30612B1F537100BED542 /* SlideEditor */ = {
 			isa = PBXGroup;
 			children = (
-				276F54DD2B6151F800619408 /* Views */,
 				272500932B3C25CF000531B7 /* TollBar */,
 				275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */,
-				27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */,
-				2790DABD2B518390003F72AF /* VideoInfo.swift */,
+				276F55112B6936D200619408 /* Cell */,
+				276F55102B6936B000619408 /* Model */,
 			);
 			path = SlideEditor;
 			sourceTree = "<group>";
@@ -216,6 +218,7 @@
 		275D30622B1F53AD00BED542 /* SlideShowFlow */ = {
 			isa = PBXGroup;
 			children = (
+				276F54DD2B6151F800619408 /* Views */,
 				275D30632B1F53E000BED542 /* Info */,
 				275D304F2B177F6B00BED542 /* Home */,
 				275D30612B1F537100BED542 /* SlideEditor */,
@@ -235,11 +238,35 @@
 			isa = PBXGroup;
 			children = (
 				276F54DE2B61520D00619408 /* CustomButton.swift */,
-				276F54D22B5EAE0B00619408 /* CustomSlider.swift */,
 				276F54D82B611E5200619408 /* CustomLabel.swift */,
-				276F54E02B62882300619408 /* GradientButton.swift */,
+				276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */,
+				276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		276F550F2B69350000619408 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		276F55102B6936B000619408 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2790DABD2B518390003F72AF /* VideoInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		276F55112B6936D200619408 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		2790DAB92B5034D7003F72AF /* Managers */ = {
@@ -372,15 +399,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				272500972B3C5518000531B7 /* CustomPresentation.swift in Sources */,
-				276F54D32B5EAE0C00619408 /* CustomSlider.swift in Sources */,
+				276F54D32B5EAE0C00619408 /* CustomIconSlider.swift in Sources */,
 				276F54D92B611E5200619408 /* CustomLabel.swift in Sources */,
 				272500922B3B030D000531B7 /* TimingViewController.swift in Sources */,
 				276F54DF2B61520D00619408 /* CustomButton.swift in Sources */,
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
 				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
-				276F54E12B62882300619408 /* GradientButton.swift in Sources */,
+				276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */,
 				275D305B2B18C49000BED542 /* Settings.swift in Sources */,
 				275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */,
+				276F550E2B691FC100619408 /* VideoInfoDelegateProtocol.swift in Sources */,
 				275D30572B17866600BED542 /* HomeViewController.swift in Sources */,
 				275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */,
 				275D30122B162AEC00BED542 /* AppDelegate.swift in Sources */,

@@ -9,8 +9,10 @@ import SnapKit
 import UIKit
 
 final class SlideEditorViewController: UIViewController {
+// MARK: - Public Properties
     weak var coordinator: Coordinator?
 
+// MARK: - Private Properties
     private var images: [UIImage] = []
 
     private var videoInfo: VideoInfo?
@@ -22,7 +24,7 @@ final class SlideEditorViewController: UIViewController {
         }
     }
 
-    // MARK: - UI Components
+// MARK: - UI Components
     private let goHomeButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 12
@@ -84,7 +86,6 @@ final class SlideEditorViewController: UIViewController {
 
     private let selectedImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .gray
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -108,18 +109,24 @@ final class SlideEditorViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - LifeCycle
+// MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setConstraint()
         setBarItems()
+        setDefaultVideoSettings()
 
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
     }
 
-    // MARK: - UI Setup
+    private func setDefaultVideoSettings() {
+        let defaultSetting = VideoInfo(resolution: .canvas1x1, duration: TimeInterval(5))
+        self.videoInfo = defaultSetting
+    }
+
+// MARK: - UI Setup
     private func setupViews() {
         view.backgroundColor = .systemBackground
 
@@ -138,8 +145,7 @@ final class SlideEditorViewController: UIViewController {
         deleteImageButton.addTarget(self, action: #selector(deleteSelectedPhoto), for: .touchUpInside)
     }
 
-    // MARK: - Private Methods
-
+// MARK: - Private Methods
     private func setBarItems() {
         let canvasButton = makeToolbarButton(name: String(localized: "Canvas"), action: #selector(openCanvasViewController))
         let timingButton = makeToolbarButton(name: String(localized: "Timing"), action: #selector(openTimingViewController))
@@ -160,7 +166,7 @@ final class SlideEditorViewController: UIViewController {
         present(viewController, animated: true, completion: nil)
     }
 
-    // MARK: - Selectors
+// MARK: - Selectors
     @objc
     private func goHomeButtonTapped() {
         coordinator?.showHome()
@@ -168,14 +174,8 @@ final class SlideEditorViewController: UIViewController {
 
     @objc
     private func saveButtonTapped() {
-        guard let videoInfo = videoInfo else {
-            // Здесь укажите разрешение, кадры в секунду и длительность видео
-            self.videoInfo = VideoInfo(resolution: .canvas1x1, duration: 5)
-            return
-        }
-
         let videoCreator = VideoCreator(images: images)
-        videoCreator.createVideo(videoInfo: videoInfo) { [weak self] url in
+        videoCreator.createVideo(videoInfo: videoInfo ?? VideoInfo(resolution: .canvas1x1, duration: 5)) { [weak self] url in
             guard url != nil else {
                 print("Failed to create and save video.")
                 return
@@ -224,12 +224,17 @@ final class SlideEditorViewController: UIViewController {
 
     @objc
     func openCanvasViewController() {
-        openViewController(CanvasViewController())
+        let canvasViewController = CanvasViewController()
+        canvasViewController.delegate = self
+        canvasViewController.videoCanvasInfo = self.videoInfo
+        openViewController(canvasViewController)
     }
 
     @objc
     func openTimingViewController() {
         let timingViewController = TimingViewController()
+        timingViewController.delegate = self
+        timingViewController.videoTimeInfo = self.videoInfo
         timingViewController.numberOfImages = images.count
         openViewController(timingViewController)
     }
@@ -237,6 +242,12 @@ final class SlideEditorViewController: UIViewController {
     @objc
     func openAudioViewController() {
         openViewController(AudioViewController())
+    }
+}
+
+extension SlideEditorViewController: VideoInfoDelegateProtocol {
+    func updateVideoInfo(_ userInfo: VideoInfo) {
+        self.videoInfo = userInfo
     }
 }
 

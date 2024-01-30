@@ -11,7 +11,6 @@ import UIKit
 class CustomButton: UIView {
     private lazy var imageView: UIImageView = {
         let view = UIImageView(image: UIImage(named: "buttonField"))
-//        view.contentMode = .scaleAspectFit
         return view
     }()
 

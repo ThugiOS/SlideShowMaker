@@ -9,14 +9,19 @@ import SnapKit
 import UIKit
 
 final class TimingViewController: UIViewController {
+// MARK: - Public Properties
     var numberOfImages: Int = 0
+    weak var delegate: VideoInfoDelegateProtocol?
+    var videoTimeInfo: VideoInfo?
 
+// MARK: - Private Properties
     private var slideshowDuration: Double = 0.0 {
         didSet {
             slideshowDurationTimerLabel.text = ("\(String(format: "%.1f", slideshowDuration))s")
         }
     }
 
+// MARK: - UI Components
     private let nameScreenLabel = CustomLabel(title: String(localized: "Timing"), size: 22, alpha: 1, fontType: .bold)
     private let setDurationLabel = CustomLabel(title: String(localized: "Set duration, %"), size: 13, alpha: 0.5, fontType: .medium)
     private let slowLabel = CustomLabel(title: String(localized: "Slow"), size: 10, alpha: 1, fontType: .medium)
@@ -27,8 +32,8 @@ final class TimingViewController: UIViewController {
     private let slideshowDurationTimerLabel = CustomLabel(title: nil, size: 33, alpha: 1, fontType: .semiBold)
     private let buttonDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
 
-    private let durationSlider: CustomSlider = {
-        let slider = CustomSlider()
+    private let durationSlider: CustomIconSlider = {
+        let slider = CustomIconSlider()
         slider.minimumValue = 10
         slider.maximumValue = 100
         slider.value = Float(50)
@@ -51,6 +56,7 @@ final class TimingViewController: UIViewController {
         return slider
     }()
 
+// MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -59,6 +65,7 @@ final class TimingViewController: UIViewController {
         sliderValueChanged()
     }
 
+// MARK: - UI Setup
     private func setupViews() {
         view.backgroundColor = .systemBackground
 
@@ -82,6 +89,7 @@ final class TimingViewController: UIViewController {
         simpleSlider.addTarget(self, action: #selector(sliderBMoved), for: .valueChanged)
     }
 
+// MARK: - Private Methods
     private func setupSliderObservers() {
         durationSlider.addTarget(self, action: #selector(sliderValueChanged), for: .valueChanged)
     }
@@ -92,6 +100,7 @@ final class TimingViewController: UIViewController {
         slideshowDuration = sliderValue / 10.0 * Double(numberOfImages)
     }
 
+// MARK: - Selectors
     @objc
     func sliderValueChanged() {
         updateLabelsAndDuration()
@@ -111,11 +120,13 @@ final class TimingViewController: UIViewController {
 
     @objc
     func doneButtonTapped() {
+        videoTimeInfo?.duration = TimeInterval(slideshowDuration)
+        delegate?.updateVideoInfo(videoTimeInfo ?? VideoInfo(resolution: .canvas1x1, duration: TimeInterval(5)))
         dismiss(animated: true, completion: nil)
-        print(TimeInterval(slideshowDuration))
     }
 }
 
+// MARK: - Constraints
 private extension TimingViewController {
     func setConstraints() {
         nameScreenLabel.snp.makeConstraints { make in
