@@ -67,7 +67,7 @@ final class TimingViewController: UIViewController {
 
 // MARK: - UI Setup
     private func setupViews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .backgroundWhite
 
         view.addSubview(nameScreenLabel)
         view.addSubview(buttonDone)

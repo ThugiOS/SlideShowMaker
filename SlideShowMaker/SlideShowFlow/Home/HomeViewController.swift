@@ -80,7 +80,7 @@ final class HomeViewController: UIViewController {
 
     // MARK: - UI Setup
     private func setupViews() {
-        view.backgroundColor = .white
+        view.backgroundColor = .backgroundWhite
 
         view.addSubview(myProjectsLabel)
 
