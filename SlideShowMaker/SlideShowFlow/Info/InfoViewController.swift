@@ -57,8 +57,8 @@ final class InfoViewController: UIViewController {
 }
 
 // MARK: - Constraints
-extension InfoViewController {
-    private func setConstraint() {
+private extension InfoViewController {
+    func setConstraint() {
         goHomeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(80)
             make.trailing.equalToSuperview().offset(-22)

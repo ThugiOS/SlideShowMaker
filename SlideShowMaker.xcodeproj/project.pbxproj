@@ -189,7 +189,6 @@
 		275D304F2B177F6B00BED542 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				27E6804F2B568219000B7D8F /* Views */,
 				275D30562B17866600BED542 /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -237,6 +236,7 @@
 		276F54DD2B6151F800619408 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				27E6804D2B55666F000B7D8F /* FirstSlideShowView.swift */,
 				276F54DE2B61520D00619408 /* CustomButton.swift */,
 				276F54D82B611E5200619408 /* CustomLabel.swift */,
 				276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */,
@@ -275,14 +275,6 @@
 				2790DABA2B50350F003F72AF /* VideoCreator.swift */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		27E6804F2B568219000B7D8F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				27E6804D2B55666F000B7D8F /* FirstSlideShowView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		27E680522B56B674000B7D8F /* Fonts */ = {

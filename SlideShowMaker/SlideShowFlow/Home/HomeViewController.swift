@@ -95,17 +95,6 @@ final class HomeViewController: UIViewController {
         createProjectButtonView.addSubview(createProjectButtonLabel)
     }
 
-    private func setupGestures() {
-        let createProjectTapGesture = UITapGestureRecognizer(target: self, action: #selector(createProjectButtonTapped))
-        createProjectButtonView.addGestureRecognizer(createProjectTapGesture)
-
-        let proButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(proButtonTapped))
-        proButtonView.addGestureRecognizer(proButtonTapGesture)
-
-        let infoButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(infoButtonTapped))
-        infoButtonView.addGestureRecognizer(infoButtonTapGesture)
-    }
-
     // MARK: - Selectors
     @objc
     private func createProjectButtonTapped() {
@@ -123,9 +112,23 @@ final class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - Gestures
+private extension HomeViewController {
+    func setupGestures() {
+        let createProjectTapGesture = UITapGestureRecognizer(target: self, action: #selector(createProjectButtonTapped))
+        createProjectButtonView.addGestureRecognizer(createProjectTapGesture)
+
+        let proButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(proButtonTapped))
+        proButtonView.addGestureRecognizer(proButtonTapGesture)
+
+        let infoButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(infoButtonTapped))
+        infoButtonView.addGestureRecognizer(infoButtonTapGesture)
+    }
+}
+
 // MARK: - Constraints
-extension HomeViewController {
-    private func setConstraint() {
+private extension HomeViewController {
+    func setConstraint() {
         let screenWidth = UIScreen.main.bounds.width
 
         myProjectsLabel.snp.makeConstraints { make in

@@ -4,10 +4,10 @@
 //
 //  Created by Никитин Артем on 15.01.24.
 
- import SnapKit
- import UIKit
+import SnapKit
+import UIKit
 
- final class FirstSlideShowView: UIView {
+final class FirstSlideShowView: UIView {
     private let firstSlideShowView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -41,15 +41,15 @@
         animateIndexFingerView()
     }
 
-     private func animateIndexFingerView() {
-         UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse, .repeat]) {
-             self.indexFingerView.transform = CGAffineTransform(translationX: 0, y: -15)
-         }
-     }
- }
+    private func animateIndexFingerView() {
+        UIView.animate(withDuration: 1, delay: 0, options: [.autoreverse, .repeat]) {
+            self.indexFingerView.transform = CGAffineTransform(translationX: 0, y: -15)
+        }
+    }
+}
 
-extension FirstSlideShowView {
-    private func setConstraints() {
+private extension FirstSlideShowView {
+    func setConstraints() {
         firstSlideShowView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(50)
