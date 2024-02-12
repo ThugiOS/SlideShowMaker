@@ -17,7 +17,7 @@ final class HomeViewController: UIViewController {
     private let myProjectsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .labelBlack
-        label.font = UIFont(name: "Gilroy-Bold", size: 34)
+        label.font = UIFont.gilroyBold(ofSize: 34)
         label.text = String(localized: "My Projects")
         return label
     }()
@@ -32,7 +32,7 @@ final class HomeViewController: UIViewController {
     private let createProjectButtonLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont(name: "Gilroy-Bold", size: 17)
+        label.font = UIFont.gilroyBold(ofSize: 17)
         label.text = String(localized: "New Project")
         return label
     }()
@@ -47,7 +47,7 @@ final class HomeViewController: UIViewController {
     private let proButtonLabel: UILabel = {
         let label = UILabel()
         label.textColor = .labelBlack
-        label.font = UIFont(name: "Gilroy-Bold", size: 14)
+        label.font = UIFont.gilroyBold(ofSize: 14)
         label.text = String(localized: "PRO")
         return label
     }()

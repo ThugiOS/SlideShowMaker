@@ -48,7 +48,7 @@ class CustomButton: UIView {
         addSubview(label)
 
         label.text = buttonText
-        label.font = UIFont(name: "Gilroy-SemiBold", size: CGFloat(fontSize))
+        label.font = UIFont.gilroySemiBold(ofSize: CGFloat(fontSize))
     }
 
     private func setupConstraints() {

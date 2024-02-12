@@ -30,7 +30,7 @@ final class TimingViewController: UIViewController {
     private let fastLabel = CustomLabel(title: String(localized: "Fast"), size: 10, alpha: 1, fontType: .medium)
     private let photosDurationTimerLabel = CustomLabel(title: nil, size: 33, alpha: 1, fontType: .semiBold)
     private let slideshowDurationTimerLabel = CustomLabel(title: nil, size: 33, alpha: 1, fontType: .semiBold)
-    private let buttonDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
+    private let customDoneDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
 
     private let durationSlider: CustomIconSlider = {
         let slider = CustomIconSlider()
@@ -70,7 +70,7 @@ final class TimingViewController: UIViewController {
         view.backgroundColor = .backgroundWhite
 
         view.addSubview(nameScreenLabel)
-        view.addSubview(buttonDone)
+        view.addSubview(customDoneDone)
         view.addSubview(setDurationLabel)
         view.addSubview(durationSlider)
         view.addSubview(sliderFieldView)
@@ -83,7 +83,7 @@ final class TimingViewController: UIViewController {
         view.addSubview(slideShowDurationLabel)
 
         let tapDoneButton = UITapGestureRecognizer(target: self, action: #selector(doneButtonTapped))
-        buttonDone.addGestureRecognizer(tapDoneButton)
+        customDoneDone.addGestureRecognizer(tapDoneButton)
 
         durationSlider.addTarget(self, action: #selector(sliderAMoved), for: .valueChanged)
         simpleSlider.addTarget(self, action: #selector(sliderBMoved), for: .valueChanged)
@@ -134,7 +134,7 @@ private extension TimingViewController {
             make.top.equalToSuperview().offset(14)
         }
 
-        buttonDone.snp.makeConstraints { make in
+        customDoneDone.snp.makeConstraints { make in
             make.centerY.equalTo(nameScreenLabel.snp.centerY)
             make.trailing.equalToSuperview().offset(-14)
             make.width.equalTo(91)
@@ -163,12 +163,12 @@ private extension TimingViewController {
 
         slowLabel.snp.makeConstraints { make in
             make.centerY.equalTo(simpleSlider)
-            make.trailing.equalTo(simpleSlider.snp.leading).offset(-5)
+            make.leading.equalTo(simpleSlider.snp.trailing).offset(5)
         }
 
         fastLabel.snp.makeConstraints { make in
             make.centerY.equalTo(simpleSlider)
-            make.leading.equalTo(simpleSlider.snp.trailing).offset(5)
+            make.trailing.equalTo(simpleSlider.snp.leading).offset(-5)
         }
 
         photosDurationTimerLabel.snp.makeConstraints { make in

@@ -12,7 +12,7 @@ class CustomCanvasGradientButton: UIButton {
         super.init(frame: .zero)
 
         self.setTitle(title, for: .normal)
-        self.titleLabel?.font = UIFont(name: "Gilroy-Medium", size: 17)
+        self.titleLabel?.font = UIFont.gilroyMedium(ofSize: 17)
 
         self.layer.cornerRadius = 12
         self.layer.masksToBounds = true

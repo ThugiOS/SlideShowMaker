@@ -31,6 +31,7 @@
 		276F54DF2B61520D00619408 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54DE2B61520D00619408 /* CustomButton.swift */; };
 		276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */; };
 		276F550E2B691FC100619408 /* VideoInfoDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */; };
+		276F55632B7A5B5700619408 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F55622B7A5B5700619408 /* UIFont+Extension.swift */; };
 		2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABA2B50350F003F72AF /* VideoCreator.swift */; };
 		2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABD2B518390003F72AF /* VideoInfo.swift */; };
 		27E6804E2B55666F000B7D8F /* FirstSlideShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E6804D2B55666F000B7D8F /* FirstSlideShowView.swift */; };
@@ -64,6 +65,7 @@
 		276F54DE2B61520D00619408 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCanvasGradientButton.swift; sourceTree = "<group>"; };
 		276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoDelegateProtocol.swift; sourceTree = "<group>"; };
+		276F55622B7A5B5700619408 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		2790DABA2B50350F003F72AF /* VideoCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCreator.swift; sourceTree = "<group>"; };
 		2790DABD2B518390003F72AF /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		27E6804D2B55666F000B7D8F /* FirstSlideShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSlideShowView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				275D30252B162C3A00BED542 /* Application */,
 				275D305E2B1F42A000BED542 /* Coordinator */,
+				276F55612B7A5B3B00619408 /* Extensions */,
 				275D304E2B177F5E00BED542 /* OnboardingFlow */,
 				2790DAB92B5034D7003F72AF /* Managers */,
 				276F550F2B69350000619408 /* Protocols */,
@@ -269,6 +272,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		276F55612B7A5B3B00619408 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				276F55622B7A5B5700619408 /* UIFont+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2790DAB92B5034D7003F72AF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +406,7 @@
 				276F54D92B611E5200619408 /* CustomLabel.swift in Sources */,
 				272500922B3B030D000531B7 /* TimingViewController.swift in Sources */,
 				276F54DF2B61520D00619408 /* CustomButton.swift in Sources */,
+				276F55632B7A5B5700619408 /* UIFont+Extension.swift in Sources */,
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
 				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
 				276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */,
@@ -575,6 +587,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -608,6 +621,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

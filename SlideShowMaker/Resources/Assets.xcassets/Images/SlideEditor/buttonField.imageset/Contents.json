@@ -1,17 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "button.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "buttonField.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

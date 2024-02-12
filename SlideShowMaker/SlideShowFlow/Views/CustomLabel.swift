@@ -22,13 +22,13 @@ final class CustomLabel: UILabel {
 
         switch fontType {
         case .medium:
-            self.font = UIFont(name: "Gilroy-Medium", size: CGFloat(size))
+            self.font = UIFont.gilroyMedium(ofSize: CGFloat(size))
 
         case .semiBold:
-            self.font = UIFont(name: "Gilroy-SemiBold", size: CGFloat(size))
+            self.font = UIFont.gilroySemiBold(ofSize: CGFloat(size))
 
         case .bold:
-            self.font = UIFont(name: "gilroy-bold", size: CGFloat(size))
+            self.font = UIFont.gilroyBold(ofSize: CGFloat(size))
         }
     }
 

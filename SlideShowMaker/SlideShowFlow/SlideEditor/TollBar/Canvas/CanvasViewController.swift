@@ -18,7 +18,7 @@ final class CanvasViewController: UIViewController {
     private let resolutions: [VideoResolution] = [.canvas1x1, .canvas9x16, .canvas4x5, .canvas5x8, .canvas4x3, .canvas3x4]
 
     // MARK: - UI Components
-    private let buttonDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
+    private let customDoneDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
     private let nameScreenLabel = CustomLabel(title: String(localized: "Canvas"), size: 22, alpha: 1, fontType: .bold)
     private lazy var gradientButtons: [CustomCanvasGradientButton] = {
         let titles = ["1:1", "9:16", "4:5", "5:8", "4:3", "3:4"]
@@ -37,7 +37,7 @@ final class CanvasViewController: UIViewController {
         view.backgroundColor = .backgroundWhite
 
         view.addSubview(nameScreenLabel)
-        view.addSubview(buttonDone)
+        view.addSubview(customDoneDone)
 
         for (index, button) in gradientButtons.enumerated() {
             view.addSubview(button)
@@ -46,7 +46,7 @@ final class CanvasViewController: UIViewController {
         }
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(doneButtonTapped))
-        buttonDone.addGestureRecognizer(tap)
+        customDoneDone.addGestureRecognizer(tap)
     }
 
 // MARK: - Selectors
@@ -80,7 +80,7 @@ private extension CanvasViewController {
             make.top.equalToSuperview().offset(20)
         }
 
-        buttonDone.snp.makeConstraints { make in
+        customDoneDone.snp.makeConstraints { make in
             make.centerY.equalTo(nameScreenLabel.snp.centerY)
             make.trailing.equalToSuperview().offset(-20)
             make.width.equalTo(91)

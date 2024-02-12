@@ -9,7 +9,7 @@ import SnapKit
 import UIKit
 
 final class AudioViewController: UIViewController {
-    private let buttonDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
+    private let customDoneDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
     private let nameScreenLabel = CustomLabel(title: String(localized: "Audio"), size: 22, alpha: 1, fontType: .bold)
 
     override func viewDidLoad() {
@@ -22,10 +22,10 @@ final class AudioViewController: UIViewController {
         view.backgroundColor = .backgroundWhite
 
         view.addSubview(nameScreenLabel)
-        view.addSubview(buttonDone)
+        view.addSubview(customDoneDone)
 
         let tapDoneButton = UITapGestureRecognizer(target: self, action: #selector(doneButtonTapped))
-        buttonDone.addGestureRecognizer(tapDoneButton)
+        customDoneDone.addGestureRecognizer(tapDoneButton)
     }
 
     @objc
@@ -41,7 +41,7 @@ private extension AudioViewController {
             make.top.equalToSuperview().offset(20)
         }
 
-        buttonDone.snp.makeConstraints { make in
+        customDoneDone.snp.makeConstraints { make in
             make.centerY.equalTo(nameScreenLabel.snp.centerY)
             make.trailing.equalToSuperview().offset(-20)
             make.width.equalTo(91)
