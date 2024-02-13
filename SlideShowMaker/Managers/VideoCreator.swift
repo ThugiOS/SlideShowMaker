@@ -58,7 +58,9 @@ final class VideoCreator {
 
         let queue = DispatchQueue(label: "VideoQueue", qos: .default, attributes: .concurrent)
 
-        videoWriterInput.requestMediaDataWhenReady(on: queue) {
+        videoWriterInput.requestMediaDataWhenReady(on: queue) { [weak self] in
+            guard let self else { return }
+
             var frameCount = 0
 
             while videoWriterInput.isReadyForMoreMediaData, frameCount < totalFrames {
