@@ -201,7 +201,7 @@ final class SlideEditorViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
 
-                self.showAlert(withTitle: "Video Saved", message: "The video has been saved to the gallery.")
+                self.showAlert(withTitle: String(localized: "Video Saved"), message: String(localized: "The video has been saved to the gallery."))
                 self.videoCreator = nil
             }
         }
@@ -211,7 +211,7 @@ final class SlideEditorViewController: UIViewController {
 
     private func showAlert(withTitle title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: String(localized: "OK"), style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
