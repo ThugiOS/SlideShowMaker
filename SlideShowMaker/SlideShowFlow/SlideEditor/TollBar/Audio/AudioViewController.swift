@@ -9,23 +9,8 @@ import SnapKit
 import UIKit
 
 final class AudioViewController: UIViewController {
-    private let buttonDone: UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 15
-        button.backgroundColor = .grayForDemo
-        button.tintColor = .white
-        button.setTitle(String(localized: "Done"), for: .normal)
-        return button
-    }()
-
-    private let nameScreenLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .grayForDemo
-        label.textAlignment = .center
-        label.font = .systemFont(ofSize: 34, weight: .bold)
-        label.text = String(localized: "Audio")
-        return label
-    }()
+    private let customDoneDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
+    private let nameScreenLabel = CustomLabel(title: String(localized: "Audio"), size: 22, alpha: 1, fontType: .bold)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +19,13 @@ final class AudioViewController: UIViewController {
     }
 
     private func setupViews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .backgroundWhite
 
         view.addSubview(nameScreenLabel)
-        view.addSubview(buttonDone)
+        view.addSubview(customDoneDone)
 
-        buttonDone.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        let tapDoneButton = UITapGestureRecognizer(target: self, action: #selector(doneButtonTapped))
+        customDoneDone.addGestureRecognizer(tapDoneButton)
     }
 
     @objc
@@ -48,18 +34,18 @@ final class AudioViewController: UIViewController {
     }
 }
 
-extension AudioViewController {
-    private func setConstraints() {
+private extension AudioViewController {
+    func setConstraints() {
         nameScreenLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(20)
         }
 
-        buttonDone.snp.makeConstraints { make in
+        customDoneDone.snp.makeConstraints { make in
             make.centerY.equalTo(nameScreenLabel.snp.centerY)
             make.trailing.equalToSuperview().offset(-20)
-            make.width.equalTo(100)
-            make.height.equalTo(50)
+            make.width.equalTo(91)
+            make.height.equalTo(43)
         }
     }
 }

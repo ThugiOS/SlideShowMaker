@@ -15,7 +15,7 @@ final class InfoViewController: UIViewController {
     private let goHomeButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 8
-        button.backgroundColor = UIColor(named: "grayForDemo")
+        button.backgroundColor = .gray
         button.tintColor = .white
         button.setTitle("Х", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
@@ -57,8 +57,8 @@ final class InfoViewController: UIViewController {
 }
 
 // MARK: - Constraints
-extension InfoViewController {
-    private func setConstraint() {
+private extension InfoViewController {
+    func setConstraint() {
         goHomeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(80)
             make.trailing.equalToSuperview().offset(-22)

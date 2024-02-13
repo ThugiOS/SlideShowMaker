@@ -15,6 +15,7 @@ final class ImageCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 15
         return imageView
     }()
 
@@ -39,12 +40,21 @@ final class ImageCell: UICollectionViewCell {
         }
     }
 
-    public func configure(with image: UIImage) {
+    public func configure(with image: UIImage, isSelected: Bool, hasSelectedImage: Bool) {
         self.myImageView.image = image
+
+        if isSelected && hasSelectedImage {
+            self.myImageView.layer.borderWidth = 3.0
+            self.myImageView.layer.borderColor = UIColor.red.cgColor
+        }
+        else {
+            self.myImageView.layer.borderWidth = 0.0
+        }
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         self.myImageView.image = nil
+        self.myImageView.layer.borderWidth = 0.0
     }
 }

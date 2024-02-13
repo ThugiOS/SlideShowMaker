@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "+ New Project" : {
+    "00.00.00" : {
 
     },
     "Audio" : {
@@ -13,13 +13,22 @@
     "Done" : {
 
     },
-    "i" : {
+    "Fast" : {
 
     },
     "My Projects" : {
 
     },
+    "New Project" : {
+
+    },
+    "OK" : {
+
+    },
     "Onboarding" : {
+
+    },
+    "Photos duration" : {
 
     },
     "PRO" : {
@@ -28,7 +37,22 @@
     "Save" : {
 
     },
+    "Set duration, %" : {
+
+    },
+    "Slideshow duration" : {
+
+    },
+    "Slow" : {
+
+    },
+    "The video has been saved to the gallery." : {
+
+    },
     "Timing" : {
+
+    },
+    "Video Saved" : {
 
     }
   },

@@ -15,7 +15,7 @@ final class OnboardingViewController: UIViewController {
     // MARK: - UI Components
     private let greetingLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(named: "grayForDemo")
+        label.textColor = .labelBlack
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 32, weight: .semibold)
         label.text = String(localized: "Onboarding")
@@ -25,7 +25,7 @@ final class OnboardingViewController: UIViewController {
     private let doneButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = 10
-        button.backgroundColor = UIColor(named: "grayForDemo")
+        button.backgroundColor = .labelBlack
         button.tintColor = .white
         button.setTitle(String(localized: "Done"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
