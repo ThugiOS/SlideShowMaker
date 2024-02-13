@@ -17,6 +17,8 @@ final class SlideEditorViewController: UIViewController {
 
     private var videoInfo: VideoInfo?
 
+    private var videoCreator: VideoCreator?
+
     private var selectedImageIndex: Int? {
         didSet {
             collectionView.reloadData()
@@ -189,16 +191,22 @@ final class SlideEditorViewController: UIViewController {
     @objc
     private func saveButtonTapped() {
         let videoCreator = VideoCreator(images: images)
-        videoCreator.createVideo(videoInfo: videoInfo ?? VideoInfo(resolution: .canvas1x1, duration: 5)) { [weak self] url in
+        let videoInfo = videoInfo ?? VideoInfo(resolution: .canvas1x1, duration: 5)
+        videoCreator.createVideo(videoInfo: videoInfo) { url in
             guard url != nil else {
                 print("Failed to create and save video.")
                 return
             }
 
-            DispatchQueue.main.async {
-                self?.showAlert(withTitle: String(localized: "Video Saved"), message: String(localized: "The video has been saved to the gallery."))
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+
+                self.showAlert(withTitle: String(localized: "Video Saved"), message: String(localized: "The video has been saved to the gallery."))
+                self.videoCreator = nil
             }
         }
+
+        self.videoCreator = videoCreator
     }
 
     private func showAlert(withTitle title: String, message: String) {
