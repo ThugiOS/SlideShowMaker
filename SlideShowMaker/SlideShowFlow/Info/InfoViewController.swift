@@ -52,7 +52,7 @@ final class InfoViewController: UIViewController {
     // MARK: - Selectors
     @objc
     private func goHomeButtonTapped() {
-        coordinator?.showHome()
+        coordinator?.navigateBack()
     }
 }
 
