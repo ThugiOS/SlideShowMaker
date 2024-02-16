@@ -12,6 +12,8 @@
 		272500922B3B030D000531B7 /* TimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272500912B3B030D000531B7 /* TimingViewController.swift */; };
 		272500952B3C285B000531B7 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272500942B3C285B000531B7 /* AudioViewController.swift */; };
 		272500972B3C5518000531B7 /* CustomPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272500962B3C5518000531B7 /* CustomPresentation.swift */; };
+		2745CAB32B7E51BC0083AA3C /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2745CAB22B7E51BC0083AA3C /* OnboardingSlide.swift */; };
+		2745CAB52B7E51C40083AA3C /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2745CAB42B7E51C40083AA3C /* OnboardingCollectionViewCell.swift */; };
 		27527D082B4D53BA00826BE4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 27527D072B4D53BA00826BE4 /* Localizable.xcstrings */; };
 		275D30122B162AEC00BED542 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30112B162AEC00BED542 /* AppDelegate.swift */; };
 		275D30142B162AEC00BED542 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30132B162AEC00BED542 /* SceneDelegate.swift */; };
@@ -44,6 +46,8 @@
 		272500912B3B030D000531B7 /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
 		272500942B3C285B000531B7 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		272500962B3C5518000531B7 /* CustomPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentation.swift; sourceTree = "<group>"; };
+		2745CAB22B7E51BC0083AA3C /* OnboardingSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
+		2745CAB42B7E51C40083AA3C /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		27527D072B4D53BA00826BE4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		275D300E2B162AEC00BED542 /* SlideShowMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideShowMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		275D30112B162AEC00BED542 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				275D30522B17822900BED542 /* OnboardingViewController.swift */,
+				2745CAB22B7E51BC0083AA3C /* OnboardingSlide.swift */,
+				2745CAB42B7E51C40083AA3C /* OnboardingCollectionViewCell.swift */,
 			);
 			path = OnboardingFlow;
 			sourceTree = "<group>";
@@ -405,6 +411,7 @@
 				276F54D32B5EAE0C00619408 /* CustomIconSlider.swift in Sources */,
 				276F54D92B611E5200619408 /* CustomLabel.swift in Sources */,
 				272500922B3B030D000531B7 /* TimingViewController.swift in Sources */,
+				2745CAB32B7E51BC0083AA3C /* OnboardingSlide.swift in Sources */,
 				276F54DF2B61520D00619408 /* CustomButton.swift in Sources */,
 				276F55632B7A5B5700619408 /* UIFont+Extension.swift in Sources */,
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
@@ -412,6 +419,7 @@
 				276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */,
 				275D305B2B18C49000BED542 /* Settings.swift in Sources */,
 				275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */,
+				2745CAB52B7E51C40083AA3C /* OnboardingCollectionViewCell.swift in Sources */,
 				276F550E2B691FC100619408 /* VideoInfoDelegateProtocol.swift in Sources */,
 				275D30572B17866600BED542 /* HomeViewController.swift in Sources */,
 				275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */,
