@@ -124,6 +124,22 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		2745CAB62B7FB2A60083AA3C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2745CAB22B7E51BC0083AA3C /* OnboardingSlide.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2745CAB72B7FB2B00083AA3C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2745CAB42B7E51C40083AA3C /* OnboardingCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		275D30052B162AEB00BED542 = {
 			isa = PBXGroup;
 			children = (
@@ -189,8 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				275D30522B17822900BED542 /* OnboardingViewController.swift */,
-				2745CAB22B7E51BC0083AA3C /* OnboardingSlide.swift */,
-				2745CAB42B7E51C40083AA3C /* OnboardingCollectionViewCell.swift */,
+				2745CAB62B7FB2A60083AA3C /* Model */,
+				2745CAB72B7FB2B00083AA3C /* Cell */,
 			);
 			path = OnboardingFlow;
 			sourceTree = "<group>";
@@ -215,8 +231,8 @@
 		275D30612B1F537100BED542 /* SlideEditor */ = {
 			isa = PBXGroup;
 			children = (
-				272500932B3C25CF000531B7 /* TollBar */,
 				275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */,
+				272500932B3C25CF000531B7 /* TollBar */,
 				276F55112B6936D200619408 /* Cell */,
 				276F55102B6936B000619408 /* Model */,
 			);
