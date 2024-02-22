@@ -185,7 +185,7 @@ final class SlideEditorViewController: UIViewController {
     // MARK: - Selectors
     @objc
     private func goHomeButtonTapped() {
-        coordinator?.showHome()
+        coordinator?.navigateBack()
     }
 
     @objc
@@ -199,7 +199,9 @@ final class SlideEditorViewController: UIViewController {
             }
 
             DispatchQueue.main.async { [weak self] in
-                guard let self else { return }
+                guard let self else {
+                    return
+                }
 
                 self.showAlert(withTitle: String(localized: "Video Saved"), message: String(localized: "The video has been saved to the gallery."))
                 self.videoCreator = nil
@@ -270,6 +272,7 @@ extension SlideEditorViewController: VideoInfoDelegateProtocol {
 
 // MARK: - Constraints
 private extension SlideEditorViewController {
+    // swiftlint:disable:next function_body_length
     func setConstraint() {
         let screenHeight = UIScreen.main.bounds.height
         let screenWidth = UIScreen.main.bounds.width
