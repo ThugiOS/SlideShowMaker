@@ -30,15 +30,16 @@ final class OnboardingViewController: UIViewController {
 
     // MARK: - UI Components
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        collectionView.collectionViewLayout = flowLayout
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.isScrollEnabled = true
-//        collectionView.isPagingEnabled = true
-        collectionView.isUserInteractionEnabled = true
+        collectionView.isPagingEnabled = true
+
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: OnboardingCollectionViewCell.identifier)
+        collectionView.register(OnboardingCollectionViewCell.self,
+                                forCellWithReuseIdentifier: OnboardingCollectionViewCell.identifier)
         return collectionView
     }()
 
