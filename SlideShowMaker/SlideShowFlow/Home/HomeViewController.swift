@@ -14,6 +14,21 @@ final class HomeViewController: UIViewController {
     // MARK: - UI Components
     private let createFirstProjectView = FirstSlideShowView()
 
+    private lazy var projectCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = true
+        collectionView.register(ProjectCell.self, forCellWithReuseIdentifier: ProjectCell.identifier)
+
+        return collectionView
+    }()
+
     private let myProjectsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .labelBlack
@@ -73,9 +88,26 @@ final class HomeViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        projectCollection.delegate = self
+        projectCollection.dataSource = self
+
         setupViews()
         setConstraint()
         setupGestures()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if RealmManager.shared.loadProjects().isEmpty {
+            projectCollection.isHidden = true
+            createFirstProjectView.isHidden = false
+        }
+        else {
+            projectCollection.isHidden = false
+            createFirstProjectView.isHidden = true
+        }
+        projectCollection.reloadData()
     }
 
     // MARK: - UI Setup
@@ -90,6 +122,8 @@ final class HomeViewController: UIViewController {
         view.addSubview(infoButtonView)
 
         view.addSubview(createFirstProjectView)
+
+        view.addSubview(projectCollection)
 
         view.addSubview(createProjectButtonView)
         createProjectButtonView.addSubview(createProjectButtonLabel)
@@ -131,6 +165,20 @@ private extension HomeViewController {
     func setConstraint() {
         let screenWidth = UIScreen.main.bounds.width
 
+        createFirstProjectView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(infoButtonView.snp.bottom).offset(10)
+            make.bottom.equalTo(createProjectButtonView.snp.top).offset(-10)
+            make.width.equalTo(screenWidth)
+        }
+
+        projectCollection.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(infoButtonView.snp.bottom).offset(20)
+            make.bottom.equalTo(createProjectButtonView.snp.top).offset(-20)
+            make.width.equalTo(screenWidth)
+        }
+
         myProjectsLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(80)
             make.leading.equalToSuperview().offset(20)
@@ -154,13 +202,6 @@ private extension HomeViewController {
             make.leading.equalToSuperview().offset(12)
         }
 
-        createFirstProjectView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(infoButtonView.snp.bottom).offset(10)
-            make.bottom.equalTo(createProjectButtonView.snp.top).offset(-10)
-            make.width.equalTo(screenWidth)
-        }
-
         createProjectButtonView.snp.makeConstraints { make in
             make.width.equalTo(180)
             make.height.equalTo(70)
@@ -172,5 +213,49 @@ private extension HomeViewController {
             make.centerY.equalTo(createProjectButtonView)
             make.leading.equalTo(createProjectButtonView.snp.leading).offset(55)
         }
+    }
+}
+
+extension HomeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return RealmManager.shared.loadProjects().count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCell.identifier, for: indexPath) as? ProjectCell else {
+            fatalError("Error create cell")
+        }
+
+        let project = RealmManager.shared.loadProjects()[indexPath.row]
+
+        if let firstImagePath = project.imagePaths.first {
+            let imageURL = FileManager.documentsDirectoryURL.appendingPathComponent(firstImagePath)
+            if let imageData = try? Data(contentsOf: imageURL) {
+                cell.configureProjectCell(image: UIImage(data: imageData) ?? UIImage(), date: project.date.formatted(), projectName: project.name)
+            }
+        }
+
+        return cell
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let project = RealmManager.shared.loadProjects()[indexPath.row]
+        let SlideVC = SlideEditorViewController(coordinator: coordinator!)
+
+        SlideVC.images = project.imagePaths.map { path in
+            let imageURL = FileManager.documentsDirectoryURL.appendingPathComponent(path)
+            return UIImage(contentsOfFile: imageURL.path) ?? UIImage()
+        }
+        navigationController?.pushViewController(SlideVC, animated: true)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 334, height: 223)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 30
     }
 }

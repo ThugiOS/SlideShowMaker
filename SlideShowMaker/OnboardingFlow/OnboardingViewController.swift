@@ -203,7 +203,7 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCollectionViewCell.identifier, for: indexPath) as? OnboardingCollectionViewCell else {
             fatalError("Unable to dequeue OnboardingCollectionViewCell")
         }
-        cell.setup(slides[indexPath.row])
+        cell.configureOnboardingCell(slides[indexPath.row])
         return cell
     }
 

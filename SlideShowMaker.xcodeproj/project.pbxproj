@@ -13,6 +13,10 @@
 		272500952B3C285B000531B7 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272500942B3C285B000531B7 /* AudioViewController.swift */; };
 		272500972B3C5518000531B7 /* CustomPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272500962B3C5518000531B7 /* CustomPresentation.swift */; };
 		273B7F662BA2FE820033989A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 273B7F652BA2FE820033989A /* RealmSwift */; };
+		273B7F682BA31E2E0033989A /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B7F672BA31E2E0033989A /* FileManager.swift */; };
+		273B7F6A2BA31FD60033989A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B7F692BA31FD60033989A /* RealmManager.swift */; };
+		273B7F6C2BA321310033989A /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B7F6B2BA321310033989A /* ProjectModel.swift */; };
+		273B7F6E2BA321EB0033989A /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273B7F6D2BA321EB0033989A /* ProjectCell.swift */; };
 		2745CAB32B7E51BC0083AA3C /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2745CAB22B7E51BC0083AA3C /* OnboardingSlide.swift */; };
 		2745CAB52B7E51C40083AA3C /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2745CAB42B7E51C40083AA3C /* OnboardingCollectionViewCell.swift */; };
 		27527D082B4D53BA00826BE4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 27527D072B4D53BA00826BE4 /* Localizable.xcstrings */; };
@@ -47,6 +51,10 @@
 		272500912B3B030D000531B7 /* TimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimingViewController.swift; sourceTree = "<group>"; };
 		272500942B3C285B000531B7 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		272500962B3C5518000531B7 /* CustomPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentation.swift; sourceTree = "<group>"; };
+		273B7F672BA31E2E0033989A /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		273B7F692BA31FD60033989A /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		273B7F6B2BA321310033989A /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
+		273B7F6D2BA321EB0033989A /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		2745CAB22B7E51BC0083AA3C /* OnboardingSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		2745CAB42B7E51C40083AA3C /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		27527D072B4D53BA00826BE4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -217,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				275D30562B17866600BED542 /* HomeViewController.swift */,
+				273B7F6B2BA321310033989A /* ProjectModel.swift */,
+				273B7F6D2BA321EB0033989A /* ProjectCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -300,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				276F55622B7A5B5700619408 /* UIFont+Extension.swift */,
+				273B7F672BA31E2E0033989A /* FileManager.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -308,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				2790DABA2B50350F003F72AF /* VideoCreator.swift */,
+				273B7F692BA31FD60033989A /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -436,11 +448,13 @@
 				276F55632B7A5B5700619408 /* UIFont+Extension.swift in Sources */,
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
 				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
+				273B7F6C2BA321310033989A /* ProjectModel.swift in Sources */,
 				276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */,
 				275D305B2B18C49000BED542 /* Settings.swift in Sources */,
 				275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */,
 				2745CAB52B7E51C40083AA3C /* OnboardingCollectionViewCell.swift in Sources */,
 				276F550E2B691FC100619408 /* VideoInfoDelegateProtocol.swift in Sources */,
+				273B7F6A2BA31FD60033989A /* RealmManager.swift in Sources */,
 				275D30572B17866600BED542 /* HomeViewController.swift in Sources */,
 				275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */,
 				275D30122B162AEC00BED542 /* AppDelegate.swift in Sources */,
@@ -448,8 +462,10 @@
 				2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */,
 				275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */,
 				27FCF9702B2B2F7C0085F97D /* ImageCell.swift in Sources */,
+				273B7F682BA31E2E0033989A /* FileManager.swift in Sources */,
 				2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */,
 				27E6804E2B55666F000B7D8F /* FirstSlideShowView.swift in Sources */,
+				273B7F6E2BA321EB0033989A /* ProjectCell.swift in Sources */,
 				272500902B3B0306000531B7 /* CanvasViewController.swift in Sources */,
 				272500952B3C285B000531B7 /* AudioViewController.swift in Sources */,
 			);
@@ -595,7 +611,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9YW4L3WZ5R;
+				DEVELOPMENT_TEAM = 5CDR6A6HP3;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlideShowMaker/Resources/Info.plist;
@@ -629,7 +645,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9YW4L3WZ5R;
+				DEVELOPMENT_TEAM = 5CDR6A6HP3;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SlideShowMaker/Resources/Info.plist;

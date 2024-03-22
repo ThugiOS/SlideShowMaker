@@ -13,7 +13,7 @@ final class SlideEditorViewController: UIViewController {
     weak var coordinator: Coordinator?
 
     // MARK: - Private Properties
-    private var images: [UIImage] = []
+    var images: [UIImage] = []
 
     private var videoInfo: VideoInfo?
 
@@ -190,6 +190,18 @@ final class SlideEditorViewController: UIViewController {
 
     @objc
     private func saveButtonTapped() {
+        guard !images.isEmpty else {
+            print("Нет фото")
+            return
+        }
+
+        let currentDate = Date()
+        let index = RealmManager.shared.loadProjects().count + 1
+
+        RealmManager.shared.saveProject(images: images, date: currentDate, index: index)
+
+//        images.removeAll() // ???
+
         let videoCreator = VideoCreator(images: images)
         let videoInfo = videoInfo ?? VideoInfo(resolution: .canvas1x1, duration: 5)
         videoCreator.createVideo(videoInfo: videoInfo) { url in

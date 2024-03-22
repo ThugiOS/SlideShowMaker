@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class OnboardingCollectionViewCell: UICollectionViewCell {
+final class OnboardingCollectionViewCell: UICollectionViewCell {
     static let identifier = String(describing: OnboardingCollectionViewCell.self)
 
     lazy var slideImageView: UIImageView = {
@@ -69,7 +69,7 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func setup(_ slide: OnboardingSlide) {
+    func configureOnboardingCell(_ slide: OnboardingSlide) {
         slideImageView.image = slide.image
         slideTitleLabel.text = slide.title
         slideDescriptionLabel.text = slide.description
