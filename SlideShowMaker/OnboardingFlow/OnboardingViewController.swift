@@ -35,7 +35,7 @@ final class OnboardingViewController: UIViewController {
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.isScrollEnabled = true
-        collectionView.isPagingEnabled = true
+        collectionView.isPagingEnabled = false
 
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(OnboardingCollectionViewCell.self,

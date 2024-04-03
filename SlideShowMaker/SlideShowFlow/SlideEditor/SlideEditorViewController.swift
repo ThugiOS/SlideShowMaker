@@ -117,7 +117,8 @@ final class SlideEditorViewController: UIViewController {
         setBarItems()
         setupGestures()
         setDefaultVideoSettings()
-
+#warning("TODO: убрать это")
+        navigationController?.isNavigationBarHidden = true
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
     }

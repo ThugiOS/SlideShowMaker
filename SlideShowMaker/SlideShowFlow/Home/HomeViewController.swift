@@ -241,6 +241,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        #warning("TODO: переделать переход в редактирование проекта")
         let project = RealmManager.shared.loadProjects()[indexPath.row]
         let SlideVC = SlideEditorViewController(coordinator: coordinator!)
 
