@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "infoDell.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
