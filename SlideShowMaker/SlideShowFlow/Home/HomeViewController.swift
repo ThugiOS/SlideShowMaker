@@ -140,7 +140,7 @@ private extension HomeViewController {
             createProjectButtonBottomOffset = 15
         }
         else {
-            myProjectsLabelTopOffset = 60
+            myProjectsLabelTopOffset = 70
             createProjectButtonBottomOffset = 50
         }
 
@@ -223,3 +223,4 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegate
         return 30
     }
 }
+
