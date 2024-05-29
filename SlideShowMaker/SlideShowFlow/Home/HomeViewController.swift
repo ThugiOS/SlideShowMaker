@@ -5,6 +5,7 @@
 //  Created by Никитин Артем on 29.11.23.
 //
 
+import Lottie
 import SnapKit
 import UIKit
 
@@ -12,7 +13,23 @@ final class HomeViewController: UIViewController {
     weak var coordinator: Coordinator?
 
     // MARK: - UI Components
-    private let createFirstProjectView = FirstSlideShowView()
+    private let newLottieView: LottieAnimationView = {
+        let lottie = LottieAnimationView(name: "8")
+        lottie.contentMode = .scaleAspectFill
+        lottie.loopMode = .loop
+        lottie.animationSpeed = 0.2
+        return lottie
+    }()
+
+    private let tipLabel: UILabel = {
+        $0.textColor = .darkGray
+        $0.textAlignment = .center
+        $0.font = .systemFont(ofSize: 16, weight: .regular)
+        $0.text = String(localized: "To create a video from your images\n click the New Project button")
+        $0.numberOfLines = 2
+        $0.lineBreakMode = .byWordWrapping
+        return $0
+    }(UILabel())
 
     private lazy var projectCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,47 +48,23 @@ final class HomeViewController: UIViewController {
 
     private let myProjectsLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .labelBlack
-        label.font = UIFont.gilroyBold(ofSize: 34)
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 36, weight: .bold)
         label.text = String(localized: "My Projects")
         return label
     }()
 
-    private let createProjectButtonView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "buttonCreateProject")
-        view.isUserInteractionEnabled = true
-        return view
-    }()
+    private let createProjectButton: AnimatedGradientButton = {
+        let button = AnimatedGradientButton()
+        button.setTitle(String(localized: "New Project"), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        button.layer.cornerRadius = 35
+        button.clipsToBounds = true
 
-    private let createProjectButtonLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.gilroyBold(ofSize: 17)
-        label.text = String(localized: "New Project")
-        return label
-    }()
-
-    private let proButtonView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "ticketStar")
-        view.isUserInteractionEnabled = true
-        return view
-    }()
-
-    private let proButtonLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .labelBlack
-        label.font = UIFont.gilroyBold(ofSize: 14)
-        label.text = String(localized: "PRO")
-        return label
-    }()
-
-    private let infoButtonView: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "info")
-        view.isUserInteractionEnabled = true
-        return view
+        let image = UIImage(systemName: "person.crop.rectangle.badge.plus.fill")
+        button.setImage(image)
+        return button
     }()
 
     // MARK: - Initializers
@@ -94,39 +87,37 @@ final class HomeViewController: UIViewController {
 
         setupViews()
         setConstraint()
-        setupGestures()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if RealmManager.shared.loadProjects().isEmpty {
             projectCollection.isHidden = true
-            createFirstProjectView.isHidden = false
+            newLottieView.isHidden = false
+            tipLabel.isHidden = false
         }
         else {
             projectCollection.isHidden = false
-            createFirstProjectView.isHidden = true
+            newLottieView.isHidden = true
+            tipLabel.isHidden = true
         }
         projectCollection.reloadData()
+
+        createProjectButton.restartAnimation()
+        newLottieView.play()
     }
 
     // MARK: - UI Setup
     private func setupViews() {
-        view.backgroundColor = .backgroundWhite
+        view.backgroundColor = .mainBackground
 
         view.addSubview(myProjectsLabel)
-
-        view.addSubview(proButtonView)
-        proButtonView.addSubview(proButtonLabel)
-
-        view.addSubview(infoButtonView)
-
-        view.addSubview(createFirstProjectView)
-
+        view.addSubview(newLottieView)
+        view.addSubview(tipLabel)
         view.addSubview(projectCollection)
+        view.addSubview(createProjectButton)
 
-        view.addSubview(createProjectButtonView)
-        createProjectButtonView.addSubview(createProjectButtonLabel)
+        createProjectButton.addTarget(self, action: #selector(createProjectButtonTapped), for: .touchUpInside)
     }
 
     // MARK: - Selectors
@@ -134,84 +125,54 @@ final class HomeViewController: UIViewController {
     private func createProjectButtonTapped() {
         coordinator?.showSlideEditor()
     }
-
-    @objc
-    private func infoButtonTapped() {
-        coordinator?.showInfo()
-    }
-
-    @objc
-    private func proButtonTapped() {
-        print("Pro button tapped")
-    }
-}
-
-// MARK: - Gestures
-private extension HomeViewController {
-    func setupGestures() {
-        let createProjectTapGesture = UITapGestureRecognizer(target: self, action: #selector(createProjectButtonTapped))
-        createProjectButtonView.addGestureRecognizer(createProjectTapGesture)
-
-        let proButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(proButtonTapped))
-        proButtonView.addGestureRecognizer(proButtonTapGesture)
-
-        let infoButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(infoButtonTapped))
-        infoButtonView.addGestureRecognizer(infoButtonTapGesture)
-    }
 }
 
 // MARK: - Constraints
 private extension HomeViewController {
     func setConstraint() {
-        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
 
-        createFirstProjectView.snp.makeConstraints { make in
+        let myProjectsLabelTopOffset: Int
+        let createProjectButtonBottomOffset: Int
+
+        if screenHeight <= 667 { // Height of iPhone 8, SE 2-3 etc.
+            myProjectsLabelTopOffset = 30
+            createProjectButtonBottomOffset = 15
+        }
+        else {
+            myProjectsLabelTopOffset = 70
+            createProjectButtonBottomOffset = 50
+        }
+
+        let screenWidth = UIScreen.main.bounds.width
+        myProjectsLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(myProjectsLabelTopOffset)
             make.centerX.equalToSuperview()
-            make.top.equalTo(infoButtonView.snp.bottom).offset(10)
-            make.bottom.equalTo(createProjectButtonView.snp.top).offset(-10)
-            make.width.equalTo(screenWidth)
+        }
+
+        newLottieView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
 
         projectCollection.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(infoButtonView.snp.bottom).offset(20)
-            make.bottom.equalTo(createProjectButtonView.snp.top).offset(-20)
+            make.top.equalTo(myProjectsLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(createProjectButton.snp.top).offset(-20)
             make.width.equalTo(screenWidth)
         }
 
-        myProjectsLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(80)
-            make.leading.equalToSuperview().offset(20)
+        tipLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().offset(-30)
+            make.bottom.equalTo(createProjectButton.snp.top).offset(-20)
         }
 
-        infoButtonView.snp.makeConstraints { make in
-            make.centerY.equalTo(myProjectsLabel)
-            make.trailing.equalToSuperview().offset(-20)
-            make.width.height.equalTo(29)
-        }
-
-        proButtonView.snp.makeConstraints { make in
-            make.centerY.equalTo(myProjectsLabel)
-            make.trailing.equalTo(infoButtonView.snp.leading).offset(-5)
-            make.width.equalTo(71)
-            make.height.equalTo(29)
-        }
-
-        proButtonLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(proButtonView)
-            make.leading.equalToSuperview().offset(12)
-        }
-
-        createProjectButtonView.snp.makeConstraints { make in
-            make.width.equalTo(180)
+        createProjectButton.snp.makeConstraints { make in
             make.height.equalTo(70)
-            make.bottom.equalToSuperview().offset(-50)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().offset(-30)
+            make.bottom.equalToSuperview().offset(-createProjectButtonBottomOffset)
             make.centerX.equalToSuperview()
-        }
-
-        createProjectButtonLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(createProjectButtonView)
-            make.leading.equalTo(createProjectButtonView.snp.leading).offset(55)
         }
     }
 }
@@ -241,9 +202,11 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        #warning("TODO: переделать переход в редактирование проекта")
         let project = RealmManager.shared.loadProjects()[indexPath.row]
-        let SlideVC = SlideEditorViewController(coordinator: coordinator!)
+        guard let coordinator else {
+            return
+        }
+        let SlideVC = SlideEditorViewController(coordinator: coordinator)
 
         SlideVC.images = project.imagePaths.map { path in
             let imageURL = FileManager.documentsDirectoryURL.appendingPathComponent(path)
@@ -260,3 +223,4 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegate
         return 30
     }
 }
+

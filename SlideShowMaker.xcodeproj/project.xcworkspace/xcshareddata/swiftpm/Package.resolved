@@ -1,13 +1,13 @@
 {
-  "originHash" : "c6fb6bb56499b8ab1c49d66e5f60c3c3e3687a619b0d388d04cb5a6cc1093ed0",
+  "originHash" : "2c191089c351b00393352853c0f27f876d1896d54c297637114ecfdaa26c1e0b",
   "pins" : [
     {
-      "identity" : "kingfisher",
+      "identity" : "lottie-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
       "state" : {
-        "revision" : "5b92f029fab2cce44386d28588098b5be0824ef5",
-        "version" : "7.11.0"
+        "revision" : "769b88d83a42ca8d5572b020c96f47e3690b3796",
+        "version" : "4.4.3"
       }
     },
     {
