@@ -223,4 +223,3 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegate
         return 30
     }
 }
-

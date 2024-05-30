@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,19 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="QZf-ma-YJy">
-                                <rect key="frame" x="138.66666666666666" y="368" width="116" height="116"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="116" id="7p3-Tf-9lb"/>
-                                    <constraint firstAttribute="width" constant="116" id="tUX-lP-WdJ"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logosvg" translatesAutoresizingMaskIntoConstraints="NO" id="QZf-ma-YJy">
+                                <rect key="frame" x="0.0" y="0.0" width="393.00000000000006" height="852"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="mainBackground"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QZf-ma-YJy" secondAttribute="trailing" id="4Si-Xc-aeZ"/>
                             <constraint firstItem="QZf-ma-YJy" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="9Bv-Iy-wiu"/>
+                            <constraint firstAttribute="bottom" secondItem="QZf-ma-YJy" secondAttribute="bottom" id="D42-gv-5Aq"/>
+                            <constraint firstItem="QZf-ma-YJy" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="MMG-H4-EVu"/>
                             <constraint firstItem="QZf-ma-YJy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ay1-7g-5kj"/>
+                            <constraint firstItem="QZf-ma-YJy" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="bre-ZY-4oX"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,9 +38,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="344" height="344"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="logosvg" width="1024" height="1024"/>
+        <namedColor name="mainBackground">
+            <color red="0.10999999940395355" green="0.11800000071525574" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
