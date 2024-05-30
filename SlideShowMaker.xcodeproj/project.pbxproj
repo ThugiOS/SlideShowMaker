@@ -249,19 +249,19 @@
 			isa = PBXGroup;
 			children = (
 				276F54DD2B6151F800619408 /* Views */,
-				275D30632B1F53E000BED542 /* Info */,
+				275D30632B1F53E000BED542 /* Settings */,
 				275D304F2B177F6B00BED542 /* Home */,
 				275D30612B1F537100BED542 /* SlideEditor */,
 			);
 			path = SlideShowFlow;
 			sourceTree = "<group>";
 		};
-		275D30632B1F53E000BED542 /* Info */ = {
+		275D30632B1F53E000BED542 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				275D30642B1F55EA00BED542 /* InfoViewController.swift */,
 			);
-			path = Info;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		276F54DD2B6151F800619408 /* Views */ = {

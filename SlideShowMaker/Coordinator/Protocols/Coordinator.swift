@@ -14,7 +14,7 @@ protocol Coordinator: AnyObject {
     func showOnboarding(completion: @escaping () -> Void)
     func showHome()
     func showSlideEditor()
-    func showInfo()
+//    func showInfo()
 }
 
 extension Coordinator {

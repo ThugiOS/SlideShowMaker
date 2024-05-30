@@ -34,7 +34,6 @@ final class AnimatedGradientButton: UIButton {
     }
 
     private func setupImageView() {
-
         customImageView.contentMode = .scaleAspectFit
         customImageView.tintColor = .white
         addSubview(customImageView)
