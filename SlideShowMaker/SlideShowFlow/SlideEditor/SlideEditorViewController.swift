@@ -377,6 +377,10 @@ extension SlideEditorViewController: UIImagePickerControllerDelegate, UINavigati
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             images.append(image)
             collectionView.reloadData()
+            
+            // Select the newly added image
+            selectedImageIndex = images.count - 1
+            selectedImageView.image = image
         }
         dismiss(animated: true, completion: nil)
     }
@@ -385,6 +389,7 @@ extension SlideEditorViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true, completion: nil)
     }
 }
+
 
 // MARK: - ViewControllerTransitioningDelegate
 extension SlideEditorViewController: UIViewControllerTransitioningDelegate {
