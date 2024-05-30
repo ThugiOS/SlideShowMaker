@@ -28,12 +28,21 @@ final class SlideEditorViewController: UIViewController {
     // MARK: - UI Components
     private let goHomeButton: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "arrow")
+        view.image = UIImage(systemName: "chevron.backward")
+        view.tintColor = .button1
         view.isUserInteractionEnabled = true
         return view
     }()
 
-    private let saveButton = CustomButton(text: String(localized: "Save"), fontSize: 16)
+    private let saveButton: AnimatedGradientButton = {
+        let button = AnimatedGradientButton()
+        button.setTitle(String(localized: "Create"), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        button.layer.cornerRadius = 19
+        button.clipsToBounds = true
+        return button
+    }()
 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -48,34 +57,13 @@ final class SlideEditorViewController: UIViewController {
         return collectionView
     }()
 
-    private let picturePanelView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .backgroundLightGrey
-        return view
-    }()
-
-    private let controlBoardView: UIView = {
-        let view = UIView()
-        view.isUserInteractionEnabled = true
-        view.backgroundColor = .backgroundLightGrey
-        return view
-    }()
-
     private let binImageButton: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "bin")
+        view.image = UIImage(systemName: "xmark.bin.fill")
+        view.tintColor = .white
         view.isUserInteractionEnabled = true
         return view
     }()
-
-    private let playImageButton: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "play")
-        view.isUserInteractionEnabled = true
-        return view
-    }()
-
-    private let timerLabel = CustomLabel(title: String(localized: "00.00.00"), size: 14, alpha: 1, fontType: .medium)
 
     private let addImageButton: UIImageView = {
         let view = UIImageView()
@@ -93,8 +81,7 @@ final class SlideEditorViewController: UIViewController {
 
     private let toolbar: UIToolbar = {
         let toolbar = UIToolbar()
-        toolbar.barStyle = .default
-        toolbar.backgroundColor = .backgroundLightGrey
+        toolbar.barStyle = .black
         return toolbar
     }()
 
@@ -117,22 +104,22 @@ final class SlideEditorViewController: UIViewController {
         setBarItems()
         setupGestures()
         setDefaultVideoSettings()
-#warning("TODO: убрать это")
         navigationController?.isNavigationBarHidden = true
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        saveButton.restartAnimation()
+    }
+
     // MARK: - UI Setup
     private func setupViews() {
-        view.backgroundColor = .backgroundWhite
-        view.addSubview(picturePanelView)
+        view.backgroundColor = .mainBackground
         view.addSubview(goHomeButton)
         view.addSubview(saveButton)
         view.addSubview(selectedImageView)
-        view.addSubview(controlBoardView)
-        view.addSubview(playImageButton)
-        view.addSubview(timerLabel)
         view.addSubview(collectionView)
         view.addSubview(addImageButton)
         view.addSubview(toolbar)
@@ -141,10 +128,10 @@ final class SlideEditorViewController: UIViewController {
 
     // MARK: - Private Methods
     private func setBarItems() {
-        let canvasImage = UIImage(named: "canvas")
+        let canvasImage = UIImage(named: "resolution")
         let canvasButton = makeToolbarButton(image: canvasImage, action: #selector(openCanvasViewController))
 
-        let timingImage = UIImage(named: "timing")
+        let timingImage = UIImage(named: "timer")
         let timingButton = makeToolbarButton(image: timingImage, action: #selector(openTimingViewController))
 
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -169,12 +156,12 @@ final class SlideEditorViewController: UIViewController {
     }
 
     private func updateButtonsStatus(_ numberOfItems: Int) {
-        binImageButton.alpha = numberOfItems > 0 ? 0.9 : 0.1
-        playImageButton.alpha = numberOfItems > 0 ? 0.9 : 0.1
-        saveButton.alpha = numberOfItems > 0 ? 1 : 0.3
+        binImageButton.alpha = numberOfItems > 0 ? 0.9 : 0.0
+        saveButton.alpha = numberOfItems > 0 ? 1 : 0.1
         saveButton.isUserInteractionEnabled = numberOfItems > 0 ? true : false
     }
 
+    // тут установить из модели
     private func setDefaultVideoSettings() {
         let defaultSetting = VideoInfo(resolution: .canvas1x1, duration: TimeInterval(5))
         self.videoInfo = defaultSetting
@@ -280,19 +267,9 @@ private extension SlideEditorViewController {
         let screenHeight = UIScreen.main.bounds.height
         let screenWidth = UIScreen.main.bounds.width
 
-        picturePanelView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(selectedImageView)
-        }
-
-        controlBoardView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(picturePanelView)
-            make.top.equalTo(picturePanelView.snp.bottom).offset(3)
-            make.height.equalTo(screenHeight * 0.075)
-        }
-
         goHomeButton.snp.makeConstraints { make in
-            make.width.height.equalTo(33)
+            make.width.equalTo(29)
+            make.height.equalTo(40)
             make.top.equalToSuperview().offset(screenHeight * 0.1)
             make.leading.equalToSuperview().offset(screenHeight * 0.02)
         }
@@ -300,36 +277,26 @@ private extension SlideEditorViewController {
         saveButton.snp.makeConstraints { make in
             make.centerY.equalTo(goHomeButton.snp.centerY)
             make.trailing.equalToSuperview().offset(-(screenHeight * 0.02))
-            make.width.equalTo(100)
+            make.width.equalTo(120)
             make.height.equalTo(50)
         }
 
         selectedImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(screenHeight * 0.17)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(screenHeight * 0.43)
+            make.height.equalTo(screenHeight * 0.5)
         }
 
         binImageButton.snp.makeConstraints { make in
-            make.centerY.equalTo(playImageButton)
-            make.trailing.equalTo(playImageButton).offset(-110)
-            make.width.height.equalTo(30)
-        }
-
-        playImageButton.snp.makeConstraints { make in
-            make.centerY.centerX.equalTo(controlBoardView)
-            make.width.height.equalTo(30)
-        }
-
-        timerLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(playImageButton)
-            make.trailing.equalTo(playImageButton).offset(130)
+            make.centerX.equalTo(selectedImageView)
+            make.bottom.equalTo(selectedImageView).offset(-10)
+            make.width.height.equalTo(44)
         }
 
         addImageButton.snp.makeConstraints { make in
-            make.top.equalTo(controlBoardView.snp.bottom).offset(screenWidth * 0.08)
+            make.top.equalTo(selectedImageView.snp.bottom).offset(screenWidth * 0.08)
             make.leading.equalToSuperview().offset(19)
-            make.width.height.equalTo(80)
+            make.width.height.equalTo(65)
         }
 
         collectionView.snp.makeConstraints { make in

@@ -42,9 +42,9 @@ final class ApplicationCoordinator: Coordinator {
         navigationController.navigationBar.isHidden = true
     }
 
-    func showInfo() {
-        let infoViewController = InfoViewController(coordinator: self)
-        navigationController.pushViewController(infoViewController, animated: true)
-        navigationController.navigationBar.isHidden = true
-    }
+//    func showInfo() {
+//        let infoViewController = InfoViewController(coordinator: self)
+//        navigationController.pushViewController(infoViewController, animated: true)
+//        navigationController.navigationBar.isHidden = true
+//    }
 }

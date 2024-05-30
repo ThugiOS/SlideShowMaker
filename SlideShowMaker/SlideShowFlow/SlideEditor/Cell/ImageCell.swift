@@ -45,7 +45,7 @@ final class ImageCell: UICollectionViewCell {
 
         if isSelected && hasSelectedImage {
             self.myImageView.layer.borderWidth = 3.0
-            self.myImageView.layer.borderColor = UIColor.red.cgColor
+            self.myImageView.layer.borderColor = UIColor.button1.cgColor
         }
         else {
             self.myImageView.layer.borderWidth = 0.0
