@@ -147,12 +147,9 @@ final class SlideEditorViewController: UIViewController {
         let timingImage = UIImage(named: "timing")
         let timingButton = makeToolbarButton(image: timingImage, action: #selector(openTimingViewController))
 
-        let audioImage = UIImage(named: "audio")
-        let audioButton = makeToolbarButton(image: audioImage, action: #selector(openAudioViewController))
-
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-        let items = [flexibleSpace, canvasButton, flexibleSpace, timingButton, flexibleSpace, audioButton, flexibleSpace]
+        let items = [flexibleSpace, canvasButton, flexibleSpace, timingButton, flexibleSpace]
         toolbar.setItems(items, animated: true)
     }
 
@@ -200,8 +197,6 @@ final class SlideEditorViewController: UIViewController {
         let index = RealmManager.shared.loadProjects().count + 1
 
         RealmManager.shared.saveProject(images: images, date: currentDate, index: index)
-
-//        images.removeAll() // ???
 
         let videoCreator = VideoCreator(images: images)
         let videoInfo = videoInfo ?? VideoInfo(resolution: .canvas1x1, duration: 5)
@@ -269,11 +264,6 @@ final class SlideEditorViewController: UIViewController {
         timingViewController.videoTimeInfo = self.videoInfo
         timingViewController.numberOfImages = images.count
         openViewController(timingViewController)
-    }
-
-    @objc
-    func openAudioViewController() {
-        openViewController(AudioViewController())
     }
 }
 

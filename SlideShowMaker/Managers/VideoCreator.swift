@@ -9,116 +9,138 @@ import AVFoundation
 import Photos
 import UIKit
 
-/// The `VideoCreator` class facilitates the creation of a video by combining a sequence of images.
+/// Класс `VideoCreator` облегчает создание видео путем объединения последовательности изображений.
 final class VideoCreator {
-    private var images: [UIImage]   // Array of UIImage objects representing frames of the video
-    private let frameRate = 5       // Frames per second
+    private var images: [UIImage]   // Массив объектов UIImage, представляющих кадры видео
+    private let frameRate = 5       // Кадров в секунду
 
-    /// Initializes a `VideoCreator` object with an array of UIImage objects.
+    /// Инициализирует объект `VideoCreator` с массивом объектов UIImage.
     ///
-    /// - Parameter images: An array of UIImage objects representing frames of the video.
+    /// - Parameter images: Массив объектов UIImage, представляющих кадры видео.
     init(images: [UIImage]) {
         self.images = images
     }
 
-    /// Generates a video by combining provided images with specified video parameters.
+    /// Генерирует видео путем объединения предоставленных изображений с указанными параметрами видео.
     ///
     /// - Parameters:
-    ///   - videoInfo: An object of type `VideoInfo` containing information about the video.
-    ///   - completion: A closure called upon completion of video generation, providing a URL to the generated video file or `nil` if an error occurs.
+    ///   - videoInfo: Объект типа `VideoInfo`, содержащий информацию о видео.
+    ///   - completion: Замыкание, вызываемое по завершении создания видео, предоставляющее URL сгенерированного видеофайла или `nil` в случае ошибки.
     func createVideo(videoInfo: VideoInfo, completion: @escaping (URL?) -> Void) {
+        // Создаем временный путь для сохранения видеофайла
         let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString).appendingPathExtension("mov")
 
+        // Создаем объект AVAssetWriter для записи видеофайла
         guard let videoWriter = try? AVAssetWriter(outputURL: outputURL, fileType: .mov) else {
             completion(nil)
             return
         }
 
+        // Рассчитываем общее количество кадров и количество кадров для каждого изображения
         let totalFrames = Int(videoInfo.duration * Double(self.frameRate))
         let framesPerImage = max(1, totalFrames / images.count)
 
+        // Устанавливаем параметры видео
         let videoSettings: [String: Any] = [
             AVVideoCodecKey: AVVideoCodecType.h264,
             AVVideoWidthKey: videoInfo.resolution.size.width as NSNumber,
             AVVideoHeightKey: videoInfo.resolution.size.height as NSNumber
         ]
 
+        // Создаем объект AVAssetWriterInput для записи видео
         guard let videoWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: videoSettings) as AVAssetWriterInput?,
               videoWriter.canAdd(videoWriterInput) else {
             completion(nil)
             return
         }
 
+        // Создаем адаптер для записи пиксельных буферов в видео
         let adaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: videoWriterInput, sourcePixelBufferAttributes: nil)
 
+        // Добавляем видеоинпут в AVAssetWriter
         videoWriter.add(videoWriterInput)
 
+        // Начинаем запись видео
         videoWriter.startWriting()
         videoWriter.startSession(atSourceTime: .zero)
 
+        // Создаем очередь для обработки данных видео
         let queue = DispatchQueue(label: "VideoQueue", qos: .default, attributes: .concurrent)
 
+        // Запрашиваем данные для записи, когда видеоинпут готов принять их
         videoWriterInput.requestMediaDataWhenReady(on: queue) { [weak self] in
-            guard let self else {
+            guard let self = self else {
                 return
             }
 
             var frameCount = 0
 
+            // Пока видеоинпут готов принять данные и количество кадров меньше общего количества кадров
             while videoWriterInput.isReadyForMoreMediaData, frameCount < totalFrames {
+                // Определяем индекс текущего изображения
                 let imageIndex = min(frameCount / framesPerImage, self.images.count - 1)
+                // Определяем время показа текущего кадра
                 let presentationTime = CMTimeMake(value: Int64(frameCount), timescale: Int32(self.frameRate))
 
+                // Преобразуем изображение в пиксельный буфер
                 guard let buffer = self.pixelBuffer(from: self.images[imageIndex], resolution: videoInfo.resolution) else {
                     completion(nil)
                     return
                 }
 
+                // Добавляем пиксельный буфер в видео с указанием времени показа
                 if !adaptor.append(buffer, withPresentationTime: presentationTime) {
                     completion(nil)
                     return
                 }
 
+                // Увеличиваем счетчик кадров
                 frameCount += 1
             }
 
+            // Помечаем видеоинпут как завершенный
             videoWriterInput.markAsFinished()
 
+            // Завершаем запись видео
             videoWriter.finishWriting {
                 if videoWriter.status == .failed || videoWriter.status == .unknown {
                     completion(nil)
                 }
                 else {
+                    // Сохраняем видео в фотогалерею
                     self.saveVideoToGallery(outputURL, completion: completion)
                 }
             }
         }
     }
 
-    /// Converts a UIImage object into a CVPixelBuffer with the specified resolution.
+    /// Преобразует объект UIImage в CVPixelBuffer с указанным разрешением.
     ///
     /// - Parameters:
-    ///   - image: The UIImage object to be converted into a pixel buffer.
-    ///   - resolution: An object of type `VideoResolution` specifying the resolution of the video.
-    /// - Returns: A CVPixelBuffer representing the image in the specified resolution.
+    ///   - image: Объект UIImage для преобразования в пиксельный буфер.
+    ///   - resolution: Объект типа `VideoResolution`, указывающий разрешение видео.
+    /// - Returns: CVPixelBuffer, представляющий изображение с указанным разрешением.
     private func pixelBuffer(from image: UIImage, resolution: VideoResolution) -> CVPixelBuffer? {
+        // Устанавливаем опции для создания пиксельного буфера
         let options: [String: Any] = [
             kCVPixelBufferCGImageCompatibilityKey as String: true,
             kCVPixelBufferCGBitmapContextCompatibilityKey as String: true
         ]
 
+        // Создаем пиксельный буфер
         var pixelBuffer: CVPixelBuffer?
         let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(resolution.size.width), Int(resolution.size.height), kCVPixelFormatType_32ARGB, options as CFDictionary, &pixelBuffer)
 
+        // Проверяем успешность создания пиксельного буфера
         guard status == kCVReturnSuccess, let pixelBuffer = pixelBuffer else {
             return nil
         }
 
-        // Lock the pixel buffer and create a CGContext for drawing.
+        // Блокируем пиксельный буфер и создаем CGContext для рисования
         CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
         let context = CGContext(data: CVPixelBufferGetBaseAddress(pixelBuffer), width: Int(resolution.size.width), height: Int(resolution.size.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer), space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
 
-        // Calculate aspect ratio and target dimensions for drawing.
+        // Рассчитываем соотношение сторон и целевые размеры для рисования
         let aspectRatio = image.size.width / image.size.height
         let targetWidth: CGFloat
         let targetHeight: CGFloat
@@ -132,7 +154,7 @@ final class VideoCreator {
             targetHeight = resolution.size.height
         }
 
-        // Calculate offsets and scaling for centering and resizing.
+        // Рассчитываем смещения и масштабирование для центрирования и изменения размера
         let xOffset = (resolution.size.width - targetWidth) / 2
         let yOffset = (resolution.size.height - targetHeight) / 2
 
@@ -142,28 +164,30 @@ final class VideoCreator {
         context?.translateBy(x: xOffset, y: yOffset)
         context?.scaleBy(x: targetWidth / image.size.width, y: targetHeight / image.size.height)
 
-        // Draw the image onto the pixel buffer.
+        // Рисуем изображение на пиксельный буфер
         if let context = context {
             UIGraphicsPushContext(context)
             image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
             UIGraphicsPopContext()
         }
 
-        // Unlock the pixel buffer before returning.
+        // Разблокируем пиксельный буфер перед возвратом
         CVPixelBufferUnlockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
 
         return pixelBuffer
     }
 
-    /// Saves the generated video to the device's photo gallery using the Photos framework.
+    /// Сохраняет сгенерированное видео в фотогалерею устройства с использованием фреймворка Photos.
     ///
     /// - Parameters:
-    ///   - url: The URL of the generated video file.
-    ///   - completion: A closure called upon completion of the save operation, providing a URL to the saved video file or `nil` if the operation fails.
+    ///   - url: URL сгенерированного видеофайла.
+    ///   - completion: Замыкание, вызываемое по завершении сохранения, предоставляющее URL сохраненного видеофайла или `nil` в случае неудачи.
     private func saveVideoToGallery(_ url: URL, completion: @escaping (URL?) -> Void) {
+        // Выполняем изменения в фотогалерее
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
         }, completionHandler: { success, _ in
+            // Проверяем успешность сохранения
             if success {
                 DispatchQueue.main.async {
                     completion(url)
