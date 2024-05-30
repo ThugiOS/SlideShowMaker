@@ -44,17 +44,11 @@ final class SlideEditorViewController: UIViewController {
         return button
     }()
 
-    private let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .clear
-        collectionView.allowsSelection = true
-        collectionView.allowsMultipleSelection = true
-        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
-        return collectionView
+    private let selectedImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
     }()
 
     private let binImageButton: UIImageView = {
@@ -72,11 +66,17 @@ final class SlideEditorViewController: UIViewController {
         return view
     }()
 
-    private let selectedImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = true
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
+        return collectionView
     }()
 
     private let toolbar: UIToolbar = {
@@ -102,11 +102,15 @@ final class SlideEditorViewController: UIViewController {
         setupViews()
         setConstraint()
         setBarItems()
-        setupGestures()
         setDefaultVideoSettings()
         navigationController?.isNavigationBarHidden = true
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+
+        if !images.isEmpty {
+            selectedImageIndex = 0
+            selectedImageView.image = images.first
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +121,7 @@ final class SlideEditorViewController: UIViewController {
     // MARK: - UI Setup
     private func setupViews() {
         view.backgroundColor = .mainBackground
+
         view.addSubview(goHomeButton)
         view.addSubview(saveButton)
         view.addSubview(selectedImageView)
@@ -124,6 +129,17 @@ final class SlideEditorViewController: UIViewController {
         view.addSubview(addImageButton)
         view.addSubview(toolbar)
         view.addSubview(binImageButton)
+
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+
+        let goHomeButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(goHomeButtonTapped))
+        goHomeButton.addGestureRecognizer(goHomeButtonTapGesture)
+
+        let addImageButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(openPhotoPicker))
+        addImageButton.addGestureRecognizer(addImageButtonTapGesture)
+
+        let deleteImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(deleteSelectedPhoto))
+        binImageButton.addGestureRecognizer(deleteImageTapGesture)
     }
 
     // MARK: - Private Methods
@@ -175,8 +191,8 @@ final class SlideEditorViewController: UIViewController {
 
     @objc
     private func saveButtonTapped() {
+        saveButton.animateButton()
         guard !images.isEmpty else {
-            print("Нет фото")
             return
         }
 
@@ -314,23 +330,6 @@ private extension SlideEditorViewController {
     }
 }
 
-// MARK: - Gestures
-private extension SlideEditorViewController {
-    func setupGestures() {
-        let goHomeButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(goHomeButtonTapped))
-        goHomeButton.addGestureRecognizer(goHomeButtonTapGesture)
-
-        let saveButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(saveButtonTapped))
-        saveButton.addGestureRecognizer(saveButtonTapGesture)
-
-        let addImageButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(openPhotoPicker))
-        addImageButton.addGestureRecognizer(addImageButtonTapGesture)
-
-        let deleteImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(deleteSelectedPhoto))
-        binImageButton.addGestureRecognizer(deleteImageTapGesture)
-    }
-}
-
 // MARK: - CollectionView DataSource
 extension SlideEditorViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -377,7 +376,6 @@ extension SlideEditorViewController: UIImagePickerControllerDelegate, UINavigati
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             images.append(image)
             collectionView.reloadData()
-            
             // Select the newly added image
             selectedImageIndex = images.count - 1
             selectedImageView.image = image
@@ -389,7 +387,6 @@ extension SlideEditorViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true, completion: nil)
     }
 }
-
 
 // MARK: - ViewControllerTransitioningDelegate
 extension SlideEditorViewController: UIViewControllerTransitioningDelegate {
