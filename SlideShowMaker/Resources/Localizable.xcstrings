@@ -1,7 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Canvas" : {
+    "A slideshow will be created from these images" : {
+
+    },
+    "Add your photos\nfrom the gallery" : {
+
+    },
+    "Aspect Ratio" : {
+
+    },
+    "Choose\naspect ratio" : {
 
     },
     "Click to add an image" : {
@@ -43,9 +52,6 @@
     "Photos duration" : {
 
     },
-    "Powerful tools\nfor creativity" : {
-
-    },
     "Set duration, %" : {
 
     },
@@ -55,10 +61,10 @@
     "Slow" : {
 
     },
-    "Start to Continue\nSlideShow Maker" : {
+    "Start" : {
 
     },
-    "Start to continue SlideShow Maker\nwith a 3-day trial and $5,99 per week" : {
+    "The slideshow will be saved\nin your chosen aspect ratio" : {
 
     },
     "The video has been saved to the gallery." : {
@@ -70,22 +76,13 @@
     "To create a video from your images\n click the New Project button" : {
 
     },
-    "Try Free Trial" : {
-
-    },
-    "Turn your photo memories\ninto slideshow fast & easy" : {
-
-    },
-    "Use special effects, cut, put music, add text,\nstickers and more 24 hours a day" : {
+    "Turn your photo\ninto slideshow fast & easy" : {
 
     },
     "Video Saved" : {
 
     },
-    "Your rating and feedback allow us to\nimprove the app and add your ideas" : {
-
-    },
-    "Your ratings\nOur updates" : {
+    "You can change the duration time\nfor an image and see\nthe total time of the slideshow" : {
 
     }
   },

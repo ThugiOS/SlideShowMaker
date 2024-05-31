@@ -13,6 +13,8 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
 
     lazy var slideImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
@@ -20,17 +22,17 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 2
-        label.font = UIFont.gilroyBold(ofSize: CGFloat(38))
-        label.textColor = .labelBlack
+        label.font = UIFont.systemFont(ofSize: 38, weight: .bold)
+        label.textColor = .white
         return label
     }()
 
     lazy var slideDescriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.numberOfLines = 2
-        label.font = UIFont.gilroyMedium(ofSize: CGFloat(14))
-        label.textColor = .labelBlack
+        label.numberOfLines = 3
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        label.textColor = .white
         label.alpha = 0.5
         return label
     }()
@@ -46,6 +48,7 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupUI() {
+        backgroundColor = .mainBackground
         addSubview(slideImageView)
         addSubview(slideTitleLabel)
         addSubview(slideDescriptionLabel)
@@ -55,12 +58,13 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
 
     private func setupConstraints() {
         slideImageView.snp.makeConstraints { make in
-            make.centerX.top.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
+            make.top.equalToSuperview().offset(-100)
         }
 
         slideTitleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(slideImageView.snp.bottom)
+            make.top.equalTo(slideImageView.snp.bottom).offset(-150)
         }
 
         slideDescriptionLabel.snp.makeConstraints { make in

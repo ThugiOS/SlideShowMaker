@@ -12,14 +12,14 @@ class CustomCanvasGradientButton: UIButton {
         super.init(frame: .zero)
 
         self.setTitle(title, for: .normal)
-        self.titleLabel?.font = UIFont.gilroyMedium(ofSize: 17)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium) // Replace with UIFont.gilroyMedium(ofSize: 17) if using a custom font
 
         self.layer.cornerRadius = 12
         self.layer.masksToBounds = true
 
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
-        gradientLayer.colors = [UIColor(hex: 0x5F81FE).cgColor, UIColor(hex: 0x35AEFC).cgColor]
+        gradientLayer.colors = [UIColor(hex: 0x027E51).cgColor, UIColor(hex: 0x9BFF7F).cgColor]
         gradientLayer.locations = [0.0, 1.0]
         layer.insertSublayer(gradientLayer, at: 0)
     }

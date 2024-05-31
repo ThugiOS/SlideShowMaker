@@ -39,7 +39,7 @@ final class SlideEditorViewController: UIViewController {
         button.setTitle(String(localized: "Create"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        button.layer.cornerRadius = 19
+        button.layer.cornerRadius = 20
         button.clipsToBounds = true
         return button
     }()

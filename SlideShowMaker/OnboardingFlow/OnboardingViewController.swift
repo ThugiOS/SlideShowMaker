@@ -20,10 +20,10 @@ final class OnboardingViewController: UIViewController {
         didSet {
             pageControl.currentPage = currentPage
             if currentPage == slides.count - 1 {
-                buttonLabel.text = String(localized: "Try Free Trial")
+                nextButton.setTitle(String(localized: "Start"), for: .normal)
             }
             else {
-                buttonLabel.text = String(localized: "Next")
+                nextButton.setTitle(String(localized: "Next"), for: .normal)
             }
         }
     }
@@ -36,35 +36,30 @@ final class OnboardingViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.isScrollEnabled = true
         collectionView.isPagingEnabled = false
-
+        collectionView.backgroundColor = .mainBackground
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(OnboardingCollectionViewCell.self,
                                 forCellWithReuseIdentifier: OnboardingCollectionViewCell.identifier)
         return collectionView
     }()
 
-    private let nextButton: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.image = UIImage(named: "unboardingButton")
-        iv.tintColor = .white
-        iv.isUserInteractionEnabled = true
-        return iv
-    }()
-
-    private let buttonLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont.gilroyMedium(ofSize: 14)
-        label.text = String(localized: "Go")
-        label.isUserInteractionEnabled = false
-        return label
-    }()
+    private let nextButton: AnimatedGradientButton = {
+        $0.layer.cornerRadius = 10
+        $0.backgroundColor = .red
+        $0.tintColor = .white
+        $0.setTitle(String(localized: "Go"), for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 36)
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 35
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        let image = UIImage(systemName: "arrow.forward.circle")
+        $0.setImage(image)
+        return $0
+    }(AnimatedGradientButton())
 
     private var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.currentPageIndicatorTintColor = .black
+        pageControl.currentPageIndicatorTintColor = .button1
         pageControl.pageIndicatorTintColor = .gray
         pageControl.isUserInteractionEnabled = false
         return pageControl
@@ -107,12 +102,12 @@ final class OnboardingViewController: UIViewController {
 
     // MARK: - UI Setup
     private func setupViews() {
-        view.backgroundColor = .backgroundWhite
+        view.backgroundColor = .mainBackground
         navigationController?.isNavigationBarHidden = true
 
         view.addSubview(collectionView)
         view.addSubview(nextButton)
-        view.addSubview(buttonLabel)
+//        view.addSubview(buttonLabel)
         view.addSubview(pageControl)
 
         slides = createOnboardingSlides()
@@ -124,22 +119,22 @@ final class OnboardingViewController: UIViewController {
 private extension OnboardingViewController {
     func createOnboardingSlides() -> [OnboardingSlide] {
         let slide1Title = String(localized: "Make a SlideShow\nwith your pictures")
-        let slide1Description = String(localized: "Turn your photo memories\ninto slideshow fast & easy")
+        let slide1Description = String(localized: "Turn your photo\ninto slideshow fast & easy")
 
-        let slide2Title = String(localized: "Your ratings\nOur updates")
-        let slide2Description = String(localized: "Your rating and feedback allow us to\nimprove the app and add your ideas")
+        let slide2Title = String(localized: "Add your photos\nfrom the gallery")
+        let slide2Description = String(localized: "A slideshow will be created from these images")
 
-        let slide3Title = String(localized: "Powerful tools\nfor creativity")
-        let slide3Description = String(localized: "Use special effects, cut, put music, add text,\nstickers and more 24 hours a day")
+        let slide3Title = String(localized: "Choose\naspect ratio")
+        let slide3Description = String(localized: "The slideshow will be saved\nin your chosen aspect ratio")
 
-        let slide4Title = String(localized: "Start to Continue\nSlideShow Maker")
-        let slide4Description = String(localized: "Start to continue SlideShow Maker\nwith a 3-day trial and $5,99 per week")
+        let slide4Title = String(localized: "Timing")
+        let slide4Description = String(localized: "You can change the duration time\nfor an image and see\nthe total time of the slideshow")
 
         let slides = [
-            OnboardingSlide(title: slide1Title, description: slide1Description, image: UIImage(named: "Onb1") ?? UIImage()),
-            OnboardingSlide(title: slide2Title, description: slide2Description, image: UIImage(named: "Onb2") ?? UIImage()),
-            OnboardingSlide(title: slide3Title, description: slide3Description, image: UIImage(named: "Onb3") ?? UIImage()),
-            OnboardingSlide(title: slide4Title, description: slide4Description, image: UIImage(named: "Onb4") ?? UIImage())
+            OnboardingSlide(title: slide1Title, description: slide1Description, image: UIImage(named: "onb1") ?? UIImage()),
+            OnboardingSlide(title: slide2Title, description: slide2Description, image: UIImage(named: "onb2") ?? UIImage()),
+            OnboardingSlide(title: slide3Title, description: slide3Description, image: UIImage(named: "onb3") ?? UIImage()),
+            OnboardingSlide(title: slide4Title, description: slide4Description, image: UIImage(named: "onb4") ?? UIImage())
         ]
         return slides
     }
@@ -161,11 +156,11 @@ private extension OnboardingViewController {
         let bottomOffset: CGFloat
 
         if screenHeight <= 667 { // Height of iPhone SE (2nd generation)
-            topOffset = -95
+            topOffset = -30
             bottomOffset = -10
         }
         else {
-            topOffset = 0
+            topOffset = -30
             bottomOffset = -70
         }
 
@@ -186,10 +181,10 @@ private extension OnboardingViewController {
             make.width.equalTo(333)
             make.height.equalTo(68)
         }
-
-        buttonLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(nextButton)
-        }
+//
+//        buttonLabel.snp.makeConstraints { make in
+//            make.centerX.centerY.equalTo(nextButton)
+//        }
     }
 }
 

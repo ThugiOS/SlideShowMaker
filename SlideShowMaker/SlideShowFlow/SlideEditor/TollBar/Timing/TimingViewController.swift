@@ -22,15 +22,84 @@ final class TimingViewController: UIViewController {
     }
 
 // MARK: - UI Components
-    private let nameScreenLabel = CustomLabel(title: String(localized: "Timing"), size: 22, alpha: 1, fontType: .bold)
-    private let setDurationLabel = CustomLabel(title: String(localized: "Set duration, %"), size: 13, alpha: 0.5, fontType: .medium)
-    private let slowLabel = CustomLabel(title: String(localized: "Slow"), size: 10, alpha: 1, fontType: .medium)
-    private let photosDurationLabel = CustomLabel(title: String(localized: "Photos duration"), size: 13, alpha: 0.5, fontType: .medium)
-    private let slideShowDurationLabel = CustomLabel(title: String(localized: "Slideshow duration"), size: 13, alpha: 0.5, fontType: .medium)
-    private let fastLabel = CustomLabel(title: String(localized: "Fast"), size: 10, alpha: 1, fontType: .medium)
-    private let photosDurationTimerLabel = CustomLabel(title: nil, size: 33, alpha: 1, fontType: .semiBold)
-    private let slideshowDurationTimerLabel = CustomLabel(title: nil, size: 33, alpha: 1, fontType: .semiBold)
-    private let customDoneDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
+    private let customDoneDone: AnimatedGradientButton = {
+        let button = AnimatedGradientButton()
+        button.setTitle(String(localized: "Done"), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        return button
+    }()
+
+    private let nameScreenLabel: UILabel = {
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.text = String(localized: "Timing")
+        return $0
+    }(UILabel())
+
+    private let setDurationLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = String(localized: "Set duration, %")
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        label.alpha = 0.5
+        return label
+    }()
+
+    private let slowLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = String(localized: "Slow")
+        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        label.alpha = 1
+        return label
+    }()
+
+    private let photosDurationLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = String(localized: "Photos duration")
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        label.alpha = 0.5
+        return label
+    }()
+
+    private let slideShowDurationLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = String(localized: "Slideshow duration")
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        label.alpha = 0.5
+        return label
+    }()
+
+    private let fastLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.text = String(localized: "Fast")
+        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+        label.alpha = 1
+        return label
+    }()
+
+    private let photosDurationTimerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 33, weight: .semibold)
+        label.alpha = 1
+        return label
+    }()
+
+    private let slideshowDurationTimerLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 33, weight: .semibold)
+        label.alpha = 1
+        return label
+    }()
 
     private let durationSlider: CustomIconSlider = {
         let slider = CustomIconSlider()
@@ -50,7 +119,7 @@ final class TimingViewController: UIViewController {
         let slider = UISlider()
         slider.setThumbImage(UIImage(named: "sliderPoint"), for: .normal)
         slider.minimumValue = 10
-        slider.minimumTrackTintColor = .labelBlack
+        slider.minimumTrackTintColor = .mainBackground
         slider.maximumValue = 100
         slider.value = Float(50)
         return slider
@@ -67,7 +136,7 @@ final class TimingViewController: UIViewController {
 
 // MARK: - UI Setup
     private func setupViews() {
-        view.backgroundColor = .backgroundWhite
+        view.backgroundColor = .mainBackground
 
         view.addSubview(nameScreenLabel)
         view.addSubview(customDoneDone)
