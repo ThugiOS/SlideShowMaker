@@ -33,8 +33,6 @@
 		276F54D32B5EAE0C00619408 /* CustomIconSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */; };
 		276F54D52B5FF44600619408 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D42B5FF44600619408 /* Gilroy-SemiBold.ttf */; };
 		276F54D72B5FF47100619408 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */; };
-		276F54D92B611E5200619408 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54D82B611E5200619408 /* CustomLabel.swift */; };
-		276F54DF2B61520D00619408 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54DE2B61520D00619408 /* CustomButton.swift */; };
 		276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */; };
 		276F550E2B691FC100619408 /* VideoInfoDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */; };
 		276F55632B7A5B5700619408 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F55622B7A5B5700619408 /* UIFont+Extension.swift */; };
@@ -43,6 +41,8 @@
 		276FBC302C076CF800D00760 /* 8.json in Resources */ = {isa = PBXBuildFile; fileRef = 276FBC2F2C076CF800D00760 /* 8.json */; };
 		2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABA2B50350F003F72AF /* VideoCreator.swift */; };
 		2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABD2B518390003F72AF /* VideoInfo.swift */; };
+		27D90AC12C08B7CA005CDFBD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */; };
+		27D90AC32C08C3CF005CDFBD /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D90AC22C08C3CF005CDFBD /* TipsView.swift */; };
 		27E680542B56B689000B7D8F /* gilroy-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27E680532B56B689000B7D8F /* gilroy-bold.ttf */; };
 		27FCF9702B2B2F7C0085F97D /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */; };
 /* End PBXBuildFile section */
@@ -74,8 +74,6 @@
 		276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIconSlider.swift; sourceTree = "<group>"; };
 		276F54D42B5FF44600619408 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
 		276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
-		276F54D82B611E5200619408 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
-		276F54DE2B61520D00619408 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCanvasGradientButton.swift; sourceTree = "<group>"; };
 		276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoDelegateProtocol.swift; sourceTree = "<group>"; };
 		276F55622B7A5B5700619408 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
@@ -83,6 +81,8 @@
 		276FBC2F2C076CF800D00760 /* 8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 8.json; sourceTree = "<group>"; };
 		2790DABA2B50350F003F72AF /* VideoCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCreator.swift; sourceTree = "<group>"; };
 		2790DABD2B518390003F72AF /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
+		27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		27D90AC22C08C3CF005CDFBD /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
 		27E680532B56B689000B7D8F /* gilroy-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gilroy-bold.ttf"; sourceTree = "<group>"; };
 		27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -267,11 +267,10 @@
 		276F54DD2B6151F800619408 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				276F54DE2B61520D00619408 /* CustomButton.swift */,
-				276F54D82B611E5200619408 /* CustomLabel.swift */,
 				276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */,
 				276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */,
 				276FBBC52C07018300D00760 /* GradientButton.swift */,
+				27D90AC22C08C3CF005CDFBD /* TipsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				276F55622B7A5B5700619408 /* UIFont+Extension.swift */,
+				27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */,
 				273B7F672BA31E2E0033989A /* FileManager.swift */,
 			);
 			path = Extensions;
@@ -444,16 +444,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27D90AC32C08C3CF005CDFBD /* TipsView.swift in Sources */,
 				272500972B3C5518000531B7 /* CustomPresentation.swift in Sources */,
 				276F54D32B5EAE0C00619408 /* CustomIconSlider.swift in Sources */,
-				276F54D92B611E5200619408 /* CustomLabel.swift in Sources */,
 				272500922B3B030D000531B7 /* TimingViewController.swift in Sources */,
 				2745CAB32B7E51BC0083AA3C /* OnboardingSlide.swift in Sources */,
-				276F54DF2B61520D00619408 /* CustomButton.swift in Sources */,
 				276F55632B7A5B5700619408 /* UIFont+Extension.swift in Sources */,
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
 				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
 				273B7F6C2BA321310033989A /* ProjectModel.swift in Sources */,
+				27D90AC12C08B7CA005CDFBD /* UIButton+Extension.swift in Sources */,
 				276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */,
 				275D305B2B18C49000BED542 /* Settings.swift in Sources */,
 				275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */,

@@ -5,39 +5,61 @@
 //  Created by Никитин Артем on 26.12.23.
 //
 
-import SnapKit
-import UIKit
+ import SnapKit
+ import UIKit
 
-final class CanvasViewController: UIViewController {
+ final class CanvasViewController: UIViewController {
 // MARK: - Public Properties
     weak var delegate: VideoInfoDelegateProtocol?
     var videoCanvasInfo: VideoInfo?
 
-// MARK: - Private Properties
-    private var resolution: VideoResolution = .canvas1x1
+ // MARK: - Private Properties
+    private var resolution: VideoResolution = .canvas5x8
     private let resolutions: [VideoResolution] = [.canvas1x1, .canvas9x16, .canvas4x5, .canvas5x8, .canvas4x3, .canvas3x4]
 
     // MARK: - UI Components
-    private let customDoneDone = CustomButton(text: String(localized: "Done"), fontSize: 20)
-    private let nameScreenLabel = CustomLabel(title: String(localized: "Canvas"), size: 22, alpha: 1, fontType: .bold)
+
+    private let doneButton: AnimatedGradientButton = {
+        let button = AnimatedGradientButton()
+        button.setTitle(String(localized: "Done"), for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        return button
+    }()
+
+    private let nameScreenLabel: UILabel = {
+        $0.textColor = .white
+        $0.textAlignment = .center
+        $0.font = .systemFont(ofSize: 22, weight: .bold)
+        $0.text = String(localized: "Aspect Ratio")
+        return $0
+    }(UILabel())
+
     private lazy var gradientButtons: [CustomCanvasGradientButton] = {
         let titles = ["1:1", "9:16", "4:5", "5:8", "4:3", "3:4"]
         return titles.map { CustomCanvasGradientButton(title: $0) }
     }()
 
-// MARK: - LifeCycle
+ // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setConstraints()
     }
 
-// MARK: - UI Setup
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        doneButton.restartAnimation()
+    }
+
+ // MARK: - UI Setup
     private func setupViews() {
-        view.backgroundColor = .backgroundWhite
+        view.backgroundColor = .mainBackground
 
         view.addSubview(nameScreenLabel)
-        view.addSubview(customDoneDone)
+        view.addSubview(doneButton)
 
         for (index, button) in gradientButtons.enumerated() {
             view.addSubview(button)
@@ -46,10 +68,10 @@ final class CanvasViewController: UIViewController {
         }
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(doneButtonTapped))
-        customDoneDone.addGestureRecognizer(tap)
+        doneButton.addGestureRecognizer(tap)
     }
 
-// MARK: - Selectors
+ // MARK: - Selectors
     @objc
     private func doneButtonTapped() {
         videoCanvasInfo?.resolution = resolution
@@ -68,10 +90,10 @@ final class CanvasViewController: UIViewController {
             button.alpha = (i == index) ? 1.0 : 0.2
         }
     }
-}
+ }
 
-// MARK: - Constraints
-private extension CanvasViewController {
+ // MARK: - Constraints
+ private extension CanvasViewController {
     func setConstraints() {
         let hui = (UIScreen.main.bounds.width - 326) / 2
 
@@ -80,7 +102,7 @@ private extension CanvasViewController {
             make.top.equalToSuperview().offset(20)
         }
 
-        customDoneDone.snp.makeConstraints { make in
+        doneButton.snp.makeConstraints { make in
             make.centerY.equalTo(nameScreenLabel.snp.centerY)
             make.trailing.equalToSuperview().offset(-20)
             make.width.equalTo(91)
@@ -124,4 +146,4 @@ private extension CanvasViewController {
             return 46
         }
     }
-}
+ }

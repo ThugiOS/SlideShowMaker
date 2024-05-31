@@ -39,22 +39,19 @@ final class SlideEditorViewController: UIViewController {
         button.setTitle(String(localized: "Create"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
-        button.layer.cornerRadius = 19
+        button.layer.cornerRadius = 20
         button.clipsToBounds = true
         return button
     }()
 
-    private let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+    private let tipsView = TipsView()
 
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .clear
-        collectionView.allowsSelection = true
-        collectionView.allowsMultipleSelection = true
-        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
-        return collectionView
+    private let selectedImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
+        return imageView
     }()
 
     private let binImageButton: UIImageView = {
@@ -72,11 +69,16 @@ final class SlideEditorViewController: UIViewController {
         return view
     }()
 
-    private let selectedImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = true
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
+        return collectionView
     }()
 
     private let toolbar: UIToolbar = {
@@ -102,11 +104,15 @@ final class SlideEditorViewController: UIViewController {
         setupViews()
         setConstraint()
         setBarItems()
-        setupGestures()
         setDefaultVideoSettings()
         navigationController?.isNavigationBarHidden = true
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+
+        if !images.isEmpty {
+            selectedImageIndex = 0
+            selectedImageView.image = images.first
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -117,13 +123,24 @@ final class SlideEditorViewController: UIViewController {
     // MARK: - UI Setup
     private func setupViews() {
         view.backgroundColor = .mainBackground
+
         view.addSubview(goHomeButton)
         view.addSubview(saveButton)
+        view.addSubview(tipsView)
         view.addSubview(selectedImageView)
         view.addSubview(collectionView)
         view.addSubview(addImageButton)
         view.addSubview(toolbar)
         view.addSubview(binImageButton)
+
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+
+        let goHomeButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(goHomeButtonTapped))
+        goHomeButton.addGestureRecognizer(goHomeButtonTapGesture)
+        let addImageButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(openPhotoPicker))
+        addImageButton.addGestureRecognizer(addImageButtonTapGesture)
+        let deleteImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(deleteSelectedPhoto))
+        binImageButton.addGestureRecognizer(deleteImageTapGesture)
     }
 
     // MARK: - Private Methods
@@ -161,7 +178,6 @@ final class SlideEditorViewController: UIViewController {
         saveButton.isUserInteractionEnabled = numberOfItems > 0 ? true : false
     }
 
-    // тут установить из модели
     private func setDefaultVideoSettings() {
         let defaultSetting = VideoInfo(resolution: .canvas1x1, duration: TimeInterval(5))
         self.videoInfo = defaultSetting
@@ -175,8 +191,8 @@ final class SlideEditorViewController: UIViewController {
 
     @objc
     private func saveButtonTapped() {
+        saveButton.animateButton()
         guard !images.isEmpty else {
-            print("Нет фото")
             return
         }
 
@@ -202,7 +218,6 @@ final class SlideEditorViewController: UIViewController {
                 self.videoCreator = nil
             }
         }
-
         self.videoCreator = videoCreator
     }
 
@@ -262,7 +277,6 @@ extension SlideEditorViewController: VideoInfoDelegateProtocol {
 
 // MARK: - Constraints
 private extension SlideEditorViewController {
-    // swiftlint:disable:next function_body_length
     func setConstraint() {
         let screenHeight = UIScreen.main.bounds.height
         let screenWidth = UIScreen.main.bounds.width
@@ -281,6 +295,11 @@ private extension SlideEditorViewController {
             make.height.equalTo(50)
         }
 
+        tipsView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(screenHeight * 0.33)
+            make.leading.equalToSuperview().offset(35)
+        }
+
         selectedImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(screenHeight * 0.17)
             make.leading.trailing.equalToSuperview()
@@ -294,7 +313,7 @@ private extension SlideEditorViewController {
         }
 
         addImageButton.snp.makeConstraints { make in
-            make.top.equalTo(selectedImageView.snp.bottom).offset(screenWidth * 0.08)
+            make.top.equalTo(selectedImageView.snp.bottom).offset(screenWidth * 0.09)
             make.leading.equalToSuperview().offset(19)
             make.width.height.equalTo(65)
         }
@@ -311,23 +330,6 @@ private extension SlideEditorViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(screenHeight * 0.11)
         }
-    }
-}
-
-// MARK: - Gestures
-private extension SlideEditorViewController {
-    func setupGestures() {
-        let goHomeButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(goHomeButtonTapped))
-        goHomeButton.addGestureRecognizer(goHomeButtonTapGesture)
-
-        let saveButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(saveButtonTapped))
-        saveButton.addGestureRecognizer(saveButtonTapGesture)
-
-        let addImageButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(openPhotoPicker))
-        addImageButton.addGestureRecognizer(addImageButtonTapGesture)
-
-        let deleteImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(deleteSelectedPhoto))
-        binImageButton.addGestureRecognizer(deleteImageTapGesture)
     }
 }
 
@@ -377,6 +379,8 @@ extension SlideEditorViewController: UIImagePickerControllerDelegate, UINavigati
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             images.append(image)
             collectionView.reloadData()
+            selectedImageIndex = images.count - 1
+            selectedImageView.image = image
         }
         dismiss(animated: true, completion: nil)
     }

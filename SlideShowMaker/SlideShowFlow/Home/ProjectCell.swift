@@ -28,18 +28,18 @@ final class ProjectCell: UICollectionViewCell {
 
     private let nameProjectLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .labelBlack
+        label.textColor = .black
         label.textAlignment = .center
-        label.font = UIFont.gilroyBold(ofSize: 24)
+        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         return label
     }()
 
     private let dateLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .labelBlack
+        label.textColor = .black
         label.alpha = 0.5
         label.textAlignment = .center
-        label.font = UIFont.gilroyMedium(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
 
         return label
     }()
