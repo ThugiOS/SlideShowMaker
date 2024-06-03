@@ -32,20 +32,20 @@ final class TipsView: UIView {
         let imageAlpha = 0.4
         let textColor = UIColor.darkGray
 
-        imageView1.image = UIImage(named: "resolution")
+        imageView1.image = UIImage(named: "rectangle")
         imageView2.image = UIImage(named: "timer")
-        imageView3.image = UIImage(named: "rectangle")
+        imageView3.image = UIImage(named: "resolution")
 
         imageView1.alpha = imageAlpha
         imageView2.alpha = imageAlpha
         imageView3.alpha = imageAlpha
 
-        titleLabel1.text = String(localized: "Click to change aspect ratio")
+        titleLabel1.text = String(localized: "Click to add an image")
         titleLabel2.text = String(localized: "Click to change speed")
-        titleLabel3.text = String(localized: "Click to add an image")
+        titleLabel3.text = String(localized: "Click to change aspect ratio")
 
-        titleLabel1.textColor = textColor
         titleLabel2.textColor = textColor
+        titleLabel1.textColor = textColor
         titleLabel3.textColor = textColor
 
         addSubview(titleLabel1)

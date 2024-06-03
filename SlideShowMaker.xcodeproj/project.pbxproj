@@ -35,7 +35,6 @@
 		276F54D72B5FF47100619408 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */; };
 		276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */; };
 		276F550E2B691FC100619408 /* VideoInfoDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */; };
-		276F55632B7A5B5700619408 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F55622B7A5B5700619408 /* UIFont+Extension.swift */; };
 		276FBBC62C07018300D00760 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FBBC52C07018300D00760 /* GradientButton.swift */; };
 		276FBC1D2C07330B00D00760 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 276FBC1C2C07330B00D00760 /* Lottie */; };
 		276FBC302C076CF800D00760 /* 8.json in Resources */ = {isa = PBXBuildFile; fileRef = 276FBC2F2C076CF800D00760 /* 8.json */; };
@@ -76,7 +75,6 @@
 		276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
 		276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCanvasGradientButton.swift; sourceTree = "<group>"; };
 		276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoDelegateProtocol.swift; sourceTree = "<group>"; };
-		276F55622B7A5B5700619408 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		276FBBC52C07018300D00760 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		276FBC2F2C076CF800D00760 /* 8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 8.json; sourceTree = "<group>"; };
 		2790DABA2B50350F003F72AF /* VideoCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCreator.swift; sourceTree = "<group>"; };
@@ -302,7 +300,6 @@
 		276F55612B7A5B3B00619408 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				276F55622B7A5B5700619408 /* UIFont+Extension.swift */,
 				27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */,
 				273B7F672BA31E2E0033989A /* FileManager.swift */,
 			);
@@ -449,7 +446,6 @@
 				276F54D32B5EAE0C00619408 /* CustomIconSlider.swift in Sources */,
 				272500922B3B030D000531B7 /* TimingViewController.swift in Sources */,
 				2745CAB32B7E51BC0083AA3C /* OnboardingSlide.swift in Sources */,
-				276F55632B7A5B5700619408 /* UIFont+Extension.swift in Sources */,
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
 				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
 				273B7F6C2BA321310033989A /* ProjectModel.swift in Sources */,
