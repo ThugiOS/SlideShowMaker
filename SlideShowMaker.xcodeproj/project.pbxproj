@@ -29,7 +29,7 @@
 		275D30572B17866600BED542 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30562B17866600BED542 /* HomeViewController.swift */; };
 		275D305B2B18C49000BED542 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305A2B18C49000BED542 /* Settings.swift */; };
 		275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */; };
-		275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30642B1F55EA00BED542 /* InfoViewController.swift */; };
+		275D30652B1F55EA00BED542 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30642B1F55EA00BED542 /* ArchiveViewController.swift */; };
 		276F54D32B5EAE0C00619408 /* CustomIconSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */; };
 		276F54D52B5FF44600619408 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D42B5FF44600619408 /* Gilroy-SemiBold.ttf */; };
 		276F54D72B5FF47100619408 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */; };
@@ -38,6 +38,7 @@
 		276FBBC62C07018300D00760 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FBBC52C07018300D00760 /* GradientButton.swift */; };
 		276FBC1D2C07330B00D00760 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 276FBC1C2C07330B00D00760 /* Lottie */; };
 		276FBC302C076CF800D00760 /* 8.json in Resources */ = {isa = PBXBuildFile; fileRef = 276FBC2F2C076CF800D00760 /* 8.json */; };
+		277BC3F42C0E0A3000ED09A7 /* ArchiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277BC3F32C0E0A3000ED09A7 /* ArchiveCell.swift */; };
 		2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABA2B50350F003F72AF /* VideoCreator.swift */; };
 		2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABD2B518390003F72AF /* VideoInfo.swift */; };
 		27D90AC12C08B7CA005CDFBD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */; };
@@ -69,7 +70,7 @@
 		275D30562B17866600BED542 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		275D305A2B18C49000BED542 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideEditorViewController.swift; sourceTree = "<group>"; };
-		275D30642B1F55EA00BED542 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		275D30642B1F55EA00BED542 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIconSlider.swift; sourceTree = "<group>"; };
 		276F54D42B5FF44600619408 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
 		276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoDelegateProtocol.swift; sourceTree = "<group>"; };
 		276FBBC52C07018300D00760 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		276FBC2F2C076CF800D00760 /* 8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 8.json; sourceTree = "<group>"; };
+		277BC3F32C0E0A3000ED09A7 /* ArchiveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveCell.swift; sourceTree = "<group>"; };
 		2790DABA2B50350F003F72AF /* VideoCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCreator.swift; sourceTree = "<group>"; };
 		2790DABD2B518390003F72AF /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -247,19 +249,20 @@
 			isa = PBXGroup;
 			children = (
 				276F54DD2B6151F800619408 /* Views */,
-				275D30632B1F53E000BED542 /* Settings */,
+				275D30632B1F53E000BED542 /* Archive */,
 				275D304F2B177F6B00BED542 /* Home */,
 				275D30612B1F537100BED542 /* SlideEditor */,
 			);
 			path = SlideShowFlow;
 			sourceTree = "<group>";
 		};
-		275D30632B1F53E000BED542 /* Settings */ = {
+		275D30632B1F53E000BED542 /* Archive */ = {
 			isa = PBXGroup;
 			children = (
-				275D30642B1F55EA00BED542 /* InfoViewController.swift */,
+				275D30642B1F55EA00BED542 /* ArchiveViewController.swift */,
+				277BC3F32C0E0A3000ED09A7 /* ArchiveCell.swift */,
 			);
-			path = Settings;
+			path = Archive;
 			sourceTree = "<group>";
 		};
 		276F54DD2B6151F800619408 /* Views */ = {
@@ -447,6 +450,7 @@
 				272500922B3B030D000531B7 /* TimingViewController.swift in Sources */,
 				2745CAB32B7E51BC0083AA3C /* OnboardingSlide.swift in Sources */,
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
+				277BC3F42C0E0A3000ED09A7 /* ArchiveCell.swift in Sources */,
 				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
 				273B7F6C2BA321310033989A /* ProjectModel.swift in Sources */,
 				27D90AC12C08B7CA005CDFBD /* UIButton+Extension.swift in Sources */,
@@ -462,7 +466,7 @@
 				276FBBC62C07018300D00760 /* GradientButton.swift in Sources */,
 				275D30142B162AEC00BED542 /* SceneDelegate.swift in Sources */,
 				2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */,
-				275D30652B1F55EA00BED542 /* InfoViewController.swift in Sources */,
+				275D30652B1F55EA00BED542 /* ArchiveViewController.swift in Sources */,
 				27FCF9702B2B2F7C0085F97D /* ImageCell.swift in Sources */,
 				273B7F682BA31E2E0033989A /* FileManager.swift in Sources */,
 				2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */,

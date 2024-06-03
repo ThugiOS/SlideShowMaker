@@ -13,7 +13,30 @@ final class HomeViewController: UIViewController {
     weak var coordinator: Coordinator?
 
     // MARK: - UI Components
-    private let newLottieView: LottieAnimationView = {
+    private let myProjectsLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 36, weight: .bold)
+        label.text = String(localized: "My Projects")
+        return label
+    }()
+
+    private let archiveButton: UIButton = {
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "archivebox")
+        configuration.imagePadding = 10
+
+        configuration.imagePlacement = .leading
+        configuration.image?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))
+
+        let button = UIButton(configuration: configuration, primaryAction: nil)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .clear
+        button.tintColor = .white
+
+        return button
+    }()
+    private let lottieView: LottieAnimationView = {
         let lottie = LottieAnimationView(name: "8")
         lottie.contentMode = .scaleAspectFill
         lottie.loopMode = .loop
@@ -44,14 +67,6 @@ final class HomeViewController: UIViewController {
         collectionView.register(ProjectCell.self, forCellWithReuseIdentifier: ProjectCell.identifier)
 
         return collectionView
-    }()
-
-    private let myProjectsLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 36, weight: .bold)
-        label.text = String(localized: "My Projects")
-        return label
     }()
 
     private let createProjectButton: AnimatedGradientButton = {
@@ -93,30 +108,33 @@ final class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         if RealmManager.shared.loadProjects().isEmpty {
             projectCollection.isHidden = true
-            newLottieView.isHidden = false
+            lottieView.isHidden = false
             tipLabel.isHidden = false
         }
         else {
             projectCollection.isHidden = false
-            newLottieView.isHidden = true
+            lottieView.isHidden = true
             tipLabel.isHidden = true
         }
         projectCollection.reloadData()
 
         createProjectButton.restartAnimation()
-        newLottieView.play()
+        lottieView.play()
     }
 
     // MARK: - UI Setup
     private func setupViews() {
+        navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .mainBackground
 
         view.addSubview(myProjectsLabel)
-        view.addSubview(newLottieView)
+        view.addSubview(archiveButton)
+        view.addSubview(lottieView)
         view.addSubview(tipLabel)
         view.addSubview(projectCollection)
         view.addSubview(createProjectButton)
 
+        archiveButton.addTarget(self, action: #selector(archiveButtonTapped), for: .touchUpInside)
         createProjectButton.addTarget(self, action: #selector(createProjectButtonTapped), for: .touchUpInside)
     }
 
@@ -124,6 +142,11 @@ final class HomeViewController: UIViewController {
     @objc
     private func createProjectButtonTapped() {
         coordinator?.showSlideEditor()
+    }
+
+    @objc
+    private func archiveButtonTapped() {
+        coordinator?.showArchive()
     }
 }
 
@@ -150,7 +173,13 @@ private extension HomeViewController {
             make.centerX.equalToSuperview()
         }
 
-        newLottieView.snp.makeConstraints { make in
+        archiveButton.snp.makeConstraints { make in
+            make.centerY.equalTo(myProjectsLabel)
+            make.trailing.equalToSuperview().offset(-24)
+            make.width.height.equalTo(50)
+        }
+
+        lottieView.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
 

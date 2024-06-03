@@ -12,4 +12,5 @@ class Project: Object {
     @Persisted var imagePaths = List<String>()
     @Persisted var date = Date()
     @Persisted var name = ""
+    @Persisted var archive = false
 }

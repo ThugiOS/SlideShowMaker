@@ -1,15 +1,15 @@
 //
-//  ProjectCell.swift
+//  ArchiveCell.swift
 //  SlideShowMaker
 //
-//  Created by Никитин Артем on 14.03.24.
+//  Created by Никитин Артем on 3.06.24.
 //
 
 import Foundation
 import UIKit
 
-final class ProjectCell: UICollectionViewCell {
-    static let identifier = String(describing: ProjectCell.self)
+final class ArchiveCell: UICollectionViewCell {
+    static let identifier = String(describing: ArchiveCell.self)
 
     private let backView: UIImageView = {
         let imageView = UIImageView()
@@ -46,7 +46,7 @@ final class ProjectCell: UICollectionViewCell {
 
     private let archiveButton: UIButton = {
         var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage(systemName: "archivebox.fill")
+        configuration.image = UIImage(systemName: "shippingbox.and.arrow.backward.fill")
         configuration.imagePadding = 10
 
         configuration.imagePlacement = .leading
