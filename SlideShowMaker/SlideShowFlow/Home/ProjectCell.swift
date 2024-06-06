@@ -10,6 +10,7 @@ import UIKit
 
 final class ProjectCell: UICollectionViewCell {
     static let identifier = String(describing: ProjectCell.self)
+    var sendToArchiveHandler: (() -> Void)?
 
     private let backView: UIImageView = {
         let imageView = UIImageView()
@@ -68,8 +69,8 @@ final class ProjectCell: UICollectionViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupUI()
-        addShadow()
+//        setupUI()
+//        addShadow()
     }
 
     private func setupUI() {
@@ -78,6 +79,8 @@ final class ProjectCell: UICollectionViewCell {
         self.addSubview(dateLabel)
         self.addSubview(nameProjectLabel)
         self.addSubview(archiveButton)
+
+        archiveButton.addTarget(self, action: #selector(archiveButtonTapped), for: .touchUpInside)
 
         backView.snp.makeConstraints { make in
             make.top.bottom.leading.trailing.equalToSuperview()
@@ -102,6 +105,11 @@ final class ProjectCell: UICollectionViewCell {
             make.trailing.bottom.equalToSuperview().offset(-20)
             make.width.height.equalTo(44)
         }
+    }
+
+    @objc
+    private func archiveButtonTapped() {
+        sendToArchiveHandler?()
     }
 
     private func addShadow() {

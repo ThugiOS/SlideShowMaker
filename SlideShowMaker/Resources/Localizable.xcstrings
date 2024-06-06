@@ -10,13 +10,22 @@
     "Archive" : {
 
     },
+    "Are you sure you want to delete all archived projects?" : {
+
+    },
     "Aspect Ratio" : {
+
+    },
+    "Cancel" : {
 
     },
     "Choose\naspect ratio" : {
 
     },
     "Clear archive" : {
+
+    },
+    "Clear Archive" : {
 
     },
     "Click to add an image" : {
@@ -29,6 +38,9 @@
 
     },
     "Create" : {
+
+    },
+    "Delete" : {
 
     },
     "Done" : {
