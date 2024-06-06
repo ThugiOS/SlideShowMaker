@@ -192,17 +192,25 @@ final class SlideEditorViewController: UIViewController {
     @objc
     private func saveButtonTapped() {
         saveButton.animateButton()
-        guard !images.isEmpty else {
+
+        /// Сохраняем проект
+        guard !images.isEmpty else { // массив изображений
             return
         }
+        let currentDate = Date() // Дата
+        let index = RealmManager.shared.loadProjects().count + 1 // индекс для имени проекта
+        let videoDuration = (videoInfo?.duration) ?? 10 // Длительность видео
 
-        let currentDate = Date()
-        let index = RealmManager.shared.loadProjects().count + 1
+        RealmManager.shared.saveProject(images: images,
+                                        name: "project",  // задать имя
+                                        date: currentDate,
+                                        index: index,
+                                        duration: videoDuration)
 
-        RealmManager.shared.saveProject(images: images, date: currentDate, index: index)
-
+        /// Создаем видео
         let videoCreator = VideoCreator(images: images)
         let videoInfo = videoInfo ?? VideoInfo(resolution: .canvas1x1, duration: 5)
+
         videoCreator.createVideo(videoInfo: videoInfo) { url in
             guard url != nil else {
                 print("Failed to create and save video.")

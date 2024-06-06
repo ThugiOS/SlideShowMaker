@@ -6,6 +6,8 @@
 //
 
 import Lottie
+import Realm
+import RealmSwift
 import SnapKit
 import UIKit
 
@@ -106,18 +108,9 @@ final class HomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if RealmManager.shared.loadProjects().isEmpty {
-            projectCollection.isHidden = true
-            lottieView.isHidden = false
-            tipLabel.isHidden = false
-        }
-        else {
-            projectCollection.isHidden = false
-            lottieView.isHidden = true
-            tipLabel.isHidden = true
-        }
-        projectCollection.reloadData()
 
+        showTempView()
+        projectCollection.reloadData()
         createProjectButton.restartAnimation()
         lottieView.play()
     }
@@ -206,6 +199,7 @@ private extension HomeViewController {
     }
 }
 
+// MARK: - CollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return RealmManager.shared.loadProjects().count
@@ -216,7 +210,7 @@ extension HomeViewController: UICollectionViewDataSource {
             fatalError("Error create cell")
         }
 
-        let project = RealmManager.shared.loadProjects()[indexPath.row]
+        let project = RealmManager.shared.loadProjects()[indexPath.row] // нужно загрузить в обратном порядке
 
         if let firstImagePath = project.imagePaths.first {
             let imageURL = FileManager.documentsDirectoryURL.appendingPathComponent(firstImagePath)
@@ -225,22 +219,31 @@ extension HomeViewController: UICollectionViewDataSource {
             }
         }
 
+        cell.sendToArchiveHandler = { [weak self] in
+            self?.sendToArchive(project: project)
+        }
+
         return cell
     }
 }
 
+// MARK: - CollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let project = RealmManager.shared.loadProjects()[indexPath.row]
+
         guard let coordinator else {
             return
         }
-        let SlideVC = SlideEditorViewController(coordinator: coordinator)
 
+        let SlideVC = SlideEditorViewController(coordinator: coordinator)
         SlideVC.images = project.imagePaths.map { path in
             let imageURL = FileManager.documentsDirectoryURL.appendingPathComponent(path)
             return UIImage(contentsOfFile: imageURL.path) ?? UIImage()
         }
+//        SlideVC.duration = project.duration
+//        SlideVC.resolution = project.resolution
+
         navigationController?.pushViewController(SlideVC, animated: true)
     }
 
@@ -250,5 +253,34 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 30
+    }
+}
+
+private extension HomeViewController {
+    func sendToArchive(project: Project) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                project.archive = true
+            }
+            showTempView()
+            projectCollection.reloadData()
+        }
+        catch {
+            print("Error sending product to archive: \(error.localizedDescription)")
+        }
+    }
+
+    func showTempView() {
+        if RealmManager.shared.loadProjects().isEmpty {
+            projectCollection.isHidden = true
+            lottieView.isHidden = false
+            tipLabel.isHidden = false
+        }
+        else {
+            projectCollection.isHidden = false
+            lottieView.isHidden = true
+            tipLabel.isHidden = true
+        }
     }
 }
