@@ -16,7 +16,7 @@ final class ProjectCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.backgroundColor = .darkGray
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = 30
         return imageView
     }()
 

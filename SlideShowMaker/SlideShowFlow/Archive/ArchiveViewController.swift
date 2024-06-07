@@ -52,6 +52,25 @@ final class ArchiveViewController: UIViewController {
 
         return collectionView
     }()
+    
+    private let tipLabel: UILabel = {
+        $0.textColor = .darkGray
+        $0.textAlignment = .center
+        $0.font = .systemFont(ofSize: 16, weight: .regular)
+        $0.text = String(localized: "To add a project to the archive\nclick the button:")
+        $0.numberOfLines = 2
+        $0.lineBreakMode = .byWordWrapping
+        $0.isHidden = true
+        return $0
+    }(UILabel())
+    
+    private let tipImage: UIImageView = {
+        $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(systemName: "archivebox.fill")
+        $0.tintColor = .darkGray
+        $0.isHidden = true
+        return $0
+    }(UIImageView())
 
     private let clearArchiveDataButton: UIButton = {
         $0.backgroundColor = .clear
@@ -81,6 +100,7 @@ final class ArchiveViewController: UIViewController {
         setupViews()
         setConstraint()
         loadData()
+        tipsArchive()
     }
 
     // MARK: - UI Setup
@@ -91,6 +111,8 @@ final class ArchiveViewController: UIViewController {
         view.addSubview(archiveLabel)
         view.addSubview(archiveCollection)
         view.addSubview(clearArchiveDataButton)
+        view.addSubview(tipLabel)
+        view.addSubview(tipImage)
 
         let goHomeButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(goHomeButtonTapped))
         goHomeButton.addGestureRecognizer(goHomeButtonTapGesture)
@@ -143,6 +165,16 @@ private extension ArchiveViewController {
         archiveLabel.snp.makeConstraints { make in
             make.centerY.equalTo(goHomeButton)
             make.centerX.equalToSuperview()
+        }
+        
+        tipLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        tipImage.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(tipLabel.snp.bottom).offset(5)
+            make.width.height.equalTo(50)
         }
 
         archiveCollection.snp.makeConstraints { make in
@@ -223,5 +255,12 @@ private extension ArchiveViewController {
 
     func updateClearArchiveButtonVisibility() {
         clearArchiveDataButton.isHidden = archivedProjects?.isEmpty ?? true // Проверка на пустоту архива
+    }
+    
+    func tipsArchive() {
+        if archivedProjects?.isEmpty ?? true {
+            tipImage.isHidden = false
+            tipLabel.isHidden = false
+        }
     }
 }
