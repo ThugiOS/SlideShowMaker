@@ -13,6 +13,13 @@ final class SettingsViewController: UIViewController {
     weak var coordinator: Coordinator?
 
     // MARK: - UI Components
+    private let gearView: UIImageView = {
+        $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(systemName: "gear")
+        $0.tintColor = .darkGray.withAlphaComponent(0.1)
+        return $0
+    }(UIImageView())
+    
     private let goHomeButton: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "chevron.backward")
@@ -28,7 +35,7 @@ final class SettingsViewController: UIViewController {
         label.text = String(localized: "Settings")
         return label
     }()
-
+    
     private let shareButton: AnimatedGradientButton = {
         let button = AnimatedGradientButton()
         button.setTitle(String(localized: "  Share our app"), for: .normal)
@@ -70,7 +77,7 @@ final class SettingsViewController: UIViewController {
 
     private let clearAllDataButton: UIButton = {
         $0.layer.cornerRadius = 20
-        $0.backgroundColor = .lightGray.withAlphaComponent(0.1)
+        $0.backgroundColor = .lightGray.withAlphaComponent(0.2)
         $0.setTitleColor(.red, for: .normal)
         $0.setTitle(String(localized: "Clear and reset all data"), for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 18)
@@ -100,6 +107,7 @@ final class SettingsViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .mainBackground
 
+        view.addSubview(gearView)
         view.addSubview(goHomeButton)
         view.addSubview(settingsLabel)
         view.addSubview(shareButton)
@@ -203,6 +211,11 @@ private extension SettingsViewController {
         settingsLabel.snp.makeConstraints { make in
             make.centerY.equalTo(goHomeButton)
             make.centerX.equalToSuperview()
+        }
+        
+        gearView.snp.makeConstraints { make in
+            make.width.height.equalTo(1200)
+            make.top.leading.equalToSuperview()
         }
 
         shareButton.snp.makeConstraints { make in

@@ -22,6 +22,13 @@ final class ArchiveViewController: UIViewController {
     private var notificationToken: NotificationToken?
 
     // MARK: - UI Components
+    private let boxView: UIImageView = {
+        $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(systemName: "shippingbox")
+        $0.tintColor = .darkGray.withAlphaComponent(0.1)
+        return $0
+    }(UIImageView())
+    
     private let goHomeButton: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "chevron.backward")
@@ -107,6 +114,7 @@ final class ArchiveViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .mainBackground
 
+        view.addSubview(boxView)
         view.addSubview(goHomeButton)
         view.addSubview(archiveLabel)
         view.addSubview(archiveCollection)
@@ -154,6 +162,11 @@ final class ArchiveViewController: UIViewController {
 private extension ArchiveViewController {
     func setConstraint() {
         let screenHeight = UIScreen.main.bounds.height
+        
+        boxView.snp.makeConstraints { make in
+            make.width.height.equalTo(700)
+            make.bottom.leading.equalToSuperview()
+        }
 
         goHomeButton.snp.makeConstraints { make in
             make.width.equalTo(29)
