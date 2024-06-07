@@ -101,6 +101,20 @@ final class RealmManager {
         }
     }
 
+    func deleteAllProjects() {
+        do {
+            let allProjects = loadProjects()
+            let archiveProjects = loadArchiveProjects()
+            try realm.write {
+                realm.delete(allProjects)
+                realm.delete(archiveProjects)
+            }
+        }
+        catch {
+            print("Error deleting projects: \(error.localizedDescription)")
+        }
+    }
+
     private func saveImagesToDisk(images: [UIImage], projectIndex: Int) -> List<String> {
         let imagePaths = List<String>()
 

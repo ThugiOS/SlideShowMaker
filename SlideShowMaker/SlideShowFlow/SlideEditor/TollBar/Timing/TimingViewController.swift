@@ -51,7 +51,7 @@ final class TimingViewController: UIViewController {
 
     private let slowLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .darkGray
         label.text = String(localized: "Slow")
         label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         label.alpha = 1
@@ -78,7 +78,7 @@ final class TimingViewController: UIViewController {
 
     private let fastLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = .darkGray
         label.text = String(localized: "Fast")
         label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
         label.alpha = 1

@@ -5,6 +5,7 @@
 //  Created by Никитин Артем on 5.12.23.
 //
 
+import Photos
 import SnapKit
 import UIKit
 
@@ -118,6 +119,8 @@ final class SlideEditorViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         saveButton.restartAnimation()
+
+        requestPhotoLibraryAccess()
     }
 
     // MARK: - UI Setup
@@ -234,6 +237,23 @@ final class SlideEditorViewController: UIViewController {
         let okAction = UIAlertAction(title: String(localized: "OK"), style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
+    }
+
+    private func requestPhotoLibraryAccess() {
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                print("Photo library access granted")
+
+            case .denied, .restricted:
+                print("Photo library access denied or restricted")
+
+            case .notDetermined:
+                print("Photo library access not determined yet")
+            @unknown default:
+                fatalError("Unknown authorization status")
+            }
+        }
     }
 
     @objc
