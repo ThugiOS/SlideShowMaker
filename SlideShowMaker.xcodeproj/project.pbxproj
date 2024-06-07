@@ -39,6 +39,7 @@
 		276FBC1D2C07330B00D00760 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 276FBC1C2C07330B00D00760 /* Lottie */; };
 		276FBC302C076CF800D00760 /* 8.json in Resources */ = {isa = PBXBuildFile; fileRef = 276FBC2F2C076CF800D00760 /* 8.json */; };
 		277BC3F42C0E0A3000ED09A7 /* ArchiveCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277BC3F32C0E0A3000ED09A7 /* ArchiveCell.swift */; };
+		277BC3F72C12F13D00ED09A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277BC3F62C12F13D00ED09A7 /* SettingsViewController.swift */; };
 		2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABA2B50350F003F72AF /* VideoCreator.swift */; };
 		2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABD2B518390003F72AF /* VideoInfo.swift */; };
 		27D90AC12C08B7CA005CDFBD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */; };
@@ -79,6 +80,7 @@
 		276FBBC52C07018300D00760 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		276FBC2F2C076CF800D00760 /* 8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = 8.json; sourceTree = "<group>"; };
 		277BC3F32C0E0A3000ED09A7 /* ArchiveCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveCell.swift; sourceTree = "<group>"; };
+		277BC3F62C12F13D00ED09A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2790DABA2B50350F003F72AF /* VideoCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCreator.swift; sourceTree = "<group>"; };
 		2790DABD2B518390003F72AF /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 		275D30622B1F53AD00BED542 /* SlideShowFlow */ = {
 			isa = PBXGroup;
 			children = (
+				277BC3F52C12F12000ED09A7 /* Settings */,
 				276F54DD2B6151F800619408 /* Views */,
 				275D30632B1F53E000BED542 /* Archive */,
 				275D304F2B177F6B00BED542 /* Home */,
@@ -315,6 +318,14 @@
 				276FBC2F2C076CF800D00760 /* 8.json */,
 			);
 			path = Lotties;
+			sourceTree = "<group>";
+		};
+		277BC3F52C12F12000ED09A7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				277BC3F62C12F13D00ED09A7 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		2790DAB92B5034D7003F72AF /* Managers */ = {
@@ -467,6 +478,7 @@
 				275D30142B162AEC00BED542 /* SceneDelegate.swift in Sources */,
 				2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */,
 				275D30652B1F55EA00BED542 /* ArchiveViewController.swift in Sources */,
+				277BC3F72C12F13D00ED09A7 /* SettingsViewController.swift in Sources */,
 				27FCF9702B2B2F7C0085F97D /* ImageCell.swift in Sources */,
 				273B7F682BA31E2E0033989A /* FileManager.swift in Sources */,
 				2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */,

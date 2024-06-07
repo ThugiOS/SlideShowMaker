@@ -1,6 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "  Rate app" : {
+
+    },
+    "  Share our app" : {
+
+    },
+    "  Usage Policy" : {
+
+    },
     "A slideshow will be created from these images" : {
 
     },
@@ -10,13 +19,28 @@
     "Archive" : {
 
     },
+    "Are you sure you want to delete all archived projects?" : {
+
+    },
+    "Are you sure you want to delete all projects and reset settings?" : {
+
+    },
     "Aspect Ratio" : {
+
+    },
+    "Cancel" : {
 
     },
     "Choose\naspect ratio" : {
 
     },
+    "Clear and reset all data" : {
+
+    },
     "Clear archive" : {
+
+    },
+    "Clear Archive" : {
 
     },
     "Click to add an image" : {
@@ -29,6 +53,9 @@
 
     },
     "Create" : {
+
+    },
+    "Delete" : {
 
     },
     "Done" : {
@@ -61,6 +88,9 @@
     "Set duration, %" : {
 
     },
+    "Settings" : {
+
+    },
     "Slideshow duration" : {
 
     },
@@ -79,6 +109,9 @@
     "Timing" : {
 
     },
+    "To add a project to the archive\nclick the button:" : {
+
+    },
     "To create a video from your images\n click the New Project button" : {
 
     },
@@ -86,6 +119,9 @@
 
     },
     "Video Saved" : {
+
+    },
+    "Yes" : {
 
     },
     "You can change the duration time\nfor an image and see\nthe total time of the slideshow" : {

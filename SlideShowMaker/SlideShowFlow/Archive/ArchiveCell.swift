@@ -10,6 +10,7 @@ import UIKit
 
 final class ArchiveCell: UICollectionViewCell {
     static let identifier = String(describing: ArchiveCell.self)
+    var returnToMainCollectionHandler: (() -> Void)?
 
     private let backView: UIImageView = {
         let imageView = UIImageView()
@@ -44,7 +45,7 @@ final class ArchiveCell: UICollectionViewCell {
         return label
     }()
 
-    private let archiveButton: UIButton = {
+    private let returnToMainCollectionButton: UIButton = {
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(systemName: "shippingbox.and.arrow.backward.fill")
         configuration.imagePadding = 10
@@ -66,10 +67,9 @@ final class ArchiveCell: UICollectionViewCell {
         addShadow()
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupUI()
-        addShadow()
     }
 
     private func setupUI() {
@@ -77,7 +77,9 @@ final class ArchiveCell: UICollectionViewCell {
         backView.addSubview(firstProjectImage)
         self.addSubview(dateLabel)
         self.addSubview(nameProjectLabel)
-        self.addSubview(archiveButton)
+        self.addSubview(returnToMainCollectionButton)
+
+        returnToMainCollectionButton.addTarget(self, action: #selector(returnButtonTapped), for: .touchUpInside)
 
         backView.snp.makeConstraints { make in
             make.top.bottom.leading.trailing.equalToSuperview()
@@ -98,7 +100,7 @@ final class ArchiveCell: UICollectionViewCell {
             make.bottom.equalToSuperview().offset(-15)
         }
 
-        archiveButton.snp.makeConstraints { make in
+        returnToMainCollectionButton.snp.makeConstraints { make in
             make.trailing.bottom.equalToSuperview().offset(-20)
             make.width.height.equalTo(44)
         }
@@ -127,5 +129,10 @@ final class ArchiveCell: UICollectionViewCell {
         self.firstProjectImage.image = nil
         self.dateLabel.text = nil
         self.nameProjectLabel.text = nil
+    }
+
+    @objc
+    private func returnButtonTapped() {
+        returnToMainCollectionHandler?()
     }
 }

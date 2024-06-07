@@ -5,6 +5,7 @@
 //  Created by Никитин Артем on 5.12.23.
 //
 
+import Photos
 import SnapKit
 import UIKit
 
@@ -118,6 +119,8 @@ final class SlideEditorViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         saveButton.restartAnimation()
+
+        requestPhotoLibraryAccess()
     }
 
     // MARK: - UI Setup
@@ -192,17 +195,25 @@ final class SlideEditorViewController: UIViewController {
     @objc
     private func saveButtonTapped() {
         saveButton.animateButton()
-        guard !images.isEmpty else {
+
+        /// Сохраняем проект
+        guard !images.isEmpty else { // массив изображений
             return
         }
+        let currentDate = Date() // Дата
+        let index = RealmManager.shared.loadProjects().count + 1 // индекс для имени проекта
+        let videoDuration = (videoInfo?.duration) ?? 10 // Длительность видео
 
-        let currentDate = Date()
-        let index = RealmManager.shared.loadProjects().count + 1
+        RealmManager.shared.saveProject(images: images,
+                                        name: "project",  // задать имя
+                                        date: currentDate,
+                                        index: index,
+                                        duration: videoDuration)
 
-        RealmManager.shared.saveProject(images: images, date: currentDate, index: index)
-
+        /// Создаем видео
         let videoCreator = VideoCreator(images: images)
         let videoInfo = videoInfo ?? VideoInfo(resolution: .canvas1x1, duration: 5)
+
         videoCreator.createVideo(videoInfo: videoInfo) { url in
             guard url != nil else {
                 print("Failed to create and save video.")
@@ -226,6 +237,23 @@ final class SlideEditorViewController: UIViewController {
         let okAction = UIAlertAction(title: String(localized: "OK"), style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
+    }
+
+    private func requestPhotoLibraryAccess() {
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                print("Photo library access granted")
+
+            case .denied, .restricted:
+                print("Photo library access denied or restricted")
+
+            case .notDetermined:
+                print("Photo library access not determined yet")
+            @unknown default:
+                fatalError("Unknown authorization status")
+            }
+        }
     }
 
     @objc

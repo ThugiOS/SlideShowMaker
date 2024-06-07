@@ -58,7 +58,7 @@ final class OnboardingCollectionViewCell: UICollectionViewCell {
 
     private func setupConstraints() {
         slideImageView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(-100)
         }
 

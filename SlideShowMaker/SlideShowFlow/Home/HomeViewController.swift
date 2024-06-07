@@ -6,6 +6,8 @@
 //
 
 import Lottie
+import Realm
+import RealmSwift
 import SnapKit
 import UIKit
 
@@ -13,6 +15,22 @@ final class HomeViewController: UIViewController {
     weak var coordinator: Coordinator?
 
     // MARK: - UI Components
+    private let settingsButton: UIButton = {
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "gear")
+        configuration.imagePadding = 10
+
+        configuration.imagePlacement = .leading
+        configuration.image?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))
+
+        let button = UIButton(configuration: configuration, primaryAction: nil)
+        button.layer.cornerRadius = 20
+        button.backgroundColor = .lightGray.withAlphaComponent(0.1)
+        button.tintColor = .white
+
+        return button
+    }()
+
     private let myProjectsLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -30,12 +48,13 @@ final class HomeViewController: UIViewController {
         configuration.image?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))
 
         let button = UIButton(configuration: configuration, primaryAction: nil)
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .clear
+        button.layer.cornerRadius = 20
+        button.backgroundColor = .lightGray.withAlphaComponent(0.1)
         button.tintColor = .white
 
         return button
     }()
+
     private let lottieView: LottieAnimationView = {
         let lottie = LottieAnimationView(name: "8")
         lottie.contentMode = .scaleAspectFill
@@ -106,18 +125,9 @@ final class HomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if RealmManager.shared.loadProjects().isEmpty {
-            projectCollection.isHidden = true
-            lottieView.isHidden = false
-            tipLabel.isHidden = false
-        }
-        else {
-            projectCollection.isHidden = false
-            lottieView.isHidden = true
-            tipLabel.isHidden = true
-        }
-        projectCollection.reloadData()
 
+        showTempView()
+        projectCollection.reloadData()
         createProjectButton.restartAnimation()
         lottieView.play()
     }
@@ -127,6 +137,7 @@ final class HomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .mainBackground
 
+        view.addSubview(settingsButton)
         view.addSubview(myProjectsLabel)
         view.addSubview(archiveButton)
         view.addSubview(lottieView)
@@ -134,6 +145,7 @@ final class HomeViewController: UIViewController {
         view.addSubview(projectCollection)
         view.addSubview(createProjectButton)
 
+        settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         archiveButton.addTarget(self, action: #selector(archiveButtonTapped), for: .touchUpInside)
         createProjectButton.addTarget(self, action: #selector(createProjectButtonTapped), for: .touchUpInside)
     }
@@ -148,6 +160,11 @@ final class HomeViewController: UIViewController {
     private func archiveButtonTapped() {
         coordinator?.showArchive()
     }
+
+    @objc
+    private func settingsButtonTapped() {
+        coordinator?.showSettings()
+    }
 }
 
 // MARK: - Constraints
@@ -159,7 +176,7 @@ private extension HomeViewController {
         let createProjectButtonBottomOffset: Int
 
         if screenHeight <= 667 { // Height of iPhone 8, SE 2-3 etc.
-            myProjectsLabelTopOffset = 30
+            myProjectsLabelTopOffset = 40
             createProjectButtonBottomOffset = 15
         }
         else {
@@ -173,6 +190,12 @@ private extension HomeViewController {
             make.centerX.equalToSuperview()
         }
 
+        settingsButton.snp.makeConstraints { make in
+            make.centerY.equalTo(myProjectsLabel)
+            make.leading.equalToSuperview().offset(24)
+            make.width.height.equalTo(50)
+        }
+
         archiveButton.snp.makeConstraints { make in
             make.centerY.equalTo(myProjectsLabel)
             make.trailing.equalToSuperview().offset(-24)
@@ -180,7 +203,9 @@ private extension HomeViewController {
         }
 
         lottieView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.top.equalTo(myProjectsLabel.snp.bottom)
+            make.bottom.equalTo(createProjectButton.snp.top)
         }
 
         projectCollection.snp.makeConstraints { make in
@@ -206,6 +231,7 @@ private extension HomeViewController {
     }
 }
 
+// MARK: - CollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return RealmManager.shared.loadProjects().count
@@ -216,7 +242,7 @@ extension HomeViewController: UICollectionViewDataSource {
             fatalError("Error create cell")
         }
 
-        let project = RealmManager.shared.loadProjects()[indexPath.row]
+        let project = RealmManager.shared.loadProjects()[indexPath.row] // нужно загрузить в обратном порядке
 
         if let firstImagePath = project.imagePaths.first {
             let imageURL = FileManager.documentsDirectoryURL.appendingPathComponent(firstImagePath)
@@ -225,22 +251,31 @@ extension HomeViewController: UICollectionViewDataSource {
             }
         }
 
+        cell.sendToArchiveHandler = { [weak self] in
+            self?.sendToArchive(project: project)
+        }
+
         return cell
     }
 }
 
+// MARK: - CollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let project = RealmManager.shared.loadProjects()[indexPath.row]
+
         guard let coordinator else {
             return
         }
-        let SlideVC = SlideEditorViewController(coordinator: coordinator)
 
+        let SlideVC = SlideEditorViewController(coordinator: coordinator)
         SlideVC.images = project.imagePaths.map { path in
             let imageURL = FileManager.documentsDirectoryURL.appendingPathComponent(path)
             return UIImage(contentsOfFile: imageURL.path) ?? UIImage()
         }
+//        SlideVC.duration = project.duration
+//        SlideVC.resolution = project.resolution
+
         navigationController?.pushViewController(SlideVC, animated: true)
     }
 
@@ -250,5 +285,34 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 30
+    }
+}
+
+private extension HomeViewController {
+    func sendToArchive(project: Project) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                project.archive = true
+            }
+            showTempView()
+            projectCollection.reloadData()
+        }
+        catch {
+            print("Error sending product to archive: \(error.localizedDescription)")
+        }
+    }
+
+    func showTempView() {
+        if RealmManager.shared.loadProjects().isEmpty {
+            projectCollection.isHidden = true
+            lottieView.isHidden = false
+            tipLabel.isHidden = false
+        }
+        else {
+            projectCollection.isHidden = false
+            lottieView.isHidden = true
+            tipLabel.isHidden = true
+        }
     }
 }

@@ -47,4 +47,10 @@ final class ApplicationCoordinator: Coordinator {
         navigationController.pushViewController(archiveViewController, animated: true)
         navigationController.navigationBar.isHidden = true
     }
+
+    func showSettings() {
+        let settingsViewController = SettingsViewController(coordinator: self)
+        navigationController.pushViewController(settingsViewController, animated: true)
+        navigationController.navigationBar.isHidden = true
+    }
 }

@@ -13,4 +13,5 @@ class Project: Object {
     @Persisted var date = Date()
     @Persisted var name = ""
     @Persisted var archive = false
+    @Persisted var duration = TimeInterval()
 }

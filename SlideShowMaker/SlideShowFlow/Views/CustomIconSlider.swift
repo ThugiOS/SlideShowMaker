@@ -13,9 +13,9 @@ final class CustomIconSlider: UISlider {
         setupSlider()
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupSlider()
     }
 
     private func setupSlider() {

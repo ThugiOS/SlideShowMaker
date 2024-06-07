@@ -15,6 +15,7 @@ protocol Coordinator: AnyObject {
     func showHome()
     func showSlideEditor()
     func showArchive()
+    func showSettings()
 }
 
 extension Coordinator {

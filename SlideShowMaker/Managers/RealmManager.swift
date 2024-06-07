@@ -15,7 +15,6 @@ final class RealmManager {
     private let realm: Realm
 
     private init() {
-        // Use a failable initializer for Realm
         do {
             self.realm = try Realm()
         }
@@ -24,19 +23,95 @@ final class RealmManager {
         }
     }
 
-    func saveProject(images: [UIImage], date: Date, index: Int) {
+    // MARK: - Save Project
+    func saveProject(images: [UIImage], name: String, date: Date, index: Int, duration: TimeInterval) {
         do {
             try realm.write {
                 let project = Project()
                 let imagePaths = saveImagesToDisk(images: images, projectIndex: index)
                 project.imagePaths.append(objectsIn: imagePaths)
                 project.date = date
-                project.name = "Project \(index)"
+                project.name = name
+                project.archive = false
+                project.duration = duration
                 realm.add(project)
             }
         }
         catch {
             print("Error saving project: \(error.localizedDescription)")
+        }
+    }
+
+    // MARK: - Send to archive
+    func sendToArchive(project: Project) {
+        do {
+            try realm.write {
+                project.archive = true
+            }
+        }
+        catch {
+            print("Error archiving project: \(error.localizedDescription)")
+        }
+    }
+
+    // MARK: - Return from archive
+    func returnFromArchive(project: Project) {
+        do {
+            try realm.write {
+                project.archive = false
+            }
+        }
+        catch {
+            print("Error unarchiving project: \(error.localizedDescription)")
+        }
+    }
+
+    // MARK: - Save duration
+    func saveDuration(project: Project, duration: TimeInterval) {
+        do {
+            try realm.write {
+                project.duration = duration
+            }
+        }
+        catch {
+            print("Error saving duration: \(error.localizedDescription)")
+        }
+    }
+
+    // MARK: - Load projects
+    func loadProjects() -> Results<Project> {
+        return realm.objects(Project.self).filter("archive == false")
+    }
+
+    // MARK: - Load archive
+    func loadArchiveProjects() -> Results<Project> {
+        return realm.objects(Project.self).filter("archive == true")
+    }
+
+    // MARK: - Clear archive
+    func deleteAllArchivedProjects() {
+        do {
+            let archivedProjects = loadArchiveProjects()
+            try realm.write {
+                realm.delete(archivedProjects)
+            }
+        }
+        catch {
+            print("Error deleting archived projects: \(error.localizedDescription)")
+        }
+    }
+
+    func deleteAllProjects() {
+        do {
+            let allProjects = loadProjects()
+            let archiveProjects = loadArchiveProjects()
+            try realm.write {
+                realm.delete(allProjects)
+                realm.delete(archiveProjects)
+            }
+        }
+        catch {
+            print("Error deleting projects: \(error.localizedDescription)")
         }
     }
 
@@ -57,11 +132,6 @@ final class RealmManager {
                 print("Error saving image: \(error.localizedDescription)")
             }
         }
-
         return imagePaths
-    }
-
-    func loadProjects() -> Results<Project> {
-        return realm.objects(Project.self)
     }
 }
