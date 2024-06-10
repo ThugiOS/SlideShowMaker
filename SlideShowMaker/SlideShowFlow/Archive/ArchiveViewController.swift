@@ -28,7 +28,7 @@ final class ArchiveViewController: UIViewController {
         $0.tintColor = .darkGray.withAlphaComponent(0.1)
         return $0
     }(UIImageView())
-    
+
     private let goHomeButton: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "chevron.backward")
@@ -59,7 +59,7 @@ final class ArchiveViewController: UIViewController {
 
         return collectionView
     }()
-    
+
     private let tipLabel: UILabel = {
         $0.textColor = .darkGray
         $0.textAlignment = .center
@@ -70,7 +70,7 @@ final class ArchiveViewController: UIViewController {
         $0.isHidden = true
         return $0
     }(UILabel())
-    
+
     private let tipImage: UIImageView = {
         $0.contentMode = .scaleAspectFit
         $0.image = UIImage(systemName: "archivebox.fill")
@@ -162,7 +162,7 @@ final class ArchiveViewController: UIViewController {
 private extension ArchiveViewController {
     func setConstraint() {
         let screenHeight = UIScreen.main.bounds.height
-        
+
         boxView.snp.makeConstraints { make in
             make.width.height.equalTo(700)
             make.bottom.leading.equalToSuperview()
@@ -179,11 +179,11 @@ private extension ArchiveViewController {
             make.centerY.equalTo(goHomeButton)
             make.centerX.equalToSuperview()
         }
-        
+
         tipLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
-        
+
         tipImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(tipLabel.snp.bottom).offset(5)
@@ -269,7 +269,7 @@ private extension ArchiveViewController {
     func updateClearArchiveButtonVisibility() {
         clearArchiveDataButton.isHidden = archivedProjects?.isEmpty ?? true // Проверка на пустоту архива
     }
-    
+
     func tipsArchive() {
         if archivedProjects?.isEmpty ?? true {
             tipImage.isHidden = false

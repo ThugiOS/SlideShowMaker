@@ -19,7 +19,7 @@ final class SettingsViewController: UIViewController {
         $0.tintColor = .darkGray.withAlphaComponent(0.1)
         return $0
     }(UIImageView())
-    
+
     private let goHomeButton: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "chevron.backward")
@@ -35,7 +35,7 @@ final class SettingsViewController: UIViewController {
         label.text = String(localized: "Settings")
         return label
     }()
-    
+
     private let shareButton: AnimatedGradientButton = {
         let button = AnimatedGradientButton()
         button.setTitle(String(localized: "  Share our app"), for: .normal)
@@ -212,7 +212,7 @@ private extension SettingsViewController {
             make.centerY.equalTo(goHomeButton)
             make.centerX.equalToSuperview()
         }
-        
+
         gearView.snp.makeConstraints { make in
             make.width.height.equalTo(1200)
             make.top.leading.equalToSuperview()
