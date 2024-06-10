@@ -5,7 +5,7 @@
 //  Created by Никитин Артем on 5.12.23.
 //
 
-import Photos
+import PhotosUI
 import SnapKit
 import UIKit
 
@@ -245,26 +245,32 @@ final class SlideEditorViewController: UIViewController {
             case .authorized:
                 print("Photo library access granted")
 
-            case .denied, .restricted:
-                print("Photo library access denied or restricted")
+            case .denied:
+                print("Photo library access denied")
+
+            case .restricted:
+                print("Photo library access restricted")
 
             case .notDetermined:
                 print("Photo library access not determined yet")
+
+            case .limited:
+                print("Photo library access limited")
             @unknown default:
-                fatalError("Unknown authorization status")
+                print("Unknown authorization status")
             }
         }
     }
 
     @objc
     private func openPhotoPicker() {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.mediaTypes = ["public.image"]
-        imagePicker.modalPresentationStyle = .popover
-        present(imagePicker, animated: true, completion: nil)
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .images
+        configuration.selectionLimit = 0 // 0 означает неограниченное количество
+
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
     }
 
     @objc
@@ -401,20 +407,25 @@ extension SlideEditorViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - ImagePickerController
-extension SlideEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            images.append(image)
-            collectionView.reloadData()
-            selectedImageIndex = images.count - 1
-            selectedImageView.image = image
-        }
-        dismiss(animated: true, completion: nil)
-    }
+// MARK: - PHPickerViewControllerDelegate
+extension SlideEditorViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true, completion: nil)
 
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
+        for result in results {
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, _ in
+                if let image = object as? UIImage {
+                    DispatchQueue.main.async {
+                        self?.images.append(image)
+                        self?.collectionView.reloadData()
+                        if let imagesCount = self?.images.count {
+                            self?.selectedImageIndex = imagesCount - 1
+                            self?.selectedImageView.image = image
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
