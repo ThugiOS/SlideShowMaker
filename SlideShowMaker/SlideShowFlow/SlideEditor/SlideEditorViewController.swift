@@ -194,7 +194,6 @@ final class SlideEditorViewController: UIViewController {
 
     private func saveProjectToLibrary() {
         guard !images.isEmpty else { return }
-
         let currentDate = Date() // Дата
         let index = RealmManager.shared.loadProjects().count + 1 // index
         let videoDuration = (videoInfo?.duration) ?? 10 // time video
@@ -219,8 +218,10 @@ final class SlideEditorViewController: UIViewController {
 
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
+                self.showAlert(withTitle: String(localized: "The video has been saved to the gallery."),
+                               message: String(localized: "Save project?")
+                )
 
-                self.showAlert(withTitle: String(localized: "Video Saved"), message: String(localized: "The video has been saved to the gallery."))
                 self.videoCreator = nil
                 self.bluer.isHidden = true
             }
@@ -230,8 +231,13 @@ final class SlideEditorViewController: UIViewController {
 
     private func showAlert(withTitle title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: String(localized: "OK"), style: .default, handler: nil)
+        let okAction = UIAlertAction(title: String(localized: "No"), style: .default, handler: nil)
+        let saveProjectToLibraryAction = UIAlertAction(title: String(localized: "Save project to library"), style: .default) { [weak self] _ in
+            self?.saveProjectToLibrary()
+        }
+
         alertController.addAction(okAction)
+        alertController.addAction(saveProjectToLibraryAction)
         present(alertController, animated: true, completion: nil)
     }
 
@@ -248,7 +254,7 @@ final class SlideEditorViewController: UIViewController {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.createVideo()
-            self.saveProjectToLibrary()
+//            self.saveProjectToLibrary()
         }
     }
 

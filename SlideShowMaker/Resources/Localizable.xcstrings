@@ -91,10 +91,16 @@
     "Next" : {
 
     },
-    "OK" : {
+    "No" : {
 
     },
     "Photos duration" : {
+
+    },
+    "Save project to library" : {
+
+    },
+    "Save project?" : {
 
     },
     "Set duration, %" : {
@@ -128,9 +134,6 @@
 
     },
     "Turn your photo\ninto slideshow fast & easy" : {
-
-    },
-    "Video Saved" : {
 
     },
     "Yes" : {
