@@ -21,14 +21,29 @@ final class OnboardingViewController: UIViewController {
             pageControl.currentPage = currentPage
             if currentPage == slides.count - 1 {
                 nextButton.setTitle(String(localized: "Start"), for: .normal)
+                buttonBack.isHidden = false
+            }
+            else if currentPage == 0 {
+                buttonBack.isHidden = true
             }
             else {
                 nextButton.setTitle(String(localized: "Next"), for: .normal)
+                buttonBack.isHidden = false
             }
         }
     }
 
     // MARK: - UI Components
+    private let buttonBack: UIButton = {
+        $0.backgroundColor = .gray.withAlphaComponent(0.1)
+        $0.tintColor = .white
+        $0.layer.cornerRadius = 12
+        $0.setTitle(String(localized: " back"), for: .normal)
+        $0.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        $0.isHidden = true
+        return $0
+    }(UIButton())
+
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -65,16 +80,16 @@ final class OnboardingViewController: UIViewController {
         return pageControl
     }()
 
-        init(coordinator: Coordinator, completion: @escaping () -> Void) {
-            self.coordinator = coordinator
-            self.completion = completion
-            super.init(nibName: nil, bundle: nil)
-        }
+    init(coordinator: Coordinator, completion: @escaping () -> Void) {
+        self.coordinator = coordinator
+        self.completion = completion
+        super.init(nibName: nil, bundle: nil)
+    }
 
-        @available(*, unavailable)
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -100,6 +115,14 @@ final class OnboardingViewController: UIViewController {
         }
     }
 
+    @objc func backButtonTapped(_ sender: UIButton) {
+        if currentPage > 0 {
+            currentPage -= 1
+            let indexPath = IndexPath(item: currentPage, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+    }
+
     // MARK: - UI Setup
     private func setupViews() {
         view.backgroundColor = .mainBackground
@@ -107,8 +130,8 @@ final class OnboardingViewController: UIViewController {
 
         view.addSubview(collectionView)
         view.addSubview(nextButton)
-//        view.addSubview(buttonLabel)
         view.addSubview(pageControl)
+        view.addSubview(buttonBack)
 
         slides = createOnboardingSlides()
 
@@ -144,6 +167,8 @@ private extension OnboardingViewController {
     func setupGestures() {
         let nextButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(nextButtonTupped))
         nextButton.addGestureRecognizer(nextButtonTapGesture)
+
+        buttonBack.addTarget(self, action: #selector(backButtonTapped(_:)), for: .touchUpInside)
     }
 }
 
@@ -181,10 +206,13 @@ private extension OnboardingViewController {
             make.width.equalTo(333)
             make.height.equalTo(68)
         }
-//
-//        buttonLabel.snp.makeConstraints { make in
-//            make.centerX.centerY.equalTo(nextButton)
-//        }
+
+        buttonBack.snp.makeConstraints { make in
+            make.width.equalTo(80)
+            make.height.equalTo(44)
+            make.leading.equalTo(nextButton)
+            make.bottom.equalTo(nextButton.snp.top).offset(-50)
+        }
     }
 }
 

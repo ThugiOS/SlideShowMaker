@@ -2,7 +2,7 @@
 //  SlideEditorViewController.swift
 //  SlideShowMaker
 //
-//  Created by Никитин Артем on 5.12.23.
+//  Created by Никитин Артем on 5.12.23.666
 //
 
 import PhotosUI
@@ -27,6 +27,8 @@ final class SlideEditorViewController: UIViewController {
     }
 
     // MARK: - UI Components
+    private let bluer = CreatingView()
+
     private let goHomeButton: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(systemName: "chevron.backward")
@@ -106,7 +108,9 @@ final class SlideEditorViewController: UIViewController {
         setConstraint()
         setBarItems()
         setDefaultVideoSettings()
+
         navigationController?.isNavigationBarHidden = true
+
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
 
@@ -118,13 +122,14 @@ final class SlideEditorViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        saveButton.restartAnimation()
 
+        saveButton.restartAnimation()
         requestPhotoLibraryAccess()
     }
 
     // MARK: - UI Setup
     private func setupViews() {
+        bluer.isHidden = true
         view.backgroundColor = .mainBackground
 
         view.addSubview(goHomeButton)
@@ -135,9 +140,10 @@ final class SlideEditorViewController: UIViewController {
         view.addSubview(addImageButton)
         view.addSubview(toolbar)
         view.addSubview(binImageButton)
+        view.addSubview(bluer)
 
+        // Gestures
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-
         let goHomeButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(goHomeButtonTapped))
         goHomeButton.addGestureRecognizer(goHomeButtonTapGesture)
         let addImageButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(openPhotoPicker))
@@ -186,31 +192,22 @@ final class SlideEditorViewController: UIViewController {
         self.videoInfo = defaultSetting
     }
 
-    // MARK: - Selectors
-    @objc
-    private func goHomeButtonTapped() {
-        coordinator?.navigateBack()
-    }
+    private func saveProjectToLibrary() {
+        guard !images.isEmpty else { return }
 
-    @objc
-    private func saveButtonTapped() {
-        saveButton.animateButton()
-
-        /// Сохраняем проект
-        guard !images.isEmpty else { // массив изображений
-            return
-        }
         let currentDate = Date() // Дата
-        let index = RealmManager.shared.loadProjects().count + 1 // индекс для имени проекта
-        let videoDuration = (videoInfo?.duration) ?? 10 // Длительность видео
+        let index = RealmManager.shared.loadProjects().count + 1 // index
+        let videoDuration = (videoInfo?.duration) ?? 10 // time video
 
         RealmManager.shared.saveProject(images: images,
-                                        name: "project",  // задать имя
+                                        name: "project \(index)",  // project name
                                         date: currentDate,
                                         index: index,
-                                        duration: videoDuration)
+                                        duration: videoDuration
+        )
+    }
 
-        /// Создаем видео
+    private func createVideo() {
         let videoCreator = VideoCreator(images: images)
         let videoInfo = videoInfo ?? VideoInfo(resolution: .canvas1x1, duration: 5)
 
@@ -221,12 +218,11 @@ final class SlideEditorViewController: UIViewController {
             }
 
             DispatchQueue.main.async { [weak self] in
-                guard let self else {
-                    return
-                }
+                guard let self else { return }
 
                 self.showAlert(withTitle: String(localized: "Video Saved"), message: String(localized: "The video has been saved to the gallery."))
                 self.videoCreator = nil
+                self.bluer.isHidden = true
             }
         }
         self.videoCreator = videoCreator
@@ -239,31 +235,26 @@ final class SlideEditorViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
-    private func requestPhotoLibraryAccess() {
-        PHPhotoLibrary.requestAuthorization { status in
-            switch status {
-            case .authorized:
-                print("Photo library access granted")
+    // MARK: - Selectors
+    @objc
+    private func goHomeButtonTapped() {
+        coordinator?.navigateBack()
+    }
 
-            case .denied:
-                print("Photo library access denied")
+    @objc
+    private func saveButtonTapped() {
+        saveButton.animateButton()
+        bluer.isHidden = false
 
-            case .restricted:
-                print("Photo library access restricted")
-
-            case .notDetermined:
-                print("Photo library access not determined yet")
-
-            case .limited:
-                print("Photo library access limited")
-            @unknown default:
-                print("Unknown authorization status")
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.createVideo()
+            self.saveProjectToLibrary()
         }
     }
 
     @objc
     private func openPhotoPicker() {
+        checkGalleryAccessAndAlertIfNeeded()
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
         configuration.selectionLimit = 0 // 0 означает неограниченное количество
@@ -364,6 +355,10 @@ private extension SlideEditorViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(screenHeight * 0.11)
         }
+
+        bluer.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 
@@ -407,6 +402,13 @@ extension SlideEditorViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - ViewControllerTransitioningDelegate
+extension SlideEditorViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return CustomPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+}
+
 // MARK: - PHPickerViewControllerDelegate
 extension SlideEditorViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -429,9 +431,74 @@ extension SlideEditorViewController: PHPickerViewControllerDelegate {
     }
 }
 
-// MARK: - ViewControllerTransitioningDelegate
-extension SlideEditorViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return CustomPresentationController(presentedViewController: presented, presenting: presenting)
+// MARK: - Access Gallery
+private extension SlideEditorViewController {
+    func requestPhotoLibraryAccess() {
+        PHPhotoLibrary.requestAuthorization { status in
+            switch status {
+            case .authorized:
+                print("Photo library access granted")
+
+            case .denied:
+                print("Photo library access denied")
+
+            case .restricted:
+                print("Photo library access restricted")
+
+            case .notDetermined:
+                print("Photo library access not determined yet")
+
+            case .limited:
+                print("Photo library access limited")
+            @unknown default:
+                print("Unknown authorization status")
+            }
+        }
+    }
+
+    func checkGalleryAccessAndAlertIfNeeded() {
+        let status = PHPhotoLibrary.authorizationStatus()
+
+        switch status {
+        case .authorized:
+            print("Photo library access granted")
+
+        case .denied, .restricted:
+            showAccessAlert()
+
+        case .limited:
+            print("Photo library access limited")
+
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { status in
+                if status == .authorized {
+                    print("- authorized")
+                }
+                else {
+                    print("+ authorized")
+                }
+            }
+        @unknown default:
+            break
+        }
+    }
+
+    func showAccessAlert() {
+        let alert = UIAlertController(title: String(localized: "Access to Gallery"),
+                                      message: String(localized: "Gallery access requires permission. Go to the app settings to grant access."),
+                                      preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: String(localized: "Settings"), style: .default) { _ in
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
+        })
+
+        alert.addAction(UIAlertAction(title: String(localized: "Cancel"), style: .cancel, handler: nil))
+
+        if let topViewController = UIApplication.shared.windows.first?.rootViewController {
+            topViewController.present(alert, animated: true, completion: nil)
+        }
     }
 }

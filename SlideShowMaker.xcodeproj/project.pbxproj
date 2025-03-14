@@ -45,6 +45,8 @@
 		27D90AC12C08B7CA005CDFBD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */; };
 		27D90AC32C08C3CF005CDFBD /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D90AC22C08C3CF005CDFBD /* TipsView.swift */; };
 		27E680542B56B689000B7D8F /* gilroy-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27E680532B56B689000B7D8F /* gilroy-bold.ttf */; };
+		27F44D562D8444D0000E24AE /* CreatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F44D552D8444C6000E24AE /* CreatingView.swift */; };
+		27F44D582D844762000E24AE /* CustomBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F44D572D844760000E24AE /* CustomBlurEffectView.swift */; };
 		27FCF9702B2B2F7C0085F97D /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +88,8 @@
 		27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		27D90AC22C08C3CF005CDFBD /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
 		27E680532B56B689000B7D8F /* gilroy-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gilroy-bold.ttf"; sourceTree = "<group>"; };
+		27F44D552D8444C6000E24AE /* CreatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingView.swift; sourceTree = "<group>"; };
+		27F44D572D844760000E24AE /* CustomBlurEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlurEffectView.swift; sourceTree = "<group>"; };
 		27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +279,8 @@
 				276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */,
 				276FBBC52C07018300D00760 /* GradientButton.swift */,
 				27D90AC22C08C3CF005CDFBD /* TipsView.swift */,
+				27F44D572D844760000E24AE /* CustomBlurEffectView.swift */,
+				27F44D552D8444C6000E24AE /* CreatingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -462,10 +468,12 @@
 				2745CAB32B7E51BC0083AA3C /* OnboardingSlide.swift in Sources */,
 				275D304D2B177BC300BED542 /* ApplicationCoordinator.swift in Sources */,
 				277BC3F42C0E0A3000ED09A7 /* ArchiveCell.swift in Sources */,
+				27F44D562D8444D0000E24AE /* CreatingView.swift in Sources */,
 				275D304B2B177B2F00BED542 /* Coordinator.swift in Sources */,
 				273B7F6C2BA321310033989A /* ProjectModel.swift in Sources */,
 				27D90AC12C08B7CA005CDFBD /* UIButton+Extension.swift in Sources */,
 				276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */,
+				27F44D582D844762000E24AE /* CustomBlurEffectView.swift in Sources */,
 				275D305B2B18C49000BED542 /* Settings.swift in Sources */,
 				275D30532B17822900BED542 /* OnboardingViewController.swift in Sources */,
 				2745CAB52B7E51C40083AA3C /* OnboardingCollectionViewCell.swift in Sources */,

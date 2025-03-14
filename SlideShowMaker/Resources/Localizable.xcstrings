@@ -10,7 +10,13 @@
     "  Usage Policy" : {
 
     },
+    " back" : {
+
+    },
     "A slideshow will be created from these images" : {
+
+    },
+    "Access to Gallery" : {
 
     },
     "Add your photos\nfrom the gallery" : {
@@ -55,6 +61,9 @@
     "Create" : {
 
     },
+    "Creating video ..." : {
+
+    },
     "Delete" : {
 
     },
@@ -62,6 +71,9 @@
 
     },
     "Fast" : {
+
+    },
+    "Gallery access requires permission. Go to the app settings to grant access." : {
 
     },
     "Go" : {
