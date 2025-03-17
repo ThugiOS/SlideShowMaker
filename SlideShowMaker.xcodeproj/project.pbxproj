@@ -47,6 +47,7 @@
 		27E680542B56B689000B7D8F /* gilroy-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27E680532B56B689000B7D8F /* gilroy-bold.ttf */; };
 		27F44D562D8444D0000E24AE /* CreatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F44D552D8444C6000E24AE /* CreatingView.swift */; };
 		27F44D582D844762000E24AE /* CustomBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F44D572D844760000E24AE /* CustomBlurEffectView.swift */; };
+		27F44D5B2D84A237000E24AE /* SaveToLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F44D5A2D84A212000E24AE /* SaveToLibrary.swift */; };
 		27FCF9702B2B2F7C0085F97D /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		27E680532B56B689000B7D8F /* gilroy-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gilroy-bold.ttf"; sourceTree = "<group>"; };
 		27F44D552D8444C6000E24AE /* CreatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingView.swift; sourceTree = "<group>"; };
 		27F44D572D844760000E24AE /* CustomBlurEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlurEffectView.swift; sourceTree = "<group>"; };
+		27F44D5A2D84A212000E24AE /* SaveToLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToLibrary.swift; sourceTree = "<group>"; };
 		27FCF96F2B2B2F7C0085F97D /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +277,7 @@
 		276F54DD2B6151F800619408 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				27F44D592D84A208000E24AE /* Alerts */,
 				276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */,
 				276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */,
 				276FBBC52C07018300D00760 /* GradientButton.swift */,
@@ -351,6 +354,14 @@
 				276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		27F44D592D84A208000E24AE /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				27F44D5A2D84A212000E24AE /* SaveToLibrary.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,6 +493,7 @@
 				275D30572B17866600BED542 /* HomeViewController.swift in Sources */,
 				275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */,
 				275D30122B162AEC00BED542 /* AppDelegate.swift in Sources */,
+				27F44D5B2D84A237000E24AE /* SaveToLibrary.swift in Sources */,
 				276FBBC62C07018300D00760 /* GradientButton.swift in Sources */,
 				275D30142B162AEC00BED542 /* SceneDelegate.swift in Sources */,
 				2790DABB2B50350F003F72AF /* VideoCreator.swift in Sources */,

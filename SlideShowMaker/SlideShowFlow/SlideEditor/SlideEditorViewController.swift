@@ -218,27 +218,25 @@ final class SlideEditorViewController: UIViewController {
 
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
-                self.showAlert(withTitle: String(localized: "The video has been saved to the gallery."),
-                               message: String(localized: "Save project?")
-                )
-
-                self.videoCreator = nil
                 self.bluer.isHidden = true
+                showSaveToLibraryAlert()
+                self.videoCreator = nil
             }
         }
         self.videoCreator = videoCreator
     }
+    
+    private func showSaveToLibraryAlert() {
+        let alert = SaveToLibrary()
+        alert.onCancelSaveToLibrary = {
+            print("Save to library cancelled")
+        }
 
-    private func showAlert(withTitle title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: String(localized: "No"), style: .default, handler: nil)
-        let saveProjectToLibraryAction = UIAlertAction(title: String(localized: "Save project to library"), style: .default) { [weak self] _ in
+        alert.onSaveToLibrary = { [weak self] in
             self?.saveProjectToLibrary()
         }
 
-        alertController.addAction(okAction)
-        alertController.addAction(saveProjectToLibraryAction)
-        present(alertController, animated: true, completion: nil)
+        alert.showSaveProjectAlert(in: view)
     }
 
     // MARK: - Selectors
@@ -254,7 +252,6 @@ final class SlideEditorViewController: UIViewController {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.createVideo()
-//            self.saveProjectToLibrary()
         }
     }
 
@@ -263,7 +260,7 @@ final class SlideEditorViewController: UIViewController {
         checkGalleryAccessAndAlertIfNeeded()
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
-        configuration.selectionLimit = 0 // 0 означает неограниченное количество
+        configuration.selectionLimit = 20 // 0 - no limit
 
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self

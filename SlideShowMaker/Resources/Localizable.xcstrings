@@ -97,10 +97,13 @@
     "Photos duration" : {
 
     },
-    "Save project to library" : {
+    "Save project" : {
 
     },
-    "Save project?" : {
+    "Save project to library?" : {
+
+    },
+    "Saving..." : {
 
     },
     "Set duration, %" : {
@@ -121,7 +124,7 @@
     "The slideshow will be saved\nin your chosen aspect ratio" : {
 
     },
-    "The video has been saved to the gallery." : {
+    "The video has been saved to the gallery" : {
 
     },
     "Timing" : {
