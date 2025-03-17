@@ -185,7 +185,33 @@ final class SlideEditorViewController: UIViewController {
         binImageButton.alpha = numberOfItems > 0 ? 0.9 : 0.0
         saveButton.alpha = numberOfItems > 0 ? 1 : 0.1
         saveButton.isUserInteractionEnabled = numberOfItems > 0 ? true : false
+
+        // Add toolbar status update
+        toolbar.alpha = numberOfItems > 0 ? 1 : 0.3
+        toolbar.items?.forEach { item in
+            item.isEnabled = numberOfItems > 0
+            if let customView = item.customView {
+                customView.isUserInteractionEnabled = numberOfItems > 0
+                customView.alpha = numberOfItems > 0 ? 1 : 0.3
+            }
+        }
     }
+
+//    private func updateButtonsStatus(_ numberOfItems: Int) {
+//            binImageButton.alpha = numberOfItems > 0 ? 0.9 : 0.0
+//            saveButton.alpha = numberOfItems > 0 ? 1 : 0.1
+//            saveButton.isUserInteractionEnabled = numberOfItems > 0
+//
+//            // Add toolbar status update
+//            toolbar.alpha = numberOfItems > 0 ? 1 : 0.3
+//            toolbar.items?.forEach { item in
+//                item.isEnabled = numberOfItems > 0
+//                if let customView = item.customView {
+//                    customView.isUserInteractionEnabled = numberOfItems > 0
+//                    customView.alpha = numberOfItems > 0 ? 1 : 0.3
+//                }
+//            }
+//        }
 
     private func setDefaultVideoSettings() {
         let defaultSetting = VideoInfo(resolution: .canvas1x1, duration: TimeInterval(5))
@@ -225,7 +251,7 @@ final class SlideEditorViewController: UIViewController {
         }
         self.videoCreator = videoCreator
     }
-    
+
     private func showSaveToLibraryAlert() {
         let alert = SaveToLibrary()
         alert.onCancelSaveToLibrary = {
