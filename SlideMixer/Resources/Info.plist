@@ -3,11 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UIAppFonts</key>
-	<array>
-		<string>Gilroy-SemiBold.ttf</string>
-		<string>gilroy-bold.ttf</string>
-		<string>Gilroy-Medium.ttf</string>
-	</array>
+	<array/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

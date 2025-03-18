@@ -31,8 +31,6 @@
 		275D30602B1F4C2400BED542 /* SlideEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */; };
 		275D30652B1F55EA00BED542 /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275D30642B1F55EA00BED542 /* ArchiveViewController.swift */; };
 		276F54D32B5EAE0C00619408 /* CustomIconSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */; };
-		276F54D52B5FF44600619408 /* Gilroy-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D42B5FF44600619408 /* Gilroy-SemiBold.ttf */; };
-		276F54D72B5FF47100619408 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */; };
 		276F54E12B62882300619408 /* CustomCanvasGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */; };
 		276F550E2B691FC100619408 /* VideoInfoDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */; };
 		276FBBC62C07018300D00760 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276FBBC52C07018300D00760 /* GradientButton.swift */; };
@@ -44,7 +42,6 @@
 		2790DABE2B518390003F72AF /* VideoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2790DABD2B518390003F72AF /* VideoInfo.swift */; };
 		27D90AC12C08B7CA005CDFBD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */; };
 		27D90AC32C08C3CF005CDFBD /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D90AC22C08C3CF005CDFBD /* TipsView.swift */; };
-		27E680542B56B689000B7D8F /* gilroy-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27E680532B56B689000B7D8F /* gilroy-bold.ttf */; };
 		27F44D562D8444D0000E24AE /* CreatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F44D552D8444C6000E24AE /* CreatingView.swift */; };
 		27F44D582D844762000E24AE /* CustomBlurEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F44D572D844760000E24AE /* CustomBlurEffectView.swift */; };
 		27F44D5B2D84A237000E24AE /* SaveToLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F44D5A2D84A212000E24AE /* SaveToLibrary.swift */; };
@@ -62,7 +59,7 @@
 		2745CAB22B7E51BC0083AA3C /* OnboardingSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSlide.swift; sourceTree = "<group>"; };
 		2745CAB42B7E51C40083AA3C /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		27527D072B4D53BA00826BE4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		275D300E2B162AEC00BED542 /* SlideShowMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideShowMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		275D300E2B162AEC00BED542 /* SlideMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		275D30112B162AEC00BED542 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		275D30132B162AEC00BED542 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		275D301A2B162AED00BED542 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,8 +73,6 @@
 		275D305F2B1F4C2400BED542 /* SlideEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideEditorViewController.swift; sourceTree = "<group>"; };
 		275D30642B1F55EA00BED542 /* ArchiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
 		276F54D22B5EAE0B00619408 /* CustomIconSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIconSlider.swift; sourceTree = "<group>"; };
-		276F54D42B5FF44600619408 /* Gilroy-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-SemiBold.ttf"; sourceTree = "<group>"; };
-		276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Medium.ttf"; sourceTree = "<group>"; };
 		276F54E02B62882300619408 /* CustomCanvasGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCanvasGradientButton.swift; sourceTree = "<group>"; };
 		276F550D2B691FC100619408 /* VideoInfoDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfoDelegateProtocol.swift; sourceTree = "<group>"; };
 		276FBBC52C07018300D00760 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
@@ -88,7 +83,6 @@
 		2790DABD2B518390003F72AF /* VideoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInfo.swift; sourceTree = "<group>"; };
 		27D90AC02C08B7CA005CDFBD /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		27D90AC22C08C3CF005CDFBD /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
-		27E680532B56B689000B7D8F /* gilroy-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "gilroy-bold.ttf"; sourceTree = "<group>"; };
 		27F44D552D8444C6000E24AE /* CreatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatingView.swift; sourceTree = "<group>"; };
 		27F44D572D844760000E24AE /* CustomBlurEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlurEffectView.swift; sourceTree = "<group>"; };
 		27F44D5A2D84A212000E24AE /* SaveToLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveToLibrary.swift; sourceTree = "<group>"; };
@@ -154,7 +148,7 @@
 		275D30052B162AEB00BED542 = {
 			isa = PBXGroup;
 			children = (
-				275D30102B162AEC00BED542 /* SlideShowMaker */,
+				275D30102B162AEC00BED542 /* SlideMixer */,
 				275D300F2B162AEC00BED542 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -162,12 +156,12 @@
 		275D300F2B162AEC00BED542 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				275D300E2B162AEC00BED542 /* SlideShowMaker.app */,
+				275D300E2B162AEC00BED542 /* SlideMixer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		275D30102B162AEC00BED542 /* SlideShowMaker */ = {
+		275D30102B162AEC00BED542 /* SlideMixer */ = {
 			isa = PBXGroup;
 			children = (
 				275D30252B162C3A00BED542 /* Application */,
@@ -177,9 +171,9 @@
 				2790DAB92B5034D7003F72AF /* Managers */,
 				276F550F2B69350000619408 /* Protocols */,
 				275D30262B162C5500BED542 /* Resources */,
-				275D30622B1F53AD00BED542 /* SlideShowFlow */,
+				275D30622B1F53AD00BED542 /* SlideMixerFlow */,
 			);
-			path = SlideShowMaker;
+			path = SlideMixer;
 			sourceTree = "<group>";
 		};
 		275D30252B162C3A00BED542 /* Application */ = {
@@ -196,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				276FBC202C075C4A00D00760 /* Lotties */,
-				27E680522B56B674000B7D8F /* Fonts */,
 				275D301C2B162AED00BED542 /* LaunchScreen.storyboard */,
 				275D301A2B162AED00BED542 /* Assets.xcassets */,
 				275D301F2B162AED00BED542 /* Info.plist */,
@@ -253,7 +246,7 @@
 			path = SlideEditor;
 			sourceTree = "<group>";
 		};
-		275D30622B1F53AD00BED542 /* SlideShowFlow */ = {
+		275D30622B1F53AD00BED542 /* SlideMixerFlow */ = {
 			isa = PBXGroup;
 			children = (
 				277BC3F52C12F12000ED09A7 /* Settings */,
@@ -262,7 +255,7 @@
 				275D304F2B177F6B00BED542 /* Home */,
 				275D30612B1F537100BED542 /* SlideEditor */,
 			);
-			path = SlideShowFlow;
+			path = SlideMixerFlow;
 			sourceTree = "<group>";
 		};
 		275D30632B1F53E000BED542 /* Archive */ = {
@@ -346,16 +339,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		27E680522B56B674000B7D8F /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				27E680532B56B689000B7D8F /* gilroy-bold.ttf */,
-				276F54D42B5FF44600619408 /* Gilroy-SemiBold.ttf */,
-				276F54D62B5FF47100619408 /* Gilroy-Medium.ttf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		27F44D592D84A208000E24AE /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,9 +350,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		275D300D2B162AEC00BED542 /* SlideShowMaker */ = {
+		275D300D2B162AEC00BED542 /* SlideMixer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 275D30222B162AED00BED542 /* Build configuration list for PBXNativeTarget "SlideShowMaker" */;
+			buildConfigurationList = 275D30222B162AED00BED542 /* Build configuration list for PBXNativeTarget "SlideMixer" */;
 			buildPhases = (
 				275D300A2B162AEC00BED542 /* Sources */,
 				275D300B2B162AEC00BED542 /* Frameworks */,
@@ -380,14 +363,14 @@
 			);
 			dependencies = (
 			);
-			name = SlideShowMaker;
+			name = SlideMixer;
 			packageProductDependencies = (
 				272500882B30937A000531B7 /* SnapKit */,
 				273B7F652BA2FE820033989A /* RealmSwift */,
 				276FBC1C2C07330B00D00760 /* Lottie */,
 			);
 			productName = SlideShowMaker;
-			productReference = 275D300E2B162AEC00BED542 /* SlideShowMaker.app */;
+			productReference = 275D300E2B162AEC00BED542 /* SlideMixer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -405,7 +388,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 275D30092B162AEB00BED542 /* Build configuration list for PBXProject "SlideShowMaker" */;
+			buildConfigurationList = 275D30092B162AEB00BED542 /* Build configuration list for PBXProject "SlideMixer" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -423,7 +406,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				275D300D2B162AEC00BED542 /* SlideShowMaker */,
+				275D300D2B162AEC00BED542 /* SlideMixer */,
 			);
 		};
 /* End PBXProject section */
@@ -434,12 +417,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				275D301E2B162AED00BED542 /* LaunchScreen.storyboard in Resources */,
-				276F54D72B5FF47100619408 /* Gilroy-Medium.ttf in Resources */,
 				276FBC302C076CF800D00760 /* 8.json in Resources */,
 				275D301B2B162AED00BED542 /* Assets.xcassets in Resources */,
 				27527D082B4D53BA00826BE4 /* Localizable.xcstrings in Resources */,
-				276F54D52B5FF44600619408 /* Gilroy-SemiBold.ttf in Resources */,
-				27E680542B56B689000B7D8F /* gilroy-bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +630,7 @@
 				DEVELOPMENT_TEAM = 5CDR6A6HP3;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SlideShowMaker/Resources/Info.plist;
+				INFOPLIST_FILE = SlideMixer/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "The app needs access to photos so you can create slideshows from your photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -685,7 +665,7 @@
 				DEVELOPMENT_TEAM = 5CDR6A6HP3;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SlideShowMaker/Resources/Info.plist;
+				INFOPLIST_FILE = SlideMixer/Resources/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "The app needs access to photos so you can create slideshows from your photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -713,7 +693,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		275D30092B162AEB00BED542 /* Build configuration list for PBXProject "SlideShowMaker" */ = {
+		275D30092B162AEB00BED542 /* Build configuration list for PBXProject "SlideMixer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				275D30202B162AED00BED542 /* Debug */,
@@ -722,7 +702,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		275D30222B162AED00BED542 /* Build configuration list for PBXNativeTarget "SlideShowMaker" */ = {
+		275D30222B162AED00BED542 /* Build configuration list for PBXNativeTarget "SlideMixer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				275D30232B162AED00BED542 /* Debug */,
