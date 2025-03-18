@@ -1,6 +1,6 @@
 //
 //  SettingsViewController.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 7.06.24.
 //
@@ -49,22 +49,22 @@ final class SettingsViewController: UIViewController {
         return button
     }()
 
-    private let rateButton: AnimatedGradientButton = {
+    private let supportButton: AnimatedGradientButton = {
         let button = AnimatedGradientButton()
-        button.setTitle(String(localized: "  Rate app"), for: .normal)
+        button.setTitle(String(localized: "  Support"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         button.layer.cornerRadius = 20
         button.clipsToBounds = true
 
-        let image = UIImage(systemName: "star.fill")
+        let image = UIImage(systemName: "questionmark.circle.fill")
         button.setImage(image)
         return button
     }()
 
     private let usageButton: AnimatedGradientButton = {
         let button = AnimatedGradientButton()
-        button.setTitle(String(localized: "  Usage Policy"), for: .normal)
+        button.setTitle(String(localized: "  Privacy Policy"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         button.layer.cornerRadius = 20
@@ -111,7 +111,7 @@ final class SettingsViewController: UIViewController {
         view.addSubview(goHomeButton)
         view.addSubview(settingsLabel)
         view.addSubview(shareButton)
-        view.addSubview(rateButton)
+        view.addSubview(supportButton)
         view.addSubview(usageButton)
         view.addSubview(clearAllDataButton)
 
@@ -119,7 +119,7 @@ final class SettingsViewController: UIViewController {
         goHomeButton.addGestureRecognizer(goHomeButtonTapGesture)
 
         shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
-        rateButton.addTarget(self, action: #selector(rateButtonTapped), for: .touchUpInside)
+        supportButton.addTarget(self, action: #selector(supportButtonTapped), for: .touchUpInside)
         usageButton.addTarget(self, action: #selector(usageButtonTapped), for: .touchUpInside)
         clearAllDataButton.addTarget(self, action: #selector(clearAllDataButtonTapped), for: .touchUpInside)
     }
@@ -145,31 +145,37 @@ final class SettingsViewController: UIViewController {
     }
 
     @objc
-    private func rateButtonTapped() {
-        guard let appID = Bundle.main.object(forInfoDictionaryKey: "APP_STORE_ID") as? String,
-              let url = URL(string: "itms-apps://itunes.apple.com/app/id\(appID)?action=write-review") else {
-            print("Unable to construct App Store URL for rating.")
+    private func supportButtonTapped() {
+        
+        guard let url = URL(string: "https://thugios.github.io/SlideMixer-support") else {
             return
         }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-
-            /*
-             Чтобы добавить ключ APP_STORE_ID в файл Info.plist вашего проекта, вам нужно выполнить следующие шаги:
-
-                 Откройте проект в Xcode.
-                 В навигаторе проекта выберите файл Info.plist.
-                 Нажмите на "+" в любом свободном месте, чтобы добавить новый элемент в plist.
-                 Введите APP_STORE_ID в поле "Key".
-                 Введите идентификатор вашего приложения в App Store в поле "Value".
-                 Нажмите клавишу Enter, чтобы сохранить значение.
-
-             После этого ваш ключ APP_STORE_ID будет добавлен в файл Info.plist, и вы сможете использовать его в коде для получения идентификатора вашего приложения при отправке пользователя на страницу оценки приложения в App Store.
-             */
+        
+//        guard let appID = Bundle.main.object(forInfoDictionaryKey: "APP_STORE_ID") as? String,
+//              let url = URL(string: "itms-apps://itunes.apple.com/app/id\(appID)?action=write-review") else {
+//            print("Unable to construct App Store URL for rating.")
+//            return
+//        }
+//        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//
+//            /*
+//             Чтобы добавить ключ APP_STORE_ID в файл Info.plist вашего проекта, вам нужно выполнить следующие шаги:
+//
+//                 Откройте проект в Xcode.
+//                 В навигаторе проекта выберите файл Info.plist.
+//                 Нажмите на "+" в любом свободном месте, чтобы добавить новый элемент в plist.
+//                 Введите APP_STORE_ID в поле "Key".
+//                 Введите идентификатор вашего приложения в App Store в поле "Value".
+//                 Нажмите клавишу Enter, чтобы сохранить значение.
+//
+//             После этого ваш ключ APP_STORE_ID будет добавлен в файл Info.plist, и вы сможете использовать его в коде для получения идентификатора вашего приложения при отправке пользователя на страницу оценки приложения в App Store.
+//             */
     }
 
     @objc
     private func usageButtonTapped() {
-        guard let url = URL(string: "https://github.com/ThugiOS/SlideShowMaker") else {
+        guard let url = URL(string: "https://www.privacypolicies.com/live/6104f34e-cf6c-4ee8-9665-c20563cc6cfa") else {
             print("Unable to construct URL for Usage Policy.")
             return
         }
@@ -224,7 +230,7 @@ private extension SettingsViewController {
             make.height.equalTo(60)
         }
 
-        rateButton.snp.makeConstraints { make in
+        supportButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(shareButton.snp.bottom).offset(20)
             make.width.equalTo(250)
@@ -233,7 +239,7 @@ private extension SettingsViewController {
 
         usageButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(rateButton.snp.bottom).offset(20)
+            make.top.equalTo(supportButton.snp.bottom).offset(20)
             make.width.equalTo(250)
             make.height.equalTo(60)
         }

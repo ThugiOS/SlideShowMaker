@@ -1,6 +1,6 @@
 //
 //  CreatingView.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 14.03.25.
 //

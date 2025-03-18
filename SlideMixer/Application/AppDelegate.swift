@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 28.11.23.
 //

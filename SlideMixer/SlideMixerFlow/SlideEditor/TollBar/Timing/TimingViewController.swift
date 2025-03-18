@@ -15,9 +15,9 @@ final class TimingViewController: UIViewController {
     var videoTimeInfo: VideoInfo?
 
 // MARK: - Private Properties
-    private var slideshowDuration: Double = 0.0 {
+    private var slideMixDuration: Double = 0.0 {
         didSet {
-            slideshowDurationTimerLabel.text = ("\(String(format: "%.1f", slideshowDuration))s")
+            slideMixDurationTimerLabel.text = ("\(String(format: "%.1f", slideMixDuration))s")
         }
     }
 
@@ -67,10 +67,10 @@ final class TimingViewController: UIViewController {
         return label
     }()
 
-    private let slideShowDurationLabel: UILabel = {
+    private let slideMixDurationLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.text = String(localized: "Slideshow duration")
+        label.text = String(localized: "Slide duration")
         label.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         label.alpha = 0.5
         return label
@@ -93,7 +93,7 @@ final class TimingViewController: UIViewController {
         return label
     }()
 
-    private let slideshowDurationTimerLabel: UILabel = {
+    private let slideMixDurationTimerLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 33, weight: .semibold)
@@ -148,8 +148,8 @@ final class TimingViewController: UIViewController {
         view.addSubview(fastLabel)
         view.addSubview(photosDurationTimerLabel)
         view.addSubview(photosDurationLabel)
-        view.addSubview(slideshowDurationTimerLabel)
-        view.addSubview(slideShowDurationLabel)
+        view.addSubview(slideMixDurationTimerLabel)
+        view.addSubview(slideMixDurationLabel)
 
         let tapDoneButton = UITapGestureRecognizer(target: self, action: #selector(doneButtonTapped))
         customDoneDone.addGestureRecognizer(tapDoneButton)
@@ -166,7 +166,7 @@ final class TimingViewController: UIViewController {
     private func updateLabelsAndDuration() {
         let sliderValue = Double(durationSlider.value)
         photosDurationTimerLabel.text = ("\(String(format: "%.1f", sliderValue / 10.0))s")
-        slideshowDuration = sliderValue / 10.0 * Double(numberOfImages)
+        slideMixDuration = sliderValue / 10.0 * Double(numberOfImages)
     }
 
 // MARK: - Selectors
@@ -189,7 +189,7 @@ final class TimingViewController: UIViewController {
 
     @objc
     func doneButtonTapped() {
-        videoTimeInfo?.duration = TimeInterval(slideshowDuration)
+        videoTimeInfo?.duration = TimeInterval(slideMixDuration)
         delegate?.updateVideoInfo(videoTimeInfo ?? VideoInfo(resolution: .canvas1x1, duration: TimeInterval(5)))
         dismiss(animated: true, completion: nil)
     }
@@ -250,14 +250,14 @@ private extension TimingViewController {
             make.bottom.equalTo(photosDurationTimerLabel.snp.top).offset(-6)
         }
 
-        slideshowDurationTimerLabel.snp.makeConstraints { make in
+        slideMixDurationTimerLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-23)
             make.centerY.equalTo(photosDurationTimerLabel)
         }
 
-        slideShowDurationLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(slideshowDurationTimerLabel)
-            make.bottom.equalTo(slideshowDurationTimerLabel.snp.top).offset(-6)
+        slideMixDurationLabel.snp.makeConstraints { make in
+            make.trailing.equalTo(slideMixDurationTimerLabel)
+            make.bottom.equalTo(slideMixDurationTimerLabel.snp.top).offset(-6)
         }
     }
 }

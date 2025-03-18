@@ -1,6 +1,6 @@
 //
 //  SlideEditorViewController.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 5.12.23.666
 //
@@ -238,12 +238,20 @@ final class SlideEditorViewController: UIViewController {
 
         videoCreator.createVideo(videoInfo: videoInfo) { url in
             guard url != nil else {
+                let feedbackGenerator = UINotificationFeedbackGenerator()
+                feedbackGenerator.prepare()
+                feedbackGenerator.notificationOccurred(.error)
+                self.bluer.isHidden = true
+                self.videoCreator = nil
                 print("Failed to create and save video.")
                 return
             }
 
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
+                let feedbackGenerator = UINotificationFeedbackGenerator()
+                feedbackGenerator.prepare()
+                feedbackGenerator.notificationOccurred(.success)
                 self.bluer.isHidden = true
                 showSaveToLibraryAlert()
                 self.videoCreator = nil

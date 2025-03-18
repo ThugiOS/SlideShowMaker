@@ -1,6 +1,6 @@
 //
 //  ArchiveViewController.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 5.12.23.
 //

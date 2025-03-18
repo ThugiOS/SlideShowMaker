@@ -1,6 +1,6 @@
 //
 //  VideoInfoDelegate.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 30.01.24.
 //

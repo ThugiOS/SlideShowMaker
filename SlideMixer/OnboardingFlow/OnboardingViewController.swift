@@ -1,6 +1,6 @@
 //
 //  OnboardingViewController.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 29.11.23.
 //
@@ -49,7 +49,7 @@ final class OnboardingViewController: UIViewController {
         flowLayout.scrollDirection = .horizontal
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.isScrollEnabled = true
+        collectionView.isScrollEnabled = false
         collectionView.isPagingEnabled = false
         collectionView.backgroundColor = .mainBackground
         collectionView.showsHorizontalScrollIndicator = false

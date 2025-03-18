@@ -1,6 +1,6 @@
 //
 //  ImageCell.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 14.12.23.
 //

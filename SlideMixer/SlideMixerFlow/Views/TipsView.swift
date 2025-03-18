@@ -1,6 +1,6 @@
 //
 //  TipsView.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 30.05.24.
 //

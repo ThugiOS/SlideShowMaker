@@ -1,6 +1,6 @@
 //
 //  GradientButton.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 29.05.24.
 //

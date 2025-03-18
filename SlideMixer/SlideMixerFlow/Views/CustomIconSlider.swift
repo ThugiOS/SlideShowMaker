@@ -1,6 +1,6 @@
 //
 //  CustomIconSlider.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 22.01.24.
 //

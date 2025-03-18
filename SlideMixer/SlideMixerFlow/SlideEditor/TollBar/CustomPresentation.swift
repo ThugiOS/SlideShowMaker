@@ -1,6 +1,6 @@
 //
 //  CustomPresentation.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 27.12.23.
 //

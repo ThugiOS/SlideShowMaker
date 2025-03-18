@@ -1,6 +1,6 @@
 //
 //  CustomCanvasGradientButton.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 25.01.24.
 //

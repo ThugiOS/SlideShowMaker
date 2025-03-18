@@ -1,6 +1,6 @@
 //
 //  Coordinator.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 29.11.23.
 //

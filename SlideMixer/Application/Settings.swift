@@ -1,6 +1,6 @@
 //
 //  Settings.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 30.11.23.
 //

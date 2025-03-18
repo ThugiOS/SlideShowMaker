@@ -1,6 +1,6 @@
 //
 //  HomeViewController.swift
-//  SlideShowMaker
+//  SlideMixer
 //
 //  Created by Никитин Артем on 29.11.23.
 //
@@ -313,6 +313,77 @@ private extension HomeViewController {
             projectCollection.isHidden = false
             lottieView.isHidden = true
             tipLabel.isHidden = true
+        }
+    }
+}
+
+
+
+
+import CoreHaptics
+
+class HapticManager {
+    private var hapticEngine: CHHapticEngine?
+
+    init() {
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
+            print("⚠️ Устройство не поддерживает Core Haptics")
+            return
+        }
+        
+        do {
+            hapticEngine = try CHHapticEngine()
+            try hapticEngine?.start()
+        } catch {
+            print("❌ Ошибка инициализации Core Haptics: \(error.localizedDescription)")
+        }
+    }
+
+    func playCustomHaptic() {
+        guard let engine = hapticEngine else {
+            print("⚠️ Движок вибрации не инициализирован")
+            return
+        }
+
+        do {
+            // 1. Короткий сильный толчок
+            let sharpTap = CHHapticEvent(
+                eventType: .hapticTransient,
+                parameters: [
+                    CHHapticEventParameter(parameterID: .hapticIntensity, value: 1.0),
+                    CHHapticEventParameter(parameterID: .hapticSharpness, value: 1.0)
+                ],
+                relativeTime: 0.0
+            )
+
+            // 2. Средний мягкий толчок через 200 мс
+            let softTap = CHHapticEvent(
+                eventType: .hapticTransient,
+                parameters: [
+                    CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.5),
+                    CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.5)
+                ],
+                relativeTime: 0.2
+            )
+
+            // 3. Длительная вибрация 700 мс через 400 мс
+            let continuousVibration = CHHapticEvent(
+                eventType: .hapticContinuous,
+                parameters: [
+                    CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.8),
+                    CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.4)
+                ],
+                relativeTime: 0.4,
+                duration: 0.7
+            )
+
+            let pattern = try CHHapticPattern(events: [sharpTap, softTap, continuousVibration], parameters: [])
+            let player = try engine.makePlayer(with: pattern)
+
+            try player.start(atTime: CHHapticTimeImmediate)
+
+        } catch {
+            print("❌ Ошибка воспроизведения тактильного отклика: \(error.localizedDescription)")
         }
     }
 }
