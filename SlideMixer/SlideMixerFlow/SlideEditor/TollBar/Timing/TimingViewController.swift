@@ -48,15 +48,22 @@ final class TimingViewController: UIViewController {
         label.alpha = 0.5
         return label
     }()
+    
+    private let slowLabel: UIImageView = {
+        $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(systemName: "tortoise.fill")
+        $0.tintColor = .mainBackground
+        return $0
+    }(UIImageView())
 
-    private let slowLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .darkGray
-        label.text = String(localized: "Slow")
-        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
-        label.alpha = 1
-        return label
-    }()
+//    private let slowLabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = .darkGray
+//        label.text = String(localized: "Slow")
+//        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+//        label.alpha = 1
+//        return label
+//    }()
 
     private let photosDurationLabel: UILabel = {
         let label = UILabel()
@@ -75,15 +82,22 @@ final class TimingViewController: UIViewController {
         label.alpha = 0.5
         return label
     }()
+    
+    private let fastLabel: UIImageView = {
+        $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(systemName: "hare.fill")
+        $0.tintColor = .mainBackground
+        return $0
+    }(UIImageView())
 
-    private let fastLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .darkGray
-        label.text = String(localized: "Fast")
-        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
-        label.alpha = 1
-        return label
-    }()
+//    private let fastLabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = .darkGray
+//        label.text = String(localized: "Fast")
+//        label.font = UIFont.systemFont(ofSize: 10, weight: .medium)
+//        label.alpha = 1
+//        return label
+//    }()
 
     private let photosDurationTimerLabel: UILabel = {
         let label = UILabel()
