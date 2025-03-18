@@ -223,11 +223,14 @@ final class SlideEditorViewController: UIViewController {
         let currentDate = Date() // Дата
         let index = RealmManager.shared.loadProjects().count + 1 // index
         let videoDuration = (videoInfo?.duration) ?? 10 // time video
+        let randomOffset = Int.random(in: 1...1_000_000)
+        let uniqueIndex = index + randomOffset
 
         RealmManager.shared.saveProject(images: images,
-                                        name: "project \(index)",  // project name
+                                        name: "\(Int(videoDuration)) seconds",  // project name
                                         date: currentDate,
-                                        index: index,
+//                                        index: index,
+                                        index: uniqueIndex,
                                         duration: videoDuration
         )
     }
